@@ -10,7 +10,6 @@ var max_health: int = 100
 @export var base_speed: float = 10.0 # Might want to make an int to be consistent but float might be better for calcs
 @export var base_damage: int = 10 
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -30,6 +29,9 @@ func attack():
 	pass
 
 # Upon Entity getting hit
-func got_hit():
+func on_hit():
+	pass
+
+func load_sprite():
 	pass
 
