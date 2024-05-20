@@ -8,5 +8,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_key_pressed(KEY_RIGHT):
-		print("burger")
+	var direction: Vector2 = Input.get_vector("Left","Right","Up","Down")
+	
+	velocity.x = move_toward(velocity.x, direction.x*100, base_speed)
+	velocity.y = move_toward(velocity.y, direction.y*100, base_speed)
+	
+	
+	move_and_slide()
