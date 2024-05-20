@@ -1,6 +1,6 @@
 class_name BaseEntity
 
-extends Node
+extends CharacterBody2D
 
 # Basic Stats
 var max_health: int = 100
