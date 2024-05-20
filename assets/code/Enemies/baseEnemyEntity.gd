@@ -3,6 +3,7 @@ class_name BaseEnemyEntity
 extends BaseEntity
 
 var enemy_id: int
+var target: PlayerEntity = null
 
 # TODO: Figure out how this below variable works. Ignore for now
 @export var modifier_state: int = 0
