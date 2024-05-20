@@ -1,6 +1,5 @@
 extends BaseEntity
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -10,8 +9,8 @@ func _ready():
 func _process(delta):
 	var direction: Vector2 = Input.get_vector("Left","Right","Up","Down")
 	
-	velocity.x = move_toward(velocity.x, direction.x*100, base_speed)
-	velocity.y = move_toward(velocity.y, direction.y*100, base_speed)
+	velocity.x = move_toward(velocity.x, direction.x*base_speed, base_speed)
+	velocity.y = move_toward(velocity.y, direction.y*base_speed, base_speed)
 	
 	
 	move_and_slide()
