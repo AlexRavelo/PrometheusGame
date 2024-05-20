@@ -26,15 +26,20 @@ func _process(_delta):
 
 # Upon Entity dying
 func on_death():
-	pass
+	self.queue_free()
 
 # Entity Attacking
 func attack():
 	pass
 
 # Upon Entity getting hit
-func on_hit():
-	pass
+func on_hit(damage):
+	current_health -= damage
+	
+	if current_health <= 0:
+		self.on_death()
+	
+
 
 func load_sprite():
 	pass
