@@ -17,12 +17,6 @@ func _ready():
 	modifier_state = get_modifier_state()
 	behavior_state = GlobalScript.EnemyState.Idle
 	set_health(max_health)
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 	
 
 func _physics_process(delta):
@@ -64,7 +58,6 @@ func _on_navigation_agent_3d_target_reached():
 func _on_navigation_agent_3d_velocity_computed(safe_velocity):
 	velocity = velocity.move_toward(safe_velocity, .35)
 	move_and_slide()
-
 
 
 # Gets the modifier state of the entity from global variables
