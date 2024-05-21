@@ -19,9 +19,6 @@ func input():
 		direction.x = move_toward(direction.x, inputdir.x, 0.1)
 		direction.y = move_toward(direction.y, inputdir.y, 0.1)
 	
-	print("Player Input: ", inputdir)
-	print("Player Directon: ", direction)
-	
 	velocity.x = move_toward(velocity.x, inputdir.x, base_speed)
 	velocity.z = move_toward(velocity.y, inputdir.y, base_speed)
 	
