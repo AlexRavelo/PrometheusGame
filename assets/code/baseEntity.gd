@@ -4,6 +4,9 @@ extends CharacterBody3D
 
 # Basic Stats
 var max_health: int = 100
+
+var direction := Vector2(0, 0)
+
 @export var current_health: int:
 	set(value):
 		clamp(value, 0, max_health)
