@@ -10,7 +10,7 @@ func _process(delta):
 	animation_tree.set("parameters/Idle/blend_position", direction)
 	
 	if !is_on_floor():
-		velocity.y -= 1 * delta
+		velocity.y -= gravity * delta
 	
 	input()
 	

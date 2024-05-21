@@ -6,6 +6,7 @@ extends CharacterBody3D
 var max_health: int = 100
 
 var direction := Vector2(0, 0)
+var gravity := 10
 
 @export var current_health: int:
 	set(value):
