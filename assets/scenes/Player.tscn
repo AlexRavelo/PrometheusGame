@@ -3,7 +3,8 @@
 [ext_resource type="Script" path="res://assets/code/basePlayer.gd" id="1_2wclh"]
 [ext_resource type="Texture2D" uid="uid://dexau2j7dle1r" path="res://assets/sprites/debug/player8way.png" id="2_om1f2"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aex8d"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_lcwvp"]
+radius = 0.264252
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r560h"]
 animation = &"IdleS"
@@ -55,8 +56,8 @@ nodes/Idle/node = SubResource("AnimationNodeBlendSpace2D_m0701")
 nodes/Idle/position = Vector2(0, 120)
 node_connections = [&"output", 0, &"Idle"]
 
-[sub_resource type="Animation" id="Animation_r450e"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_bufc3"]
+resource_name = "IdleE"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -67,7 +68,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [3]
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_niehr"]
@@ -100,8 +101,8 @@ tracks/0/keys = {
 "values": [7]
 }
 
-[sub_resource type="Animation" id="Animation_bufc3"]
-resource_name = "IdleE"
+[sub_resource type="Animation" id="Animation_qbr8y"]
+resource_name = "IdleNW"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -112,22 +113,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_h8tmq"]
-resource_name = "IdleSW"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [3]
+"values": [5]
 }
 
 [sub_resource type="Animation" id="Animation_533ns"]
@@ -160,6 +146,21 @@ tracks/0/keys = {
 "values": [1]
 }
 
+[sub_resource type="Animation" id="Animation_h8tmq"]
+resource_name = "IdleSW"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
 [sub_resource type="Animation" id="Animation_vw672"]
 resource_name = "IdleW"
 tracks/0/type = "value"
@@ -175,8 +176,8 @@ tracks/0/keys = {
 "values": [4]
 }
 
-[sub_resource type="Animation" id="Animation_qbr8y"]
-resource_name = "IdleNW"
+[sub_resource type="Animation" id="Animation_r450e"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -187,7 +188,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [5]
+"values": [3]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rvvn0"]
@@ -208,14 +209,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.18412, 0)
 script = ExtResource("1_2wclh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_aex8d")
+shape = SubResource("CylinderShape3D_lcwvp")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 3.5, 5)
 projection = 1
-size = 4.398
+size = 7.0
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
 billboard = 1
 texture_filter = 0
 texture = ExtResource("2_om1f2")
