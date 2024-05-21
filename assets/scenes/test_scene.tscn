@@ -28,9 +28,3 @@ size = Vector3(5.04242, 1, 5.81079)
 
 [node name="Player" parent="." instance=ExtResource("1_vv3q1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.18412, 0)
-
-[node name="Camera3D" parent="Player" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 3.5, 5)
-size = 7.0
-
-[editable path="Player"]
