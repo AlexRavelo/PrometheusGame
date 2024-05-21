@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://uyfim0gojivo"]
 
-[ext_resource type="Script" path="res://assets/code/basePlayer.gd" id="1_eb44o"]
-[ext_resource type="Texture2D" uid="uid://b3sdoxb0p5v24" path="res://icon.svg" id="2_gxt5w"]
+[ext_resource type="Script" path="res://assets/code/basePlayer.gd" id="1_ci1xx"]
+[ext_resource type="Texture2D" uid="uid://b3sdoxb0p5v24" path="res://icon.svg" id="2_qugsc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_25l1q"]
 size = Vector2(124, 129)
@@ -9,11 +9,15 @@ size = Vector2(124, 129)
 [node name="Main" type="Node2D"]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-script = ExtResource("1_eb44o")
+script = ExtResource("1_ci1xx")
 
 [node name="placeholder sprite" type="Sprite2D" parent="CharacterBody2D"]
+<<<<<<< Updated upstream:test_scene.tscn
 texture = ExtResource("2_gxt5w")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(1, 0.5)
 shape = SubResource("RectangleShape2D_25l1q")
+=======
+texture = ExtResource("2_qugsc")
+>>>>>>> Stashed changes:assets/scenes/test_scene2D.tscn
