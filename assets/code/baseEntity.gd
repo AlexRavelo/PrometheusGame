@@ -1,13 +1,13 @@
 class_name BaseEntity
 
-extends CharacterBody2D
+extends CharacterBody3D
 
 # Basic Stats
 var max_health: int = 100
 @export var current_health: int:
 	set(value):
 		clamp(value, 0, max_health)
-@export var base_speed: float = 500.0 # Might want to make an int to be consistent but float might be better for calcs
+@export var base_speed: float = 10.0 # Might want to make an int to be consistent but float might be better for calcs
 @export var base_damage: int = 10 
 
 # Called when the node enters the scene tree for the first time.
