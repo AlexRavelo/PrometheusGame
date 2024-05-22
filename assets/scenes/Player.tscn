@@ -1,24 +1,14 @@
-<<<<<<< Updated upstream
-[gd_scene load_steps=4 format=3 uid="uid://cepw0irhctadj"]
-=======
-[gd_scene load_steps=25 format=3 uid="uid://cepw0irhctadj"]
->>>>>>> Stashed changes
+[gd_scene load_steps=24 format=3 uid="uid://cepw0irhctadj"]
 
 [ext_resource type="Script" path="res://assets/code/basePlayer.gd" id="1_2wclh"]
+[ext_resource type="Texture2D" uid="uid://dexau2j7dle1r" path="res://assets/sprites/debug/player8way.png" id="2_om1f2"]
 
-<<<<<<< Updated upstream
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aex8d"]
-=======
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_lcwvp"]
-height = 1.0
 radius = 0.264252
->>>>>>> Stashed changes
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_4ow45"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r560h"]
+animation = &"IdleS"
 
-<<<<<<< Updated upstream
-[node name="CharacterBody3D" type="CharacterBody3D"]
-=======
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_efnv8"]
 animation = &"IdleE"
 
@@ -61,6 +51,7 @@ blend_mode = 1
 sync = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_fiasf"]
+graph_offset = Vector2(-436.5, 133.4)
 nodes/Idle/node = SubResource("AnimationNodeBlendSpace2D_m0701")
 nodes/Idle/position = Vector2(0, 120)
 node_connections = [&"output", 0, &"Idle"]
@@ -213,31 +204,16 @@ _data = {
 "RESET": SubResource("Animation_r450e")
 }
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_lnm8n"]
-size = Vector3(1.415, 0.58, 1)
-
 [node name="Player" type="CharacterBody3D"]
->>>>>>> Stashed changes
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.18412, 0)
 script = ExtResource("1_2wclh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-<<<<<<< Updated upstream
-shape = SubResource("CapsuleShape3D_aex8d")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_4ow45")
-=======
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.457146, 0)
 shape = SubResource("CylinderShape3D_lcwvp")
->>>>>>> Stashed changes
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 3.5, 5)
 projection = 1
-<<<<<<< Updated upstream
-size = 8.207
-=======
 size = 7.0
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
@@ -258,11 +234,3 @@ parameters/Idle/blend_position = Vector2(0.765993, 1.57269)
 libraries = {
 "": SubResource("AnimationLibrary_rvvn0")
 }
-
-[node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.652823)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.323, -1.34372)
-shape = SubResource("BoxShape3D_lnm8n")
->>>>>>> Stashed changes
