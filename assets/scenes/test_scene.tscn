@@ -9,7 +9,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0902405, -0.00506592, 0.168
 size = Vector3(5.04242, 1, 5.81079)
 
 [node name="Player" parent="." instance=ExtResource("1_vv3q1")]
+<<<<<<< Updated upstream
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 1.18412, 0)
+=======
+>>>>>>> Stashed changes
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0, 0)
