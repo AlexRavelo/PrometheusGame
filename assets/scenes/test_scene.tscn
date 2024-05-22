@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cd3mf5am8fl0x"]
+[gd_scene load_steps=7 format=3 uid="uid://cd3mf5am8fl0x"]
 
 [ext_resource type="PackedScene" uid="uid://cepw0irhctadj" path="res://assets/scenes/Player.tscn" id="1_vv3q1"]
 [ext_resource type="PackedScene" uid="uid://idxqroy7456a" path="res://assets/code/terrain/dev_grid.tscn" id="2_a5848"]
+[ext_resource type="Script" path="res://assets/code/Camera.gd" id="3_deb7w"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7ugh3"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -30,3 +31,11 @@ transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 
 data = {
 "cells": PackedInt32Array(-65536, 65535, 0, -65536, 0, 0, -1, 0, 0, -1, 65535, 0, -65536, 1, 0, -1, 1, 0, -2, 1, 0, -2, 0, 0, -2, 65535, 0, -2, 65534, 0, -1, 65534, 0, -65536, 65534, 0, -65535, 1, 0, -65535, 65535, 0, -65535, 0, 0, -65535, 65534, 0, 2, 1, 0, 2, 0, 0, 2, 65535, 0, 2, 65534, 0, 1, 65533, 0, 0, 65533, 0, 65535, 65533, 0, 65534, 65533, 0, 2, 65533, 0, -65539, 65534, 0, -65540, 65534, 0, -65541, 65534, 0, -65541, 65533, 0, -65540, 65533, 0, -65539, 65533, 0, -3, 65533, 0, -4, 65533, 0, -5, 65533, 0, 65533, 65533, 0, 65532, 65533, 0, 65531, 65533, 0, -65541, 65535, 0, -65540, 65535, 0, -65539, 65535, 0, -65539, 0, 0, -65539, 1, 0, -65540, 1, 0, -65540, 0, 0, -65541, 0, 0, -65541, 1, 0, -65541, 2, 0, -65540, 2, 0, -65540, 3, 0, -65539, 3, 0, -65538, 3, 0, -65538, 2, 0, -65539, 2, 0, -65537, 2, 0, -65537, 3, 0, -131072, 3, 0, -131071, 3, 0, -131071, 2, 0, -131071, 4, 0, -131072, 4, 0, -65537, 4, 0, -65538, 4, 0, -65539, 4, 0, -65540, 4, 0, -65541, 3, 0, -65541, 4, 0, -131072, 2, 0, -65534, 4, 0, -65534, 3, 0, -65534, 2, 0, 2, 2, 0, 2, 3, 0, 2, 4, 0)
 }
+
+[node name="Camera" type="Camera3D" parent="." node_paths=PackedStringArray("Camera_Target")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 4.68412, 5)
+projection = 1
+current = true
+size = 7.0
+script = ExtResource("3_deb7w")
+Camera_Target = NodePath("../Player")
