@@ -2,7 +2,7 @@ class_name PlayerEntity
 
 extends BaseEntity
 
-@export_range(0.0,100.0,0.1) var player_movespeed = 0.1
+@export_range(0.0,100.0,0.1) var player_movespeed = 5
 
 @onready var attack_hitbox = $AttackHitbox
 @onready var animation_tree = $AnimationTree
