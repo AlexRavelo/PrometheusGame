@@ -23,8 +23,7 @@ environment = SubResource("Environment_t24vq")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.709664, -0.704537, 0.00193855, -0.00192707, 0.000810416, 0.999998, -0.704537, -0.709667, -0.000782572, -0.0309554, -4.11272e-05, 0.0387351)
 
-[node name="Player" parent="." instance=ExtResource("1_vv3q1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.18412, 0)
+[node name="Player" parent="." groups=["Enemy", "Player"] instance=ExtResource("1_vv3q1")]
 
 [node name="DevGrid" parent="." instance=ExtResource("2_a5848")]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0.432215, 0.439287, 0.0569789)
