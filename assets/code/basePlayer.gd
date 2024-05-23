@@ -16,7 +16,7 @@ func _process(delta):
 		velocity.y -= gravity * delta
 	
 	if Input.is_action_just_pressed("Attack"):
-		attack()
+		_attack()
 	
 	
 	move_input()
@@ -28,10 +28,10 @@ func move_input():
 	if inputdir:
 		direction.x = move_toward(direction.x, inputdir.x, 0.1)
 		direction.y = move_toward(direction.y, inputdir.y, 0.1)
-	
+		
 	velocity.x = move_toward(velocity.x, inputdir.x*player_movespeed, base_speed)
 	velocity.z = move_toward(velocity.z, inputdir.y*player_movespeed, base_speed)
 	
-func attack():
+func _attack():
 	var target = attack_hitbox.get_overlapping_bodies()
 	print("aaabaababababfbbfb")
