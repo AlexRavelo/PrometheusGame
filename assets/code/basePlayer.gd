@@ -4,7 +4,7 @@ extends BaseEntity
 
 @export_range(0.0,100.0,0.1) var player_movespeed = 5
 
-@onready var attack_hitbox = $AttackHitbox
+@onready var attack_hitbox = $Node3D
 @onready var animation_tree = $AnimationTree
 @onready var animation_player = $AnimationPlayer
 
@@ -28,7 +28,7 @@ func move_input():
 	if inputdir:
 		direction.x = move_toward(direction.x, inputdir.x, 0.1)
 		direction.y = move_toward(direction.y, inputdir.y, 0.1)
-		
+	
 	velocity.x = move_toward(velocity.x, inputdir.x*player_movespeed, base_speed)
 	velocity.z = move_toward(velocity.z, inputdir.y*player_movespeed, base_speed)
 	

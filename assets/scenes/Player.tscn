@@ -235,7 +235,9 @@ libraries = {
 "": SubResource("AnimationLibrary_rvvn0")
 }
 
-[node name="AttackHitbox" type="Area3D" parent="."]
+[node name="Node3D" type="Node3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackHitbox"]
+[node name="AttackHitbox" type="Area3D" parent="Node3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/AttackHitbox"]
 shape = SubResource("BoxShape3D_ih6uj")
