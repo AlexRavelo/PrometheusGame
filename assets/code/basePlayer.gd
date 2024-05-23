@@ -15,7 +15,10 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed("Attack"):
 		attack()
-
+	
+	if Input.is_key_pressed(KEY_R): #in case you fall and fucking die, DELETE LATER
+		get_tree().reload_current_scene()
+		
 	move_input()
 	
 	move_and_slide()
