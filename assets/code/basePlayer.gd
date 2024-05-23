@@ -2,19 +2,38 @@ class_name PlayerEntity
 
 extends BaseEntity
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
+@onready var attack_hitbox = $AttackHitbox
+@onready var animation_tree = $AnimationTree
+@onready var animation_player = $AnimationPlayer
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var input_x = Input.get_axis("Left","Right")
-	var input_z = Input.get_axis("Up","Down")
-	var direction = (self.transform.basis * Vector3(input_x,0,input_z)).normalized()
+	animation_tree.set("parameters/Idle/blend_position", direction)
 	
-	velocity.x = move_toward(velocity.x, direction.x, base_speed)
-	velocity.z = move_toward(velocity.y, direction.z, base_speed)
+	if !is_on_floor():
+		velocity.y -= gravity * delta
 	
+	if Input.is_action_just_pressed("Attack"):
+		attack()
+	
+	if Input.is_key_pressed(KEY_R): #in case you fall and fucking die, DELETE LATER
+		get_tree().reload_current_scene()
+		
+	move_input()
 	
 	move_and_slide()
+
+func move_input():
+	var inputdir = Input.get_vector("Left","Right", "Up", "Down")
+	if inputdir:
+		direction.x = lerpf(direction.x, inputdir.x, 0.08)
+		direction.y = lerpf(direction.y, inputdir.y, 0.08)
+	
+	attack_hitbox.look_at(Vector3(position.x + direction.x, position.y, position.z + direction.y))
+	
+	velocity.x = move_toward(velocity.x, inputdir.x*base_speed, 0.8)
+	velocity.z = move_toward(velocity.z, inputdir.y*base_speed, 0.8)
+	
+func attack():
+	var target = attack_hitbox.get_overlapping_bodies()
+	print("RATCHET ATTACK")

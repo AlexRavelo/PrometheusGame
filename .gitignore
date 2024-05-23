@@ -1,4 +1,3 @@
 # Godot 4+ specific ignores
 .godot/
-tesBA01.tmp
-tesCEE0.tmp
+*.tmp
