@@ -29,7 +29,7 @@ func move_input():
 		direction.x = lerpf(direction.x, inputdir.x, 0.08)
 		direction.y = lerpf(direction.y, inputdir.y, 0.08)
 	
-	attack_hitbox.look_at(Vector3(position.x + direction.x, position.y, position.z + direction.y))
+	attack_hitbox.look_at(Vector3(position.x + direction.x + 0.00001, position.y, position.z + direction.y)) #the tiny ass number is so the debugger doesn't shit itself
 	
 	velocity.x = move_toward(velocity.x, inputdir.x*base_speed, 0.8)
 	velocity.z = move_toward(velocity.z, inputdir.y*base_speed, 0.8)
