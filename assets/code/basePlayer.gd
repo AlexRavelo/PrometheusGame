@@ -2,8 +2,6 @@ class_name PlayerEntity
 
 extends BaseEntity
 
-@export_range(0.0,100.0,0.1) var player_movespeed = 5
-
 @onready var attack_hitbox = $AttackHitbox
 @onready var animation_tree = $AnimationTree
 @onready var animation_player = $AnimationPlayer
@@ -17,8 +15,10 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed("Attack"):
 		attack()
-
 	
+	if Input.is_key_pressed(KEY_R): #in case you fall and fucking die, DELETE LATER
+		get_tree().reload_current_scene()
+		
 	move_input()
 	
 	move_and_slide()
@@ -26,12 +26,14 @@ func _process(delta):
 func move_input():
 	var inputdir = Input.get_vector("Left","Right", "Up", "Down")
 	if inputdir:
-		direction.x = move_toward(direction.x, inputdir.x, 0.1)
-		direction.y = move_toward(direction.y, inputdir.y, 0.1)
+		direction.x = lerpf(direction.x, inputdir.x, 0.08)
+		direction.y = lerpf(direction.y, inputdir.y, 0.08)
 	
-	velocity.x = move_toward(velocity.x, inputdir.x*player_movespeed, base_speed)
-	velocity.z = move_toward(velocity.z, inputdir.y*player_movespeed, base_speed)
+	attack_hitbox.look_at(Vector3(position.x + direction.x, position.y, position.z + direction.y))
+	
+	velocity.x = move_toward(velocity.x, inputdir.x*base_speed, 0.8)
+	velocity.z = move_toward(velocity.z, inputdir.y*base_speed, 0.8)
 	
 func attack():
 	var target = attack_hitbox.get_overlapping_bodies()
-	print("aaabaababababfbbfb")
+	print("RATCHET ATTACK")
