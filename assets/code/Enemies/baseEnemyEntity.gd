@@ -2,6 +2,7 @@ class_name BaseEnemyEntity
 
 extends BaseEntity
 
+var nav_agent_2d: NavigationAgent2D
 var enemy_id: int
 var target: PlayerEntity = null
 
