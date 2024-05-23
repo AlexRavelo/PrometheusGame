@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnmenplk5umkl"]
+
+[ext_resource type="Script" path="res://assets/code/Enemies/axeEnemyEntity.gd" id="1_tluvu"]
+[ext_resource type="Texture2D" uid="uid://bqjxn8e8mrx4o" path="res://assets/sprites/placeholders/PLACEHOLDER_AXE_ENEMY.png" id="2_0obsl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_povgh"]
+size = Vector2(154, 153)
+
+[node name="AxeEnemyEntity" type="CharacterBody2D"]
+script = ExtResource("1_tluvu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_0obsl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 2.5)
+shape = SubResource("RectangleShape2D_povgh")
