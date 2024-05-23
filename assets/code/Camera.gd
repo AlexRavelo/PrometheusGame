@@ -10,5 +10,5 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if Camera_Target:
-		position.x = Camera_Target.position.x
-		position.z = Camera_Target.position.z + 5
+		position.x = lerpf(position.x, Camera_Target.position.x, 0.04)
+		position.z = lerpf(position.z, Camera_Target.position.z + 5, 0.04)
