@@ -1,0 +1,59 @@
+[gd_scene load_steps=10 format=3 uid="uid://p0aiilgf8her"]
+
+[ext_resource type="PackedScene" uid="uid://cepw0irhctadj" path="res://assets/scenes/Player.tscn" id="1_a7fbt"]
+[ext_resource type="Texture2D" uid="uid://db1jdms2tg2k5" path="res://assets/sprites/DEVTERRAIN.png" id="2_a4v3o"]
+[ext_resource type="Script" path="res://assets/code/Camera.gd" id="2_qymli"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0uxwf"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_nfg6s"]
+sky_material = SubResource("ProceduralSkyMaterial_0uxwf")
+
+[sub_resource type="Environment" id="Environment_vli1m"]
+background_mode = 2
+sky = SubResource("Sky_nfg6s")
+tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8l2vb"]
+albedo_texture = ExtResource("2_a4v3o")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_uukr4"]
+material = SubResource("StandardMaterial3D_8l2vb")
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w7dgj"]
+size = Vector3(20, 20, 1)
+
+[node name="dev_test_area" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_vli1m")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("1_a7fbt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.076, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 0, 0.351572, 0)
+mesh = SubResource("BoxMesh_uukr4")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("BoxShape3D_w7dgj")
+
+[node name="Camera" type="Camera3D" parent="." node_paths=PackedStringArray("Camera_Target")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 4.68412, 5)
+projection = 1
+current = true
+size = 7.0
+script = ExtResource("2_qymli")
+Camera_Target = NodePath("../Player")
