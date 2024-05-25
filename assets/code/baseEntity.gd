@@ -5,7 +5,7 @@ extends CharacterBody3D
 # Basic Stats
 var max_health: int = 100
 
-var direction := Vector2(0, 0)
+var direction := Vector2(0, 1)
 var gravity := 10
 
 @export var current_health: int:
