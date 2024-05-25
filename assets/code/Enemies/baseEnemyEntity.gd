@@ -8,6 +8,7 @@ var attack_bubble: Area3D
 var detection_bubble: CollisionShape3D
 var enemy_id: int
 var target: PlayerEntity = null
+@export var behaviorState: int = 0
 
 @export var modifier_state: GlobalScript.Area
 @export var behavior_state: GlobalScript.EnemyState
