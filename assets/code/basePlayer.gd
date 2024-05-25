@@ -16,12 +16,15 @@ func _process(delta):
 	if Input.is_action_just_pressed("Attack"):
 		attack()
 	
-	if Input.is_key_pressed(KEY_R): #in case you fall and fucking die, DELETE LATER
-		get_tree().reload_current_scene()
-		
+	debug_commands()
+	
 	move_input()
 	
 	move_and_slide()
+
+func debug_commands():
+	if Input.is_key_pressed(KEY_R): #in case you fall and fucking die, DELETE LATER
+		get_tree().reload_current_scene()
 
 func move_input():
 	var inputdir = Input.get_vector("Left","Right", "Up", "Down")
@@ -37,3 +40,4 @@ func move_input():
 func attack():
 	var target = attack_hitbox.get_overlapping_bodies()
 	print("RATCHET ATTACK")
+	#if target is in enemy group then emit signal
