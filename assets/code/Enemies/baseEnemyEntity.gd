@@ -5,6 +5,7 @@ extends BaseEntity
 var nav_agent_2d: NavigationAgent2D
 var enemy_id: int
 var target: PlayerEntity = null
+@export var behaviorState: int = 0
 
 # TODO: Figure out how this below variable works. Ignore for now
 @export var modifier_state: int = 0
