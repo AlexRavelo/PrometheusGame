@@ -2,6 +2,7 @@ class_name PlayerEntity
 
 extends BaseEntity
 
+var fireattack = preload("res://assets/scenes/fire_attack.tscn")
 @onready var attack_hitbox = $AttackHitbox
 @onready var animation_tree = $AnimationTree
 @onready var animation_player = $AnimationPlayer
@@ -38,6 +39,10 @@ func move_input():
 	velocity.z = move_toward(velocity.z, inputdir.y*base_speed, 0.8)
 	
 func attack():
-	var target = attack_hitbox.get_overlapping_bodies()
-	print("RATCHET ATTACK")
-	#if target is in enemy group then emit signal
+	print("Ratchet ATTACK")
+	#everything below is heavily in progress LOL
+	#var fireattack = fireattack.instantiate()
+	#add_child(fireattack)
+	#var cooldown = Timer.new()
+	#timer.start()
+	#fireattack.look_at(Vector3(position.x + direction.x + 0.00001, position.y, position.z + direction.y))
