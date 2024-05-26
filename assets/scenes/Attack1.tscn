@@ -3,7 +3,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_ih6uj"]
 size = Vector3(1.3, 0.5, 0.6)
 
-[node name="fire_attack" type="Area3D"]
+[node name="Attack1" type="Area3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -0.7)
