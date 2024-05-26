@@ -14,7 +14,7 @@ func areaSet():
 	##not really needed since currentArea is global
 ##	pass
 	
-func _process(delta):
+func _process(_delta):
 	##check CurrentArea and change map/tileset accordingly
 	##tried checking out changing the tilesets via function but ran into a block when it came to non homogenous tilesets
 	pass
