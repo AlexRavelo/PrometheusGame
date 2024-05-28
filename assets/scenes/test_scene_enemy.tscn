@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://b47wcl3q1oisl"]
 
-[ext_resource type="Script" path="res://assets/scenes/test_scene_enemy.gd" id="1_hn5ud"]
+[ext_resource type="Script" path="res://assets/code/GlobalScript.gd" id="1_0iehh"]
 [ext_resource type="PackedScene" uid="uid://cepw0irhctadj" path="res://assets/scenes/Player.tscn" id="1_kje80"]
 [ext_resource type="PackedScene" uid="uid://idxqroy7456a" path="res://assets/code/terrain/dev_grid.tscn" id="2_kec8d"]
 [ext_resource type="Script" path="res://assets/code/Camera.gd" id="3_wxjvj"]
@@ -23,7 +23,7 @@ sky = SubResource("Sky_yss8v")
 tonemap_mode = 2
 
 [node name="Main" type="Node3D"]
-script = ExtResource("1_hn5ud")
+script = ExtResource("1_0iehh")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0.432215, 0.439287, 0.0569789)
@@ -42,7 +42,7 @@ environment = SubResource("Environment_t24vq")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.709664, -0.704537, 0.00193855, -0.00192707, 0.000810416, 0.999998, -0.704537, -0.709667, -0.000782572, -0.0309554, -4.11272e-05, 0.0387351)
 
-[node name="Player" parent="." groups=["Enemy", "Player"] instance=ExtResource("1_kje80")]
+[node name="Player" parent="." groups=["Enemy"] instance=ExtResource("1_kje80")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.85925, 0)
 
 [node name="Camera" type="Camera3D" parent="." node_paths=PackedStringArray("Camera_Target")]

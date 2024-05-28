@@ -34,6 +34,14 @@ func move_input():
 	velocity.x = move_toward(velocity.x, inputdir.x*base_speed, 0.8)
 	velocity.z = move_toward(velocity.z, inputdir.y*base_speed, 0.8)
 	
+	
+func _ready():
+	current_health = 99
+	print(current_health)
+	
+func on_death():
+	print("FUCK IM DEAD")
+
 func attack():
 	var target = attack_hitbox.get_overlapping_bodies()
 	print("RATCHET ATTACK")
