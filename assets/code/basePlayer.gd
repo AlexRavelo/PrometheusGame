@@ -57,3 +57,10 @@ func attack(): #probably going to rename for different attacks
 	else:
 		print("no attack :(")
 		print("cooldown left = ", cooldown.time_left)
+	
+func _ready():
+	current_health = 99
+	print(current_health)
+	
+func on_death():
+	print("FUCK IM DEAD")
