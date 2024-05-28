@@ -1,6 +1,7 @@
 extends Node
 
 enum Area{First, Second, Third}
+enum EnemyState{Idle, Alert, Attack, Retreat}
 var CurrentArea
 
 func areaSet():
@@ -9,10 +10,10 @@ func areaSet():
 	##CurrentArea = area.First / x
 	pass
 
-##func areaGet():
+func areaGet():
 	##return CurrentArea
 	##not really needed since currentArea is global
-##	pass
+	return Area.First
 	
 func _process(delta):
 	##check CurrentArea and change map/tileset accordingly

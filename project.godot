@@ -55,6 +55,12 @@ Attack={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="World"
+3d_physics/layer_2="Player Detection"
+3d_physics/layer_3="Hitbox"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
