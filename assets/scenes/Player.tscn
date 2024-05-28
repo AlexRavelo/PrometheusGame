@@ -1,28 +1,37 @@
-[gd_scene load_steps=11 format=3 uid="uid://cepw0irhctadj"]
+[gd_scene load_steps=14 format=3 uid="uid://cepw0irhctadj"]
 
 [ext_resource type="Script" path="res://assets/code/basePlayer.gd" id="1_2wclh"]
-[ext_resource type="Texture2D" uid="uid://y6jfooyjbwn8" path="res://assets/sprites/debug/PlayerFront.png" id="2_0qmva"]
+[ext_resource type="Texture2D" uid="uid://2vf84s7ph0mv" path="res://assets/sprites/debug/PlayerSheet.png" id="2_cps28"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_lcwvp"]
 height = 1.0
 radius = 0.264252
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_o3vf1"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mdqgm"]
+animation = &"IdleBack"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uw4ut"]
 animation = &"IdleFront"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_fiasf"]
 graph_offset = Vector2(-437, 98)
-nodes/Animation/node = SubResource("AnimationNodeAnimation_uw4ut")
-nodes/Animation/position = Vector2(-40, 160)
+nodes/FrontBack/node = SubResource("AnimationNodeBlend2_o3vf1")
+nodes/FrontBack/position = Vector2(60, 200)
+nodes/IdleBack/node = SubResource("AnimationNodeAnimation_mdqgm")
+nodes/IdleBack/position = Vector2(-120, 320)
+nodes/IdleFront/node = SubResource("AnimationNodeAnimation_uw4ut")
+nodes/IdleFront/position = Vector2(-120, 120)
 nodes/output/position = Vector2(240, 140)
-node_connections = [&"output", 0, &"Animation"]
+node_connections = [&"FrontBack", 0, &"IdleFront", &"FrontBack", 1, &"IdleBack", &"output", 0, &"FrontBack"]
 
 [sub_resource type="Animation" id="Animation_5wudq"]
 resource_name = "new_animation"
 
 [sub_resource type="Animation" id="Animation_o1ffx"]
 resource_name = "IdleFront"
-length = 0.6
+length = 0.9
 loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -31,10 +40,10 @@ tracks/0/path = NodePath("Sprite3D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2]
+"values": [0, 1, 2, 1]
 }
 
 [sub_resource type="Animation" id="Animation_r6ett"]
@@ -52,8 +61,26 @@ tracks/0/keys = {
 "values": [1]
 }
 
+[sub_resource type="Animation" id="Animation_crmfv"]
+resource_name = "IdleBack"
+length = 0.9
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 5, 4]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rvvn0"]
 _data = {
+"IdleBack": SubResource("Animation_crmfv"),
 "IdleFront": SubResource("Animation_o1ffx"),
 "RESET": SubResource("Animation_r6ett"),
 "new_animation": SubResource("Animation_5wudq")
@@ -75,14 +102,16 @@ shape = SubResource("CylinderShape3D_lcwvp")
 transform = Transform3D(0.672, 0, 0, 0, 0.672, 0, 0, 0, 0.672, 0, -0.346493, 0)
 billboard = 1
 texture_filter = 0
-texture = ExtResource("2_0qmva")
-hframes = 3
+texture = ExtResource("2_cps28")
+hframes = 6
 frame = 1
 region_rect = Rect2(0, 0, 142, 128)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+deterministic = false
 tree_root = SubResource("AnimationNodeBlendTree_fiasf")
 anim_player = NodePath("../AnimationPlayer")
+parameters/FrontBack/blend_amount = 1.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

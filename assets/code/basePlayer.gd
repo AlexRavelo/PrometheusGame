@@ -2,6 +2,7 @@ class_name PlayerEntity
 
 extends BaseEntity
 
+@onready var sprite = $Sprite3D
 @onready var attack_hitbox = $AttackHitbox
 @onready var animation_tree = $AnimationTree
 @onready var animation_player = $AnimationPlayer
@@ -24,15 +25,20 @@ func _process(delta):
 func move_input():
 	var inputdir = Input.get_vector("Left","Right", "Up", "Down")
 	if inputdir:
-		direction.x = lerpf(direction.x, inputdir.x, 0.08)
-		direction.y = lerpf(direction.y, inputdir.y, 0.08)
+		direction.x = lerpf(direction.x, inputdir.x, 0.09)
+		direction.y = lerpf(direction.y, inputdir.y, 0.09)
 	
 	attack_hitbox.look_at(Vector3(position.x + direction.x, position.y, position.z + direction.y))
 	
 	if direction.x < 0:
-		$Sprite3D.flip_h = true
+		sprite.flip_h = true
 	else:
-		$Sprite3D.flip_h = false
+		sprite.flip_h = false
+	if direction.y < 0:
+		animation_tree.set("parameters/FrontBack/blend_amount",1)
+	else:
+		animation_tree.set("parameters/FrontBack/blend_amount",0)
+		
 	velocity.x = move_toward(velocity.x, inputdir.x*base_speed, 0.8)
 	velocity.z = move_toward(velocity.z, inputdir.y*base_speed, 0.8)
 	
