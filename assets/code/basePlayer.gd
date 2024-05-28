@@ -8,8 +8,6 @@ extends BaseEntity
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	animation_tree.set("parameters/Idle/blend_position", direction)
-	
 	if !is_on_floor():
 		velocity.y -= gravity * delta
 	
@@ -31,6 +29,10 @@ func move_input():
 	
 	attack_hitbox.look_at(Vector3(position.x + direction.x, position.y, position.z + direction.y))
 	
+	if direction.x < 0:
+		$Sprite3D.flip_h = true
+	else:
+		$Sprite3D.flip_h = false
 	velocity.x = move_toward(velocity.x, inputdir.x*base_speed, 0.8)
 	velocity.z = move_toward(velocity.z, inputdir.y*base_speed, 0.8)
 	
