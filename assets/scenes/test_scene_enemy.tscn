@@ -54,4 +54,4 @@ script = ExtResource("3_wxjvj")
 Camera_Target = NodePath("../Player")
 
 [node name="AxeEnemy" parent="." instance=ExtResource("5_o2q0s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.54333, 0.67474, 0.0117173)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.54333, 1.12021, 0.0117173)
