@@ -209,8 +209,9 @@ _data = {
 size = Vector3(1.3, 0.5, 0.6)
 
 [node name="Player" type="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.18412, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_2wclh")
+current_health = 100
 base_speed = 5.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -241,3 +242,7 @@ libraries = {
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AttackHitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -0.7)
 shape = SubResource("BoxShape3D_ih6uj")
+
+[node name="Attack Cooldown" type="Timer" parent="."]
+one_shot = true
+autostart = true

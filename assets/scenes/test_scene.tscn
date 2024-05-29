@@ -34,7 +34,7 @@ data = {
 }
 
 [node name="Camera" type="Camera3D" parent="." node_paths=PackedStringArray("Camera_Target")]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 4.68412, 5)
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 4, 5)
 projection = 1
 current = true
 size = 7.0
