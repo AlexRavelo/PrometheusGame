@@ -37,7 +37,7 @@ func move_input():
 		direction.x = lerpf(direction.x, inputdir.x, 0.08)
 		direction.y = lerpf(direction.y, inputdir.y, 0.08)
 	
-	attack_hitbox.look_at(Vector3(position.x + direction.x + 0.00001, position.y, position.z + direction.y)) #the tiny ass number is so the debugger doesn't shit itself
+	attack_hitbox.look_at(Vector3(position.x + direction.x, position.y, position.z + direction.y))
 	
 	velocity.x = move_toward(velocity.x, inputdir.x*base_speed, 0.8)
 	velocity.z = move_toward(velocity.z, inputdir.y*base_speed, 0.8)
@@ -51,7 +51,7 @@ func attack(): #probably going to rename for different attacks
 		@warning_ignore("shadowed_variable") #remove later after renaming attack()
 		var attack = Attack1.instantiate()
 		add_child(attack)
-		attack.look_at(Vector3(position.x + direction.x + 0.00001, position.y, position.z + direction.y))
+		attack.look_at(Vector3(position.x + direction.x, position.y, position.z + direction.y))
 		await get_tree().create_timer(0.2).timeout
 		attack.queue_free()
 	else:
