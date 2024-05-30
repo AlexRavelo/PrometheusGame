@@ -52,7 +52,7 @@ func attack(): #probably going to rename for different attacks
 		var attack = Attack1.instantiate()
 		add_child(attack)
 		attack.look_at(Vector3(position.x + direction.x, position.y, position.z + direction.y))
-		await get_tree().create_timer(0.2).timeout
+		await get_tree().create_timer(0.2).timeout #kills hitbox after 0.2 seconds
 		attack.queue_free()
 	else:
 		print("no attack :(")
