@@ -1,0 +1,98 @@
+[gd_scene load_steps=9 format=3 uid="uid://c61tak28mtli2"]
+
+[ext_resource type="Script" path="res://assets/code/Enemies/beastEntity.gd" id="1_g7cmq"]
+[ext_resource type="Texture2D" uid="uid://8ior7uko5da2" path="res://assets/sprites/placeholders/PLACEHOLDER_BEAST.png" id="2_ubimt"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_miu2h"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_igskt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4xde8"]
+size = Vector3(1, 1, 1.66199)
+
+[sub_resource type="Animation" id="Animation_whhvg"]
+resource_name = "attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AttackBubble/Hitbox:monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_rxrch"]
+resource_name = "idle"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oxcue"]
+_data = {
+"attack": SubResource("Animation_whhvg"),
+"idle": SubResource("Animation_rxrch")
+}
+
+[node name="LilBeast" type="CharacterBody3D" groups=["enemies"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0147161, 0)
+script = ExtResource("1_g7cmq")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.63, 0, 0, 0, 0.63, 0, 0, 0, 0.63, -0.0377417, 0.478408, 0)
+texture = ExtResource("2_ubimt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03989, 0)
+shape = SubResource("CylinderShape3D_miu2h")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true
+
+[node name="DetectionBubble" type="Area3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.050616, 0)
+visible = false
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionBubble"]
+transform = Transform3D(2.06, 0, 0, 0, 2.06, 0, 0, 0, 2.06, 0, -0.008, 0)
+shape = SubResource("SphereShape3D_igskt")
+
+[node name="AttackBubble" type="Area3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.0645003, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="Hitbox" type="Area3D" parent="AttackBubble"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.0930994, 0.195614)
+collision_layer = 4
+monitoring = false
+
+[node name="CollisionShape3d" type="CollisionShape3D" parent="AttackBubble/Hitbox"]
+transform = Transform3D(0.724, 0, 0, 0, 0.415, 0, 0, 0, 0.147, 0, -0.165119, -0.493353)
+shape = SubResource("BoxShape3D_4xde8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackBubble"]
+transform = Transform3D(0.26, 0, 0, 0, 0.26, 0, 0, 0, 0.26, 0, -0.008, 0)
+shape = SubResource("SphereShape3D_igskt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_oxcue")
+}
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
+[connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
+[connection signal="body_entered" from="DetectionBubble" to="." method="_on_detection_bubble_body_entered"]
+[connection signal="body_exited" from="DetectionBubble" to="." method="_on_detection_bubble_body_exited"]
+[connection signal="body_entered" from="AttackBubble" to="." method="_on_detection_bubble_body_entered"]
+[connection signal="body_entered" from="AttackBubble" to="." method="_on_attack_bubble_body_entered"]
+[connection signal="body_exited" from="AttackBubble" to="." method="_on_attack_bubble_body_exited"]
+[connection signal="body_exited" from="AttackBubble" to="." method="_on_detection_bubble_body_exited"]
+[connection signal="body_entered" from="AttackBubble/Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_entered" from="AttackBubble/Hitbox" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="AttackBubble/Hitbox" to="." method="_on_hitbox_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

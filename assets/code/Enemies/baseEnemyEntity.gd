@@ -6,8 +6,10 @@ var nav_agent: NavigationAgent3D
 var attack_hitbox: CollisionShape3D
 var attack_bubble: Area3D
 var detection_bubble: CollisionShape3D
+var retreat_timer: Timer
 var enemy_id: int
 var target: PlayerEntity = null
+
 
 @export var modifier_state: GlobalScript.Area
 @export var behavior_state: GlobalScript.EnemyState
@@ -46,6 +48,8 @@ func _physics_process(delta):
 			alert()
 		GlobalScript.EnemyState.Attack:
 			attack()
+		GlobalScript.EnemyState.Retreat:
+			retreat()
 	
 
 func update_target_location(target_location):
@@ -58,17 +62,21 @@ func idle():
 	pass
 
 func retreat():
-	target = null
+	update_target_location(target.global_transform.origin)
+	var current_location = global_transform.origin
+	var next_location = nav_agent.get_next_path_position()
+	var new_velocity = ((next_location - current_location).normalized() * base_speed) * Vector3(-1,-1,-1)
+	
+	nav_agent.set_velocity(new_velocity)
 	
 func alert():
-	if(behavior_state == GlobalScript.EnemyState.Alert):
-		update_target_location(target.global_transform.origin)
-		var current_location = global_transform.origin
-		attack_bubble.look_at(nav_agent.target_position, Vector3.UP, true)
-		var next_location = nav_agent.get_next_path_position()
-		var new_velocity = (next_location - current_location).normalized() * base_speed
-		
-		nav_agent.set_velocity(new_velocity)
+	update_target_location(target.global_transform.origin)
+	var current_location = global_transform.origin
+	attack_bubble.look_at(nav_agent.target_position, Vector3.UP, true)
+	var next_location = nav_agent.get_next_path_position()
+	var new_velocity = (next_location - current_location).normalized() * base_speed
+	
+	nav_agent.set_velocity(new_velocity)
 
 func _on_navigation_agent_3d_target_reached():
 	pass
