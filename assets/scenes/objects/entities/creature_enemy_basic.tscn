@@ -1,7 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://c61tak28mtli2"]
+[gd_scene load_steps=9 format=3 uid="uid://cxkbfwawip2s1"]
 
 [ext_resource type="Script" path="res://assets/code/Enemies/beastEntity.gd" id="1_g7cmq"]
-[ext_resource type="Texture2D" uid="uid://8ior7uko5da2" path="res://assets/sprites/placeholders/PLACEHOLDER_BEAST.png" id="2_ubimt"]
+[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/PLACEHOLDER_BEAST.png" id="2_ubimt"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_miu2h"]
 
@@ -37,6 +37,11 @@ _data = {
 [node name="LilBeast" type="CharacterBody3D" groups=["enemies"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0147161, 0)
 script = ExtResource("1_g7cmq")
+modifier_state = null
+behavior_state = null
+current_health = null
+base_speed = null
+base_damage = null
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(0.63, 0, 0, 0, 0.63, 0, 0, 0, 0.63, -0.0377417, 0.478408, 0)

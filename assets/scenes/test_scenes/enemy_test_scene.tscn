@@ -20,6 +20,11 @@ navigation_polygon = SubResource("NavigationPolygon_sqgtv")
 
 [node name="AxeEnemyEntity" type="CharacterBody2D" parent="."]
 script = ExtResource("1_kx3u4")
+modifier_state = null
+behavior_state = null
+current_health = null
+base_speed = null
+base_damage = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AxeEnemyEntity"]
 position = Vector2(168, 137)
