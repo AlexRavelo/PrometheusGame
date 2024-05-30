@@ -243,3 +243,6 @@ collision_layer = 3
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AttackHitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -0.7)
 shape = SubResource("BoxShape3D_ih6uj")
+
+[node name="Attack Cooldown" type="Timer" parent="."]
+one_shot = true
