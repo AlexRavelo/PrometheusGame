@@ -13,7 +13,7 @@ var gravity := 10
 @export var current_health: int = 100
 @export var base_speed: float = 3.0 # Might want to make an int to be consistent but float might be better for calcs
 @export var base_damage: int = 10 
-@export var friction := 0.8
+@export var friction := 0.8 # For use with move_toward(to: Vector3, friction)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -51,8 +51,10 @@ func on_hit(damage):
 func load_sprite():
 	pass
 
-
-func applyvelocity(givenVelocity : Vector3, towardsDir : bool):
+# mainly for use in Animation Players
+# TODO: figure out why this isn't rotating correctly, 
+# forward is positive X instead of the usual negative Z
+func applyvelocity(givenVelocity : Vector3, towardsDir : bool): 
 	if towardsDir:
 		velocity += givenVelocity.rotated(Vector3(0, 1, 0).normalized(), -direction.angle())
 	else:
