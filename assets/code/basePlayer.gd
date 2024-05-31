@@ -5,7 +5,7 @@ extends BaseEntity
 var Attack1 = preload("res://assets/scenes/Attack1.tscn")
 
 @onready var cooldown = $"Attack Cooldown"
-@onready var attack_hitbox = $AttackHitbox
+#@onready var attack_hitbox = $AttackHitbox
 @onready var animation_tree = $AnimationTree
 @onready var animation_player = $AnimationPlayer
 
@@ -41,7 +41,7 @@ func move_input():
 		direction.x = lerpf(direction.x, inputdir.x, 0.08)
 		direction.y = lerpf(direction.y, inputdir.y, 0.08)
 	
-	attack_hitbox.look_at(Vector3(position.x + direction.x, position.y, position.z + direction.y))
+	#attack_hitbox.look_at(Vector3(position.x + direction.x, position.y, position.z + direction.y))
 	
 	velocity.x = move_toward(velocity.x, inputdir.x*base_speed, 0.8)
 	velocity.z = move_toward(velocity.z, inputdir.y*base_speed, 0.8)
