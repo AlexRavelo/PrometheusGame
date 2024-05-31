@@ -11,6 +11,10 @@ var Attack1 = preload("res://assets/scenes/Attack1.tscn")
 
 @export var Attack1coold: float = 0.25
 
+func _ready():
+	current_health = 99
+	print(current_health)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	animation_tree.set("parameters/Idle/blend_position", direction)
@@ -57,10 +61,6 @@ func attack(): #probably going to rename for different attacks
 	else:
 		print("no attack :(")
 		print("cooldown left = ", cooldown.time_left)
-	
-func _ready():
-	current_health = 99
-	print(current_health)
 	
 func on_death():
 	print("FUCK IM DEAD")
