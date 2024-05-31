@@ -26,8 +26,22 @@ nodes/IdleFront/position = Vector2(-120, 120)
 nodes/output/position = Vector2(240, 140)
 node_connections = [&"FrontBack", 0, &"IdleFront", &"FrontBack", 1, &"IdleBack", &"output", 0, &"FrontBack"]
 
-[sub_resource type="Animation" id="Animation_5wudq"]
-resource_name = "new_animation"
+[sub_resource type="Animation" id="Animation_crmfv"]
+resource_name = "IdleBack"
+length = 0.9
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 5, 4]
+}
 
 [sub_resource type="Animation" id="Animation_o1ffx"]
 resource_name = "IdleFront"
@@ -61,22 +75,8 @@ tracks/0/keys = {
 "values": [1]
 }
 
-[sub_resource type="Animation" id="Animation_crmfv"]
-resource_name = "IdleBack"
-length = 0.9
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [3, 4, 5, 4]
-}
+[sub_resource type="Animation" id="Animation_5wudq"]
+resource_name = "new_animation"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rvvn0"]
 _data = {
