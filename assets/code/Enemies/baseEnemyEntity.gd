@@ -2,11 +2,13 @@ class_name BaseEnemyEntity
 
 extends BaseEntity
 
-var nav_agent: NavigationAgent3D
-var attack_hitbox: CollisionShape3D
-var attack_bubble: Area3D
-var detection_bubble: CollisionShape3D
-var retreat_timer: Timer
+
+@onready var nav_agent = $NavigationAgent3D
+@onready var detection_bubble = $DetectionBubble/CollisionShape3D
+@onready var attack_bubble = $AttackBubble
+@onready var animation_player = $AnimationPlayer
+@onready var attack_hitbox = $AttackBubble/Hitbox/CollisionShape3d
+
 var enemy_id: int
 var target: PlayerEntity = null
 
@@ -24,7 +26,7 @@ func update_target_location(target_location):
 	nav_agent.target_position = target_location
 	
 func attack():
-	print("This is an attack!")
+	animation_player.play("attack")
 	
 func idle():
 	pass
@@ -70,4 +72,22 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity):
 # Gets the modifier state of the entity from global variables
 func get_modifier_state():
 	return GlobalScript.areaGet()
+	
+func _on_detection_bubble_body_entered(body):
+	if(behavior_state != GlobalScript.EnemyState.Attack):
+		behavior_state = GlobalScript.EnemyState.Alert
+	target = body
+	
+func _on_attack_bubble_body_entered(body):
+	behavior_state = GlobalScript.EnemyState.Attack
+
+
+func _on_hitbox_body_entered(body):
+	if body is PlayerEntity:
+		body.on_hit(base_damage)
+
+
+func _on_attack_bubble_body_exited(body):
+	if(body == target): # TODO: When animations are implemented make sure this doesnt happen before the animation finishes
+		behavior_state = GlobalScript.EnemyState.Alert
 	

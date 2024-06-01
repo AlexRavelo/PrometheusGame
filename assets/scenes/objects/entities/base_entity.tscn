@@ -1,7 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://5wvhk3056mly"]
+[gd_scene load_steps=9 format=3 uid="uid://beg5tvhi0ydpq"]
 
-[ext_resource type="Script" path="res://assets/code/Enemies/beastEntity.gd" id="1_g7cmq"]
-[ext_resource type="Texture2D" uid="uid://8ior7uko5da2" path="res://assets/sprites/placeholders/PLACEHOLDER_BEAST.png" id="2_ubimt"]
+[ext_resource type="Script" path="res://assets/code/Enemies/baseEnemyEntity.gd" id="1_b2bgc"]
+[ext_resource type="Texture2D" uid="uid://bqjxn8e8mrx4o" path="res://assets/sprites/placeholders/PLACEHOLDER_AXE_ENEMY.png" id="1_jy6lu"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_miu2h"]
 
@@ -34,13 +34,13 @@ _data = {
 "idle": SubResource("Animation_rxrch")
 }
 
-[node name="LilBeast" type="CharacterBody3D" groups=["enemies"]]
+[node name="BaseEnemy" type="CharacterBody3D" groups=["enemies"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0147161, 0)
-script = ExtResource("1_g7cmq")
+script = ExtResource("1_b2bgc")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(0.63, 0, 0, 0, 0.63, 0, 0, 0, 0.63, -0.0377417, 0.478408, 0)
-texture = ExtResource("2_ubimt")
+transform = Transform3D(0.63, 0, 0, 0, 0.63, 0, 0, 0, 0.63, -0.0377417, 0.510186, 0)
+texture = ExtResource("1_jy6lu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03989, 0)
@@ -51,7 +51,6 @@ avoidance_enabled = true
 
 [node name="DetectionBubble" type="Area3D" parent="."]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.050616, 0)
-visible = false
 collision_layer = 2
 collision_mask = 2
 
@@ -70,19 +69,18 @@ collision_layer = 4
 monitoring = false
 
 [node name="CollisionShape3d" type="CollisionShape3D" parent="AttackBubble/Hitbox"]
-transform = Transform3D(0.724, 0, 0, 0, 0.415, 0, 0, 0, 0.147, 0, -0.165119, -0.493353)
+transform = Transform3D(1.745, 0, 0, 0, 1, 0, 0, 0, 0.355, 0, 0, -0.160185)
 shape = SubResource("BoxShape3D_4xde8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AttackBubble"]
-transform = Transform3D(0.26, 0, 0, 0, 0.26, 0, 0, 0, 0.26, 0, -0.008, 0)
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, -0.008, 0)
+visible = false
 shape = SubResource("SphereShape3D_igskt")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_oxcue")
 }
-
-[node name="Timer" type="Timer" parent="."]
 
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
@@ -95,4 +93,3 @@ libraries = {
 [connection signal="body_entered" from="AttackBubble/Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_entered" from="AttackBubble/Hitbox" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="AttackBubble/Hitbox" to="." method="_on_hitbox_body_exited"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

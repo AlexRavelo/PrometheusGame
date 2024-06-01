@@ -36,7 +36,7 @@ func attack():
 	
 	
 func set_health(health):
-	current_health = clamp(health, 0, 100)
+	current_health = clamp(health, 0, max_health)
 
 # Upon Entity getting hit
 func on_hit(damage):
