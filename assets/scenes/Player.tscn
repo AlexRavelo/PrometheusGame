@@ -1,64 +1,50 @@
-[gd_scene load_steps=25 format=3 uid="uid://cepw0irhctadj"]
+[gd_scene load_steps=18 format=3 uid="uid://cepw0irhctadj"]
 
 [ext_resource type="Script" path="res://assets/code/basePlayer.gd" id="1_2wclh"]
-[ext_resource type="Texture2D" uid="uid://dexau2j7dle1r" path="res://assets/sprites/debug/player8way.png" id="2_om1f2"]
+[ext_resource type="Texture2D" uid="uid://2vf84s7ph0mv" path="res://assets/sprites/debug/PlayerSheet.png" id="2_cps28"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_lcwvp"]
 height = 1.0
 radius = 0.264252
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r560h"]
-animation = &"IdleS"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bi858"]
+animation = &"AttackFront"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_efnv8"]
-animation = &"IdleE"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a0ulo"]
+animation = &"IdleBack"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qh3i0"]
-animation = &"IdleN"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7yqpt"]
+animation = &"IdleFront"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4wcxk"]
-animation = &"IdleW"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_75f08"]
-animation = &"IdleNW"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gor2e"]
-animation = &"IdleNE"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7cbxx"]
-animation = &"IdleSW"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_caxu0"]
-animation = &"IdleSE"
-
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_m0701"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_r560h")
-blend_point_0/pos = Vector2(0, 1)
-blend_point_1/node = SubResource("AnimationNodeAnimation_efnv8")
-blend_point_1/pos = Vector2(1, 0)
-blend_point_2/node = SubResource("AnimationNodeAnimation_qh3i0")
-blend_point_2/pos = Vector2(0, -1)
-blend_point_3/node = SubResource("AnimationNodeAnimation_4wcxk")
-blend_point_3/pos = Vector2(-1, 0)
-blend_point_4/node = SubResource("AnimationNodeAnimation_75f08")
-blend_point_4/pos = Vector2(-1, -1)
-blend_point_5/node = SubResource("AnimationNodeAnimation_gor2e")
-blend_point_5/pos = Vector2(1, -1)
-blend_point_6/node = SubResource("AnimationNodeAnimation_7cbxx")
-blend_point_6/pos = Vector2(-1, 1)
-blend_point_7/node = SubResource("AnimationNodeAnimation_caxu0")
-blend_point_7/pos = Vector2(1, 1)
-blend_mode = 1
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_loqg8"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_a0ulo")
+blend_point_0/pos = -0.01
+blend_point_1/node = SubResource("AnimationNodeAnimation_7yqpt")
+blend_point_1/pos = 0.0
+snap = 0.01
 sync = true
 
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_fiasf"]
-graph_offset = Vector2(-436.5, 133.4)
-nodes/Idle/node = SubResource("AnimationNodeBlendSpace2D_m0701")
-nodes/Idle/position = Vector2(0, 120)
-node_connections = [&"output", 0, &"Idle"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h8lq8"]
+advance_mode = 2
 
-[sub_resource type="Animation" id="Animation_bufc3"]
-resource_name = "IdleE"
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_eee46"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2kqxn"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_se11t"]
+states/AttackFront/node = SubResource("AnimationNodeAnimation_bi858")
+states/AttackFront/position = Vector2(530, 216)
+states/Idle/node = SubResource("AnimationNodeBlendSpace1D_loqg8")
+states/Idle/position = Vector2(530, 100)
+states/Start/position = Vector2(355, 100)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_h8lq8"), "Idle", "AttackFront", SubResource("AnimationNodeStateMachineTransition_eee46"), "AttackFront", "Idle", SubResource("AnimationNodeStateMachineTransition_2kqxn")]
+
+[sub_resource type="Animation" id="Animation_hkp8y"]
+resource_name = "AttackFront"
+length = 0.65
+step = 0.025
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -66,14 +52,81 @@ tracks/0/path = NodePath("Sprite3D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0, 0.1, 0.15, 0.25, 0.35, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [7, 8, 9, 10, 11, 12]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:control")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.65),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:lockdir")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.65),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:state")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.65),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
 }
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [Vector3(15, 0, 0), true],
+"method": &"applyvelocity"
+}, {
+"args": [],
+"method": &"claw_attack"
+}]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:friction")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.65),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.5, 0.8]
+}
 
-[sub_resource type="Animation" id="Animation_niehr"]
-resource_name = "IdleN"
+[sub_resource type="Animation" id="Animation_crmfv"]
+resource_name = "IdleBack"
+length = 1.2
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -81,14 +134,16 @@ tracks/0/path = NodePath("Sprite3D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [6]
+"values": [3, 3, 3, 4, 4, 4, 5, 5, 5, 4, 4, 4]
 }
 
-[sub_resource type="Animation" id="Animation_csdvd"]
-resource_name = "IdleNE"
+[sub_resource type="Animation" id="Animation_o1ffx"]
+resource_name = "IdleFront"
+length = 1.2
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -96,44 +151,14 @@ tracks/0/path = NodePath("Sprite3D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [7]
+"values": [0, 0, 0, 1, 1, 1, 2, 2, 2, 1, 1, 1]
 }
 
-[sub_resource type="Animation" id="Animation_qbr8y"]
-resource_name = "IdleNW"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [5]
-}
-
-[sub_resource type="Animation" id="Animation_533ns"]
-resource_name = "IdleS"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
-}
-
-[sub_resource type="Animation" id="Animation_cyqfl"]
-resource_name = "IdleSE"
+[sub_resource type="Animation" id="Animation_r6ett"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -147,97 +172,50 @@ tracks/0/keys = {
 "values": [1]
 }
 
-[sub_resource type="Animation" id="Animation_h8tmq"]
-resource_name = "IdleSW"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [3]
-}
-
-[sub_resource type="Animation" id="Animation_vw672"]
-resource_name = "IdleW"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [4]
-}
-
-[sub_resource type="Animation" id="Animation_r450e"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [3]
-}
+[sub_resource type="Animation" id="Animation_5wudq"]
+resource_name = "new_animation"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rvvn0"]
 _data = {
-"IdleE": SubResource("Animation_bufc3"),
-"IdleN": SubResource("Animation_niehr"),
-"IdleNE": SubResource("Animation_csdvd"),
-"IdleNW": SubResource("Animation_qbr8y"),
-"IdleS": SubResource("Animation_533ns"),
-"IdleSE": SubResource("Animation_cyqfl"),
-"IdleSW": SubResource("Animation_h8tmq"),
-"IdleW": SubResource("Animation_vw672"),
-"RESET": SubResource("Animation_r450e")
+"AttackFront": SubResource("Animation_hkp8y"),
+"IdleBack": SubResource("Animation_crmfv"),
+"IdleFront": SubResource("Animation_o1ffx"),
+"RESET": SubResource("Animation_r6ett"),
+"new_animation": SubResource("Animation_5wudq")
 }
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ih6uj"]
-size = Vector3(1.3, 0.5, 0.6)
-
-[node name="Player" type="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.18412, 0)
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
+collision_layer = 3
 script = ExtResource("1_2wclh")
+control = false
+lockdir = true
 base_speed = 5.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.443889, 0)
 shape = SubResource("CylinderShape3D_lcwvp")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
+transform = Transform3D(0.672, 0, 0, 0, 0.672, 0, 0, 0, 0.672, 0, 0, 0)
 billboard = 1
 texture_filter = 0
-texture = ExtResource("2_om1f2")
-hframes = 8
-frame = 3
+texture = ExtResource("2_cps28")
+hframes = 7
+vframes = 2
+frame = 1
 region_rect = Rect2(0, 0, 142, 128)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeBlendTree_fiasf")
+deterministic = false
+tree_root = SubResource("AnimationNodeStateMachine_se11t")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Idle/blend_position = Vector2(0.765993, 1.57269)
+parameters/Idle/blend_position = 0.125828
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_rvvn0")
 }
 
-[node name="AttackHitbox" type="Area3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackHitbox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -0.7)
-shape = SubResource("BoxShape3D_ih6uj")
+[node name="Attack Cooldown" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+autostart = true
