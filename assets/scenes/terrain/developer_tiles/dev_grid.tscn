@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://idxqroy7456a"]
+
+[ext_resource type="MeshLibrary" uid="uid://cxgpoqkhlq158" path="res://assets/meshes/devmesh.tres" id="1_t1yiw"]
+
+[node name="DevGrid" type="GridMap"]
+mesh_library = ExtResource("1_t1yiw")
+cell_size = Vector3(1, 1, 1)
+metadata/_editor_floor_ = Vector3(0, 0, 0)

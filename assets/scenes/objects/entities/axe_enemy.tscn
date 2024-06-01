@@ -37,11 +37,9 @@ _data = {
 [node name="AxeEnemy" type="CharacterBody3D" groups=["enemies"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0147161, 0)
 script = ExtResource("1_dym2c")
-modifier_state = null
-behavior_state = null
-current_health = null
-base_speed = null
-base_damage = null
+max_health = 10
+base_speed = 2.0
+base_damage = 5
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(0.63, 0, 0, 0, 0.63, 0, 0, 0, 0.63, -0.0377417, 0.510186, 0)
@@ -52,7 +50,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03989, 0)
 shape = SubResource("CylinderShape3D_miu2h")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 0.5
+target_desired_distance = 0.1
 avoidance_enabled = true
+radius = 0.2
+neighbor_distance = 10.0
+debug_enabled = true
 
 [node name="DetectionBubble" type="Area3D" parent="."]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.050616, 0)
@@ -91,10 +94,10 @@ libraries = {
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
 [connection signal="body_entered" from="DetectionBubble" to="." method="_on_detection_bubble_body_entered"]
 [connection signal="body_exited" from="DetectionBubble" to="." method="_on_detection_bubble_body_exited"]
-[connection signal="body_entered" from="AttackBubble" to="." method="_on_detection_bubble_body_entered"]
 [connection signal="body_entered" from="AttackBubble" to="." method="_on_attack_bubble_body_entered"]
-[connection signal="body_exited" from="AttackBubble" to="." method="_on_detection_bubble_body_exited"]
+[connection signal="body_entered" from="AttackBubble" to="." method="_on_detection_bubble_body_entered"]
 [connection signal="body_exited" from="AttackBubble" to="." method="_on_attack_bubble_body_exited"]
-[connection signal="body_entered" from="AttackBubble/Hitbox" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="AttackBubble" to="." method="_on_detection_bubble_body_exited"]
 [connection signal="body_entered" from="AttackBubble/Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_entered" from="AttackBubble/Hitbox" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="AttackBubble/Hitbox" to="." method="_on_hitbox_body_exited"]

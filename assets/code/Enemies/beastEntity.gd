@@ -2,9 +2,6 @@ class_name BeastEntity
 
 extends BaseEnemyEntity
 
-const SPEED = 6.0
-const DMG = 3
-const HEALTH = 10
 
 @onready var n_agent = $NavigationAgent3D
 @onready var detection = $DetectionBubble/CollisionShape3D
@@ -17,9 +14,6 @@ const HEALTH = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	base_speed = SPEED
-	base_damage = DMG
-	max_health = HEALTH
 	nav_agent = n_agent
 	detection_bubble = detection
 	attack_hitbox = hitbox

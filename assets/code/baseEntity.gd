@@ -3,16 +3,15 @@ class_name BaseEntity
 extends CharacterBody3D
 
 # Basic Stats
-var max_health: int = 100
-
 var direction := Vector2(0, 1)
 var gravity := 10
+var current_health = 1
 
 @export var control := true # Wether or not the creature can move
 @export var lockdir := false # Wether or not to lock the direction of the creature
-@export var current_health: int = 100
-@export var base_speed: float = 3.0 # Might want to make an int to be consistent but float might be better for calcs
-@export var base_damage: int = 10 
+@export_range(0, 100, 1, "or_greater", "or_less") var max_health := 100
+@export_range(0.0, 20.0, 0.1) var base_speed: float = 3.0 # Might want to make an int to be consistent but float might be better for calcs
+@export_range(0.0, 25.0, 0.1) var base_damage: int = 10 
 @export var friction := 0.8 # For use with move_toward(to: Vector3, friction)
 
 # Called when the node enters the scene tree for the first time.

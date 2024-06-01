@@ -19,6 +19,16 @@ config/icon="res://icon.svg"
 
 GlobalScript="*res://assets/code/GlobalScript.gd"
 
+[file_customization]
+
+folder_colors={
+"res://assets/code/": "blue",
+"res://assets/meshes/": "orange",
+"res://assets/scenes/": "green",
+"res://assets/sounds/": "yellow",
+"res://assets/sprites/": "red"
+}
+
 [input]
 
 Up={
