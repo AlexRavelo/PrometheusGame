@@ -1,6 +1,11 @@
 extends Node
 
 enum Area{First, Second, Third}
+<<<<<<< Updated upstream
+=======
+enum EnemyState{Idle, Alert, Attack, Retreat}
+enum EnemyType{Boss, Normal}
+>>>>>>> Stashed changes
 var CurrentArea
 
 func areaSet():
