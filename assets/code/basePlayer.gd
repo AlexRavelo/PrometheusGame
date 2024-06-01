@@ -74,10 +74,10 @@ func state_neutral(): # Neutral State: Idle, Running, ETC
 		sprite.flip_h = false
 #endregion
 
-	#region Movement Code
+#region Movement Code
 	velocity.x = move_toward(velocity.x, inputdir.x*base_speed, friction)
 	velocity.z = move_toward(velocity.z, inputdir.y*base_speed, friction)
-	#endregion
+#endregion
 
 
 func state_attacking(): #Attacking State: Regular Attack Handling.
@@ -100,7 +100,7 @@ func claw_attack():
 	attack.look_at(Vector3(position.x + direction.x, position.y, position.z + direction.y))
 	await get_tree().create_timer(0.2).timeout
 	attack.queue_free()
-
+	#individual attack properties are located in their respective .gd scripts
 
 func on_death():
 	print("FUCK IM DEAD")

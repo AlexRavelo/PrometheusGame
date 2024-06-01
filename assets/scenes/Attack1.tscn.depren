@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dpmbqspyh7ts2"]
 
-[ext_resource type="Script" path="res://assets/code/Attack1.gd" id="1_kslak"]
+[ext_resource type="Script" path="res://assets/code/Attack1.gd" id="1_gxf6s"]
 [ext_resource type="Texture2D" uid="uid://cjjmesdej6ts8" path="res://assets/sprites/placeholders/PLACEHOLDER_AXE_FX.png" id="1_pnvgo"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ih6uj"]
@@ -18,7 +18,7 @@ animations = [{
 }]
 
 [node name="Attack1" type="Area3D"]
-script = ExtResource("1_kslak")
+script = ExtResource("1_gxf6s")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7)
