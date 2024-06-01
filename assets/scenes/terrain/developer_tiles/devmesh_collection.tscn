@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://df70wc2dh38ea"]
+
+[ext_resource type="PackedScene" uid="uid://cshv4gjl4prjl" path="res://assets/scenes/terrain/developer_tiles/devtile.tscn" id="1_y7apf"]
+[ext_resource type="PackedScene" uid="uid://juug0xuc5h7s" path="res://assets/scenes/terrain/developer_tiles/devtile_ramp.tscn" id="2_8ac5y"]
+
+[node name="DevmeshCollection" type="Node3D"]
+
+[node name="Devtile" parent="." instance=ExtResource("1_y7apf")]
+
+[node name="Devramp" parent="." instance=ExtResource("2_8ac5y")]

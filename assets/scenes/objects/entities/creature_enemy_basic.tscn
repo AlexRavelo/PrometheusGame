@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cxkbfwawip2s1"]
 
-[ext_resource type="Script" path="res://assets/code/Enemies/beastEntity.gd" id="1_g7cmq"]
-[ext_resource type="Texture2D" path="res://assets/sprites/placeholders/PLACEHOLDER_BEAST.png" id="2_ubimt"]
+[ext_resource type="Script" path="res://assets/scenes/objects/entities/BeastEntity.gd" id="1_24wko"]
+[ext_resource type="Texture2D" uid="uid://8ior7uko5da2" path="res://assets/sprites/placeholders/PLACEHOLDER_BEAST.png" id="2_ubimt"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_miu2h"]
 
@@ -36,12 +36,8 @@ _data = {
 
 [node name="LilBeast" type="CharacterBody3D" groups=["enemies"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0147161, 0)
-script = ExtResource("1_g7cmq")
-modifier_state = null
-behavior_state = null
-current_health = null
-base_speed = null
-base_damage = null
+script = ExtResource("1_24wko")
+max_health = 10
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(0.63, 0, 0, 0, 0.63, 0, 0, 0, 0.63, -0.0377417, 0.478408, 0)
@@ -52,6 +48,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03989, 0)
 shape = SubResource("CylinderShape3D_miu2h")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 0.1
+target_desired_distance = 0.1
 avoidance_enabled = true
 
 [node name="DetectionBubble" type="Area3D" parent="."]
@@ -93,8 +91,8 @@ libraries = {
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
 [connection signal="body_entered" from="DetectionBubble" to="." method="_on_detection_bubble_body_entered"]
 [connection signal="body_exited" from="DetectionBubble" to="." method="_on_detection_bubble_body_exited"]
-[connection signal="body_entered" from="AttackBubble" to="." method="_on_detection_bubble_body_entered"]
 [connection signal="body_entered" from="AttackBubble" to="." method="_on_attack_bubble_body_entered"]
+[connection signal="body_entered" from="AttackBubble" to="." method="_on_detection_bubble_body_entered"]
 [connection signal="body_exited" from="AttackBubble" to="." method="_on_attack_bubble_body_exited"]
 [connection signal="body_exited" from="AttackBubble" to="." method="_on_detection_bubble_body_exited"]
 [connection signal="body_entered" from="AttackBubble/Hitbox" to="." method="_on_hitbox_body_entered"]

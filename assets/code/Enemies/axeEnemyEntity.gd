@@ -1,10 +1,6 @@
-class_name AxeEnemyEntity
-
 extends BaseEnemyEntity
 
-const SPEED = 2.0
-const DMG = 5
-const HEALTH = 10
+class_name AxeEnemyEntity
 
 @onready var n_agent = $NavigationAgent3D
 @onready var detection = $DetectionBubble/CollisionShape3D
@@ -16,9 +12,6 @@ const HEALTH = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	base_speed = SPEED
-	base_damage = DMG
-	max_health = HEALTH
 	nav_agent = n_agent
 	detection_bubble = detection
 	attack_hitbox = hitbox

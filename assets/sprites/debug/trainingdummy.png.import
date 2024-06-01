@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjjmesdej6ts8"
-path.s3tc="res://.godot/imported/PLACEHOLDER_AXE_FX.png-1509e1605ce6196e3bdbc5bf7f4a3879.s3tc.ctex"
+uid="uid://1gn7paakdl4p"
+path.s3tc="res://.godot/imported/trainingdummy.png-b167bc76d1ad5e7e7dea465aed75d63c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/sprites/placeholders/PLACEHOLDER_AXE_FX.png"
-dest_files=["res://.godot/imported/PLACEHOLDER_AXE_FX.png-1509e1605ce6196e3bdbc5bf7f4a3879.s3tc.ctex"]
+source_file="res://assets/sprites/debug/trainingdummy.png"
+dest_files=["res://.godot/imported/trainingdummy.png-b167bc76d1ad5e7e7dea465aed75d63c.s3tc.ctex"]
 
 [params]
 
