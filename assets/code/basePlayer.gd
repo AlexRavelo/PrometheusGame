@@ -74,10 +74,10 @@ func state_neutral(): # Neutral State: Idle, Running, ETC
 		sprite.flip_h = false
 #endregion
 
-	#region Movement Code
+#region Movement Code
 	velocity.x = move_toward(velocity.x, inputdir.x*base_speed, friction)
 	velocity.z = move_toward(velocity.z, inputdir.y*base_speed, friction)
-	#endregion
+#endregion
 
 
 func state_attacking(): #Attacking State: Regular Attack Handling.
