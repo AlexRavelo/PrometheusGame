@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7wqvk2k4qlpa"]
+
+[ext_resource type="Texture2D" uid="uid://1gn7paakdl4p" path="res://assets/sprites/debug/trainingdummy.png" id="2_85v8j"]
+[ext_resource type="Script" path="res://assets/scenes/objects/entities/training_dummy.gd" id="2_vil0r"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_6ksbf"]
+
+[sub_resource type="Animation" id="Animation_3g1tn"]
+resource_name = "damage_number"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_odvxj"]
+_data = {
+"damage_number": SubResource("Animation_3g1tn")
+}
+
+[node name="TrainingDummy" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("2_vil0r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_6ksbf")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+billboard = 1
+texture_filter = 0
+texture = ExtResource("2_85v8j")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_odvxj")
+}
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.40587, 0)
+billboard = 1
+double_sided = false
+modulate = Color(1, 0, 0, 1)
+outline_modulate = Color(0.4, 0, 0, 1)
+text = "0"
+font_size = 64

@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://p0aiilgf8her"]
+[gd_scene load_steps=13 format=3 uid="uid://p0aiilgf8her"]
 
 [ext_resource type="PackedScene" uid="uid://cepw0irhctadj" path="res://assets/scenes/Player.tscn" id="1_a7fbt"]
 [ext_resource type="Texture2D" uid="uid://db1jdms2tg2k5" path="res://assets/sprites/DEVTERRAIN.png" id="2_a4v3o"]
 [ext_resource type="Script" path="res://assets/code/Camera.gd" id="2_qymli"]
+[ext_resource type="PackedScene" uid="uid://beg5tvhi0ydpq" path="res://assets/scenes/objects/entities/axe_enemy.tscn" id="4_fq1io"]
+[ext_resource type="PackedScene" uid="uid://c7wqvk2k4qlpa" path="res://assets/scenes/objects/entities/training_dummy.tscn" id="5_suali"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0uxwf"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -15,6 +17,10 @@ sky_material = SubResource("ProceduralSkyMaterial_0uxwf")
 background_mode = 2
 sky = SubResource("Sky_nfg6s")
 tonemap_mode = 2
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_w562c"]
+vertices = PackedVector3Array(-9.5, 1, -9.5, -9.5, 1, 9.5, 9.5, 1, 9.5, 9.5, 1, -9.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8l2vb"]
 albedo_texture = ExtResource("2_a4v3o")
@@ -34,19 +40,24 @@ environment = SubResource("Environment_vli1m")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_color = Color(0.481789, 0.481789, 0.481789, 1)
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_a7fbt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.076, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.62652, 3.076, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 0, 0.351572, 0)
+navigation_mesh = SubResource("NavigationMesh_w562c")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_uukr4")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("BoxShape3D_w7dgj")
 
@@ -57,3 +68,9 @@ current = true
 size = 7.0
 script = ExtResource("2_qymli")
 Camera_Target = NodePath("../Player")
+
+[node name="AxeEnemy" parent="." instance=ExtResource("4_fq1io")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.39012, 0.851572, -0.853741)
+
+[node name="TrainingDummy" parent="." instance=ExtResource("5_suali")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.219, 1.7, 0.587)
