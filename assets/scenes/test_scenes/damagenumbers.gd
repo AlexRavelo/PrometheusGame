@@ -8,9 +8,12 @@ func play_float(damage):
 	for i in anim.track_get_key_count(0):
 		if i == 0:
 			continue
-		var swayval = anim.track_get_key_value(0, i) + Vector3(randf_range(-0.5, 0.5), 0, randf_range(-0.5, 0.5))
+		var swayval = Vector3(randf_range(-0.5, 0.5), anim.track_get_key_value(0, i).y, 0)
 		anim.track_set_key_value(0, i, swayval)
 	
 	text = str(damage)
 	animplayer.play("float")
 #endregion 
+
+func free_queue():
+	queue_free()
