@@ -5,11 +5,13 @@ class_name BeastEntity
 @onready var n_agent = $NavigationAgent3D
 @onready var detection = $DetectionBubble/CollisionShape3D
 @onready var attk_bubble = $AttackBubble
-@onready var anim = $AnimationPlayer
+@onready var anim = $AnimationPlaye
+@onready var animation_tree = $AnimationTree
 @onready var hitbox = $AttackBubble/Hitbox/CollisionShape3d
 @onready var timer = $Timer
+@onready var sprite = $Sprite3D
 
-
+var anim_state
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,10 +20,22 @@ func _ready():
 	attack_hitbox = hitbox
 	attack_bubble = attk_bubble
 	enemy_id = 101
+	anim_state = animation_tree["parameters/playback"]
 	super()
 
+func _process(delta):
+	#region Direction Handling
+	animation_tree.set("parameters/Idle/blend_position", direction.y) # TODO: make it so direction is actually updated
+	animation_tree.set("parameters/Attack/blend_position", direction.y)  # TODO: figure out if you can change these all at once instead of
+	animation_tree.set("parameters/Run/blend_position", direction.y) # doing it one by one
+	if direction.x < 0:
+		sprite.flip_h = true
+	else: 
+		sprite.flip_h = false
+	#endregion
+
 func attack(): # TODO: refine this later
-	anim.play("attack")
+	anim_state.travel("Attack")
 
 
 func _on_detection_bubble_body_entered(body):
