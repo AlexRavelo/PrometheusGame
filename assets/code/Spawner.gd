@@ -8,7 +8,6 @@ var enemyAxe = preload("res://assets/code/Enemies/axe_enemy.tscn")
 var locationID = GlobalScript.Area.First
 var enemy
 
-
 func spawnEnemy(type):
 	match locationID: 
 		0:
