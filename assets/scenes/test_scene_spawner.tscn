@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://bpv8gwtf1q6i7"]
 
 [ext_resource type="Script" path="res://assets/code/GlobalScript.gd" id="1_415c4"]
-[ext_resource type="PackedScene" uid="uid://idxqroy7456a" path="res://assets/code/terrain/dev_grid.tscn" id="2_hs74i"]
+[ext_resource type="PackedScene" uid="uid://idxqroy7456a" path="res://assets/scenes/terrain/developer_tiles/dev_grid.tscn" id="2_hs74i"]
 [ext_resource type="PackedScene" uid="uid://cepw0irhctadj" path="res://assets/scenes/Player.tscn" id="3_1i5tb"]
 [ext_resource type="Script" path="res://assets/code/Camera.gd" id="4_4iu8r"]
 [ext_resource type="Script" path="res://assets/code/Spawner.gd" id="5_884es"]
