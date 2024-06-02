@@ -13,10 +13,6 @@ func on_hit(damage):
 	var attack = DamageNum.instantiate()
 	add_child(attack)
 	attack.play_float(damage)
-	await get_tree().create_timer(1).timeout
-	attack.queue_free()
-
-
 
 func _on_dps_reset_timeout():
 	current_dps = 0
