@@ -3,6 +3,7 @@ extends Node
 enum Area{First, Second, Third}
 enum EnemyState{Idle, Alert, Attack, Retreat}
 enum EnemyType{Boss, Normal}
+enum AttackProperty{Basic, Fire} # Will Add more
 var CurrentArea
 
 func areaSet():

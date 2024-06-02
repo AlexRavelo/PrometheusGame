@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://nntssubnlacv"]
+
+[ext_resource type="PackedScene" uid="uid://dpmbqspyh7ts2" path="res://assets/scenes/Attacks/Attack1.tscn" id="1_ibsam"]
+[ext_resource type="Script" path="res://assets/code/Attacks/Enemy/BasicEnemyAttack.gd" id="2_hcrci"]
+
+[node name="BasicEnemyAttack" instance=ExtResource("1_ibsam")]
+script = ExtResource("2_hcrci")
