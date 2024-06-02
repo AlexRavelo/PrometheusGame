@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dpmbqspyh7ts2"]
 
-[ext_resource type="Script" path="res://assets/code/Attack1.gd" id="1_kslak"]
-[ext_resource type="Texture2D" uid="uid://cjjmesdej6ts8" path="res://assets/sprites/placeholders/PLACEHOLDER_AXE_FX.png" id="1_pnvgo"]
+[ext_resource type="Script" path="res://assets/code/Attacks/Player/Attack1.gd" id="1_frryr"]
+[ext_resource type="Texture2D" uid="uid://cjjmesdej6ts8" path="res://assets/sprites/placeholders/PLACEHOLDER_AXE_FX.png" id="2_pp8gq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ih6uj"]
 size = Vector3(1.3, 0.638916, 0.6)
@@ -10,7 +10,7 @@ size = Vector3(1.3, 0.638916, 0.6)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_pnvgo")
+"texture": ExtResource("2_pp8gq")
 }],
 "loop": true,
 "name": &"default",
@@ -18,7 +18,7 @@ animations = [{
 }]
 
 [node name="Attack1" type="Area3D"]
-script = ExtResource("1_kslak")
+script = ExtResource("1_frryr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7)
