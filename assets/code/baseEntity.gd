@@ -38,9 +38,10 @@ func set_health(health):
 	current_health = clamp(health, 0, 100)
 
 # Upon Entity getting hit
-func on_hit(damage):
-	set_health(current_health - damage)
+func on_hit(attack):
+	set_health(current_health - attack.damage)
 	print(current_health)
+	applyvelocity(attack.knockback, true) #NOT WORKING YET !!
 	
 	if current_health <= 0:
 		self.on_death()
