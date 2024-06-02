@@ -190,6 +190,7 @@ script = ExtResource("1_2wclh")
 control = false
 lockdir = true
 base_speed = 5.0
+friction = 0.511538
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_lcwvp")

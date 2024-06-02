@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c7wqvk2k4qlpa"]
+[gd_scene load_steps=7 format=3 uid="uid://c7wqvk2k4qlpa"]
 
 [ext_resource type="Texture2D" uid="uid://1gn7paakdl4p" path="res://assets/sprites/debug/trainingdummy.png" id="2_85v8j"]
 [ext_resource type="Script" path="res://assets/scenes/objects/entities/training_dummy.gd" id="2_vil0r"]
@@ -13,7 +13,9 @@ _data = {
 "damage_number": SubResource("Animation_3g1tn")
 }
 
-[node name="TrainingDummy" type="CharacterBody3D"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_6cb7j"]
+
+[node name="TrainingDummy" type="CharacterBody3D" groups=["enemies"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("2_vil0r")
 
@@ -31,10 +33,24 @@ libraries = {
 }
 
 [node name="Label3D" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.40587, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.5, 0)
 billboard = 1
 double_sided = false
 modulate = Color(1, 0, 0, 1)
 outline_modulate = Color(0.4, 0, 0, 1)
 text = "0"
 font_size = 64
+
+[node name="Hitbox" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+shape = SubResource("SphereShape3D_6cb7j")
+
+[node name="DPSReset" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="DPSReset" to="." method="_on_dps_reset_timeout"]
