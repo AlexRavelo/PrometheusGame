@@ -63,6 +63,9 @@ func alert():
 	
 	nav_agent.set_velocity(new_velocity)
 
+	direction.x = lerpf(direction.x, next_location.x, 0.09)
+	direction.y = lerpf(direction.y, next_location.y, 0.09)
+
 func _on_navigation_agent_3d_target_reached():
 	pass
 
