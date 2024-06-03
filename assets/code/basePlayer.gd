@@ -14,7 +14,7 @@ extends BaseEntity
 @export var ClawAttackCooldown: float = 0.25
 
 var anim_state
-var Attack1 = preload("res://assets/scenes/Attack1.tscn")
+var Attack1 = preload("res://assets/scenes/Attacks/Attack1.tscn")
 
 enum States{
 	NEUTRAL,
@@ -97,6 +97,8 @@ func state_rolling(): # TODO: Rolling State for dodging.
 func claw_attack(): 
 	var attack = Attack1.instantiate()
 	add_child(attack)
+	attack.damage = base_damage
+	attack.knockback = Vector3(0,0,0) # TODO CHANGE LATER
 	attack.look_at(Vector3(position.x + direction.x, position.y, position.z + direction.y))
 	await get_tree().create_timer(0.2).timeout
 	attack.queue_free()

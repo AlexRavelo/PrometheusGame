@@ -1,7 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://cxkbfwawip2s1"]
+[gd_scene load_steps=32 format=3 uid="uid://cxkbfwawip2s1"]
 
-[ext_resource type="Script" path="res://assets/scenes/objects/entities/BeastEntity.gd" id="1_24wko"]
-[ext_resource type="Texture2D" uid="uid://8ior7uko5da2" path="res://assets/sprites/placeholders/PLACEHOLDER_BEAST.png" id="2_ubimt"]
+[ext_resource type="Script" path="res://assets/code/Enemies/beastEntity.gd" id="1_24wko"]
+[ext_resource type="Texture2D" uid="uid://bqgy2ggqsheot" path="res://assets/sprites/enemies/BeastSheet.png" id="2_5wyxy"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_miu2h"]
 
@@ -10,28 +10,219 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_4xde8"]
 size = Vector3(1, 1, 1.66199)
 
-[sub_resource type="Animation" id="Animation_whhvg"]
-resource_name = "attack"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6yqvb"]
+animation = &"AttackFront"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gf7mb"]
+animation = &"AttackBack"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_c62uf"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_6yqvb")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_gf7mb")
+blend_point_1/pos = -0.02
+snap = 0.02
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ohjgr"]
+animation = &"Hit"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6dkyo"]
+animation = &"IdleFront"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_463dj"]
+animation = &"IdleBack"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_c53o6"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_6dkyo")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_463dj")
+blend_point_1/pos = -0.02
+snap = 0.02
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ft6mh"]
+animation = &"RunFront"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7bryk"]
+animation = &"RunBack"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_vkiw4"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_ft6mh")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_7bryk")
+blend_point_1/pos = -0.02
+snap = 0.02
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hbnw4"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v5mp5"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cwvi0"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c03xr"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fru3t"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_21tta"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_467ee"]
+states/Attack/node = SubResource("AnimationNodeBlendSpace1D_c62uf")
+states/Attack/position = Vector2(545, 147)
+states/Hit/node = SubResource("AnimationNodeAnimation_ohjgr")
+states/Hit/position = Vector2(545, 86)
+states/Idle/node = SubResource("AnimationNodeBlendSpace1D_c53o6")
+states/Idle/position = Vector2(354, 86)
+states/Run/node = SubResource("AnimationNodeBlendSpace1D_vkiw4")
+states/Run/position = Vector2(354, 147)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_hbnw4"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_v5mp5"), "Run", "Attack", SubResource("AnimationNodeStateMachineTransition_cwvi0"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_c03xr"), "Idle", "Hit", SubResource("AnimationNodeStateMachineTransition_fru3t"), "Hit", "Idle", SubResource("AnimationNodeStateMachineTransition_21tta")]
+
+[sub_resource type="Animation" id="Animation_dokw5"]
+resource_name = "IdleFront"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AttackBubble/Hitbox:monitoring")
+tracks/0/path = NodePath("Sprite3D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 1.2),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [false, true, false]
+"values": [0, 0, 0, 0, 0, 1, 1, 1, 1, 1]
 }
 
-[sub_resource type="Animation" id="Animation_rxrch"]
-resource_name = "idle"
+[sub_resource type="Animation" id="Animation_bdurj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_2svs0"]
+resource_name = "IdleBack"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [12, 12, 12, 12, 12, 13, 13, 13, 13, 13]
+}
+
+[sub_resource type="Animation" id="Animation_qy0v4"]
+resource_name = "RunFront"
+length = 0.6
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [7, 8, 9, 10]
+}
+
+[sub_resource type="Animation" id="Animation_43xga"]
+resource_name = "RunBack"
+length = 0.6
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [19, 20, 21, 22]
+}
+
+[sub_resource type="Animation" id="Animation_okcc7"]
+resource_name = "AttackFront"
+length = 0.7
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2, 0.3, 0.45, 0.55),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5, 6]
+}
+
+[sub_resource type="Animation" id="Animation_142no"]
+resource_name = "AttackBack"
+length = 0.7
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2, 0.3, 0.45, 0.55),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [12, 14, 15, 16, 17, 18]
+}
+
+[sub_resource type="Animation" id="Animation_2d3b5"]
+resource_name = "Hit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [11]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_oxcue"]
 _data = {
-"attack": SubResource("Animation_whhvg"),
-"idle": SubResource("Animation_rxrch")
+"AttackBack": SubResource("Animation_142no"),
+"AttackFront": SubResource("Animation_okcc7"),
+"Hit": SubResource("Animation_2d3b5"),
+"IdleBack": SubResource("Animation_2svs0"),
+"IdleFront": SubResource("Animation_dokw5"),
+"RESET": SubResource("Animation_bdurj"),
+"RunBack": SubResource("Animation_43xga"),
+"RunFront": SubResource("Animation_qy0v4")
 }
 
 [node name="LilBeast" type="CharacterBody3D" groups=["enemies"]]
@@ -41,7 +232,10 @@ max_health = 10
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(0.63, 0, 0, 0, 0.63, 0, 0, 0, 0.63, -0.0377417, 0.478408, 0)
-texture = ExtResource("2_ubimt")
+billboard = 1
+texture = ExtResource("2_5wyxy")
+hframes = 12
+vframes = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03989, 0)
@@ -80,6 +274,13 @@ shape = SubResource("BoxShape3D_4xde8")
 transform = Transform3D(0.26, 0, 0, 0, 0.26, 0, 0, 0, 0.26, 0, -0.008, 0)
 shape = SubResource("SphereShape3D_igskt")
 
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_467ee")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Attack/blend_position = 0.238411
+parameters/Idle/blend_position = 0
+parameters/Run/blend_position = 0
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_oxcue")
@@ -93,9 +294,9 @@ libraries = {
 [connection signal="body_exited" from="DetectionBubble" to="." method="_on_detection_bubble_body_exited"]
 [connection signal="body_entered" from="AttackBubble" to="." method="_on_attack_bubble_body_entered"]
 [connection signal="body_entered" from="AttackBubble" to="." method="_on_detection_bubble_body_entered"]
-[connection signal="body_exited" from="AttackBubble" to="." method="_on_attack_bubble_body_exited"]
 [connection signal="body_exited" from="AttackBubble" to="." method="_on_detection_bubble_body_exited"]
-[connection signal="body_entered" from="AttackBubble/Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_exited" from="AttackBubble" to="." method="_on_attack_bubble_body_exited"]
 [connection signal="body_entered" from="AttackBubble/Hitbox" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="AttackBubble/Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="AttackBubble/Hitbox" to="." method="_on_hitbox_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

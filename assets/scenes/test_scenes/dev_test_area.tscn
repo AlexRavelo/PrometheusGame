@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://cepw0irhctadj" path="res://assets/scenes/Player.tscn" id="1_a7fbt"]
 [ext_resource type="Texture2D" uid="uid://db1jdms2tg2k5" path="res://assets/sprites/DEVTERRAIN.png" id="2_a4v3o"]
 [ext_resource type="Script" path="res://assets/code/Camera.gd" id="2_qymli"]
-[ext_resource type="PackedScene" uid="uid://beg5tvhi0ydpq" path="res://assets/scenes/objects/entities/axe_enemy.tscn" id="4_fq1io"]
-[ext_resource type="PackedScene" uid="uid://j2pkk1mp2cfq" path="res://assets/scenes/objects/entities/training_dummy.tscn" id="5_suali"]
+[ext_resource type="PackedScene" uid="uid://c242bc8uqp0vr" path="res://assets/scenes/objects/entities/axe_enemy.tscn" id="4_fq1io"]
+[ext_resource type="PackedScene" uid="uid://c7wqvk2k4qlpa" path="res://assets/scenes/objects/entities/training_dummy.tscn" id="5_suali"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0uxwf"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)

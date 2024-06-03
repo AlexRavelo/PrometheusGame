@@ -1,15 +1,29 @@
-[gd_scene load_steps=9 format=3 uid="uid://c242bc8uqp0vr"]
+[gd_scene load_steps=9 format=3 uid="uid://cg4dpy3aw5np8"]
 
-[ext_resource type="Script" path="res://assets/code/Enemies/axeEnemyEntity.gd" id="1_dym2c"]
-[ext_resource type="Texture2D" uid="uid://bqjxn8e8mrx4o" path="res://assets/sprites/placeholders/PLACEHOLDER_AXE_ENEMY.png" id="1_jy6lu"]
-[ext_resource type="PackedScene" uid="uid://nntssubnlacv" path="res://assets/scenes/Attacks/BasicEnemyAttack.tscn" id="3_0c2rb"]
+[ext_resource type="Script" path="res://assets/code/Enemies/axeEnemyEntity.gd" id="1_ax1md"]
+[ext_resource type="Texture2D" uid="uid://bqjxn8e8mrx4o" path="res://assets/sprites/placeholders/PLACEHOLDER_AXE_ENEMY.png" id="2_4vgpg"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_miu2h"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_igskt"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_4xde8"]
+size = Vector3(1, 1, 1.66199)
+
 [sub_resource type="Animation" id="Animation_whhvg"]
 resource_name = "attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AttackBubble/Hitbox:monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
 
 [sub_resource type="Animation" id="Animation_rxrch"]
 resource_name = "idle"
@@ -21,24 +35,23 @@ _data = {
 }
 
 [node name="AxeEnemy" type="CharacterBody3D" groups=["enemies"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0147161, 0)
-script = ExtResource("1_dym2c")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.54333, 1.12021, 0.0117173)
+script = ExtResource("1_ax1md")
+modifier_state = null
+behavior_state = null
+base_speed = null
+base_damage = null
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(0.63, 0, 0, 0, 0.63, 0, 0, 0, 0.63, -0.0377417, 0.510186, 0)
-texture = ExtResource("1_jy6lu")
+texture = ExtResource("2_4vgpg")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03989, 0)
 shape = SubResource("CylinderShape3D_miu2h")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-path_desired_distance = 0.5
-target_desired_distance = 0.1
 avoidance_enabled = true
-radius = 0.2
-neighbor_distance = 10.0
-debug_enabled = true
 
 [node name="DetectionBubble" type="Area3D" parent="."]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.050616, 0)
@@ -54,12 +67,19 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.0645003, 0)
 collision_layer = 2
 collision_mask = 2
 
+[node name="Hitbox" type="Area3D" parent="AttackBubble"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.0930994, 0.195614)
+collision_layer = 4
+monitoring = false
+
+[node name="CollisionShape3d" type="CollisionShape3D" parent="AttackBubble/Hitbox"]
+transform = Transform3D(1.745, 0, 0, 0, 1, 0, 0, 0, 0.355, 0, 0, -0.160185)
+shape = SubResource("BoxShape3D_4xde8")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AttackBubble"]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, -0.008, 0)
+visible = false
 shape = SubResource("SphereShape3D_igskt")
-
-[node name="BasicEnemyAttack" parent="AttackBubble" instance=ExtResource("3_0c2rb")]
-transform = Transform3D(-0.315, 0, -2.75382e-08, 0, 0.315, 0, 2.75382e-08, 0, -0.315, 0, 0, 0.13)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -74,3 +94,6 @@ libraries = {
 [connection signal="body_entered" from="AttackBubble" to="." method="_on_attack_bubble_body_entered"]
 [connection signal="body_exited" from="AttackBubble" to="." method="_on_attack_bubble_body_exited"]
 [connection signal="body_exited" from="AttackBubble" to="." method="_on_detection_bubble_body_exited"]
+[connection signal="body_entered" from="AttackBubble/Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_entered" from="AttackBubble/Hitbox" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="AttackBubble/Hitbox" to="." method="_on_hitbox_body_exited"]
