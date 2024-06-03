@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c7wqvk2k4qlpa"]
+[gd_scene load_steps=6 format=3 uid="uid://j2pkk1mp2cfq"]
 
 [ext_resource type="Texture2D" uid="uid://1gn7paakdl4p" path="res://assets/sprites/debug/trainingdummy.png" id="2_85v8j"]
 [ext_resource type="Script" path="res://assets/scenes/objects/entities/training_dummy.gd" id="2_vil0r"]
@@ -13,7 +13,7 @@ _data = {
 "damage_number": SubResource("Animation_3g1tn")
 }
 
-[node name="TrainingDummy" type="CharacterBody3D"]
+[node name="TrainingDummy" type="CharacterBody3D" groups=["enemies"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("2_vil0r")
 

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://db1jdms2tg2k5" path="res://assets/sprites/DEVTERRAIN.png" id="2_a4v3o"]
 [ext_resource type="Script" path="res://assets/code/Camera.gd" id="2_qymli"]
 [ext_resource type="PackedScene" uid="uid://beg5tvhi0ydpq" path="res://assets/scenes/objects/entities/axe_enemy.tscn" id="4_fq1io"]
-[ext_resource type="PackedScene" uid="uid://c7wqvk2k4qlpa" path="res://assets/scenes/objects/entities/training_dummy.tscn" id="5_suali"]
+[ext_resource type="PackedScene" uid="uid://j2pkk1mp2cfq" path="res://assets/scenes/objects/entities/training_dummy.tscn" id="5_suali"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0uxwf"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -51,7 +51,6 @@ transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 0, 0.35157
 navigation_mesh = SubResource("NavigationMesh_w562c")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_uukr4")
 skeleton = NodePath("")
 

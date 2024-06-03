@@ -1,5 +1,6 @@
 extends BaseAttack
 
+var effect = true
 
 func do_attack(body):
 	if body.is_in_group("enemies"):
