@@ -8,6 +8,7 @@ extends BaseEntity
 @onready var attack_bubble = $AttackBubble
 @onready var animation_player = $AnimationPlayer
 @onready var basic_attack = $AttackBubble/BasicEnemyAttack
+@onready var sprite = $Sprite3D
 
 var enemy_id: int
 var target: PlayerEntity = null
@@ -44,6 +45,8 @@ func _physics_process(delta):
 			attack()
 		GlobalScript.EnemyState.Retreat:
 			retreat()
+			
+	handle_sprite()
 	
 
 func retreat():
@@ -57,14 +60,23 @@ func retreat():
 func alert():
 	update_target_location(target.global_transform.origin)
 	var current_location = global_transform.origin
-	attack_bubble.look_at(nav_agent.target_position, Vector3.UP, true)
+	var target_position = nav_agent.target_position
+	attack_bubble.look_at(target_position, Vector3.UP, true)
 	var next_location = nav_agent.get_next_path_position()
 	var new_velocity = (next_location - current_location).normalized() * base_speed
 	
+	direction.x = lerpf(direction.x, (target_position.x - current_location.x), 0.09)
+	direction.y = lerpf(direction.y, (target_position.y - current_location.y), 0.09)
+	
+	
 	nav_agent.set_velocity(new_velocity)
-
-	direction.x = lerpf(direction.x, next_location.x, 0.09)
-	direction.y = lerpf(direction.y, next_location.y, 0.09)
+		
+func handle_sprite():
+	if direction.x < 0:
+		sprite.flip_h = true
+	else: 
+		sprite.flip_h = false
+	
 
 func _on_navigation_agent_3d_target_reached():
 	pass
