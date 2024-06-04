@@ -37,10 +37,8 @@ func handle_sprite(): # Used for debug purposes
 func _on_interaction_range_body_entered(body):
 	if body is PlayerEntity:
 		canSave = true
-		print("Saving Distance!")
 
 
 func _on_interaction_range_body_exited(body):
 	if body is PlayerEntity:
 		canSave = false
-		print("Fuck off")

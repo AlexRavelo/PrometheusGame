@@ -5,7 +5,7 @@ extends BaseEnemyEntity
 @onready var lunge_timer = $LungeTimer
 @onready var anim_tree = $AnimationTree
 @export var lunge_strength: float = 10.0
-
+@onready var bite_attack_entity = $BasicEnemyAttack
 
 
 
@@ -24,28 +24,26 @@ func idle():
 	
 	
 func alert():
-	if lunge_timer.is_stopped():
-		lunge_timer.start(randf_range(0.7, 1.5))
-		print(lunge_timer.time_left)
-	anim_state.travel("Run")
-	anim_tree.set("parameters/Run/blend_position", direction.y)
-	super()
+	if control:
+		if lunge_timer.is_stopped():
+			lunge_timer.start(randf_range(0.7, 1.5))
+			print(lunge_timer.time_left)
+		anim_state.travel("Run")
+		anim_tree.set("parameters/Run/blend_position", direction.y)
+		super()
 	
 	
 func attack():
-	handle_direction()
-	anim_state.travel("Attack")
-	anim_tree.set("parameters/Run/blend_position", direction.y)
+	if control:
+		handle_direction()
+		anim_state.travel("Attack")
+		anim_tree.set("parameters/Run/blend_position", direction.y)
 	
 func bite_attack():
-	var bite_attack = basic_attack.instantiate()
-	add_child(bite_attack)
-	bite_attack.damage = base_damage
-	bite_attack.knockback = Vector3(0,0,0) # TODO CHANGE LATER
-	bite_attack.look_at(Vector3(position.x + direction.x, position.y, position.z + direction.y))
+	bite_attack_entity.look_at(Vector3(position.x + direction.x, position.y, position.z + direction.y))
 	await get_tree().create_timer(0.2).timeout
 	behavior_state = GlobalScript.EnemyState.Alert
-	bite_attack.queue_free()
+	
 	
 func apply_velocity():
 	applyvelocity(Vector3(lunge_strength, 0, 0), true)
@@ -53,7 +51,6 @@ func apply_velocity():
 func _on_lunge_timer_timeout():
 	if behavior_state == GlobalScript.EnemyState.Alert:
 		behavior_state = GlobalScript.EnemyState.Attack
-	lunge_timer.stop()
 	
 func _on_attack_bubble_body_entered(body):
 	if behavior_state == GlobalScript.EnemyState.Alert:
@@ -63,3 +60,5 @@ func _on_attack_bubble_body_entered(body):
 
 func _on_attack_bubble_body_exited(body):
 		lunge_strength = 10.0
+
+

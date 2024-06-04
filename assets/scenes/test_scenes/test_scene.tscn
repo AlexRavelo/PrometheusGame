@@ -45,4 +45,3 @@ data = {
 
 [node name="BeastEnemy" parent="." instance=ExtResource("4_4y8vn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83337, 1.17394, 0.918579)
-lunge_strength = 10.0

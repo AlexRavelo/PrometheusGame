@@ -19,6 +19,7 @@ var target: PlayerEntity = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	control = true
 	modifier_state = get_modifier_state()
 	behavior_state = GlobalScript.EnemyState.Idle
 	
@@ -35,17 +36,18 @@ func idle():
 	
 
 func _physics_process(delta):
-	match behavior_state:
-		GlobalScript.EnemyState.Idle:
-			idle()
-		GlobalScript.EnemyState.Alert:
-			alert()
-		GlobalScript.EnemyState.Attack:
-			attack()
-		GlobalScript.EnemyState.Retreat:
-			retreat()
-			
-	handle_sprite()
+	if control:
+		match behavior_state:
+			GlobalScript.EnemyState.Idle:
+				idle()
+			GlobalScript.EnemyState.Alert:
+				alert()
+			GlobalScript.EnemyState.Attack:
+				attack()
+			GlobalScript.EnemyState.Retreat:
+				retreat()
+				
+		handle_sprite()
 	
 
 func retreat():
@@ -95,10 +97,11 @@ func get_modifier_state():
 	return GlobalScript.areaGet()
 	
 func _on_detection_bubble_body_entered(body):
-	if body is PlayerEntity:
-		if(behavior_state != GlobalScript.EnemyState.Attack):
-			behavior_state = GlobalScript.EnemyState.Alert
-		target = body
+	if control:
+		if body is PlayerEntity:
+			if(behavior_state != GlobalScript.EnemyState.Attack):
+				behavior_state = GlobalScript.EnemyState.Alert
+			target = body
 	
 func _on_attack_bubble_body_entered(body):
 	behavior_state = GlobalScript.EnemyState.Attack

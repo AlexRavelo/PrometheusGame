@@ -1,9 +1,13 @@
-[gd_scene load_steps=25 format=3 uid="uid://cngirnrsmq5o2"]
+[gd_scene load_steps=27 format=3 uid="uid://cngirnrsmq5o2"]
 
 [ext_resource type="PackedScene" uid="uid://ctb8oa2wm3r0u" path="res://assets/scenes/objects/entities/base_entity.tscn" id="1_l2wuk"]
 [ext_resource type="Script" path="res://assets/code/Enemies/beastEntity.gd" id="2_cx5hc"]
 [ext_resource type="Texture2D" uid="uid://bqgy2ggqsheot" path="res://assets/sprites/enemies/BeastSheet.png" id="3_yrouy"]
 [ext_resource type="AnimationLibrary" uid="uid://c3h60mo161ciq" path="res://assets/Animations/beastAnimations.res" id="4_g0u4d"]
+[ext_resource type="PackedScene" uid="uid://nntssubnlacv" path="res://assets/scenes/Attacks/BasicEnemyAttack.tscn" id="5_o6nis"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ie5q0"]
+radius = 0.544756
 
 [sub_resource type="Animation" id="Animation_whhvg"]
 resource_name = "attack"
@@ -31,6 +35,7 @@ blend_point_0/pos = 0.0
 blend_point_1/node = SubResource("AnimationNodeAnimation_c2iaf")
 blend_point_1/pos = -0.02
 snap = 0.02
+blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ohjgr"]
 animation = &"beastAnimations/Hit"
@@ -106,7 +111,8 @@ vframes = 2
 frame = 12
 
 [node name="CollisionShape3D" parent="AttackBubble" index="0"]
-transform = Transform3D(0.83, 0, 0, 0, 0.83, 0, 0, 0, 0.83, 0, -0.008, 0)
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, -0.008, 0)
+shape = SubResource("SphereShape3D_ie5q0")
 
 [node name="AnimationPlayer" parent="." index="5"]
 libraries = {
@@ -122,5 +128,10 @@ parameters/Idle/blend_position = -0.020202
 parameters/Run/blend_position = 0
 
 [node name="LungeTimer" type="Timer" parent="." index="7"]
+one_shot = true
+
+[node name="BasicEnemyAttack" parent="." index="8" instance=ExtResource("5_o6nis")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.432045, 0)
+visible = false
 
 [connection signal="timeout" from="LungeTimer" to="." method="_on_lunge_timer_timeout"]

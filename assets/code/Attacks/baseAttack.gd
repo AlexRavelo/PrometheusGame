@@ -11,3 +11,5 @@ func _on_body_entered(body):
 	call("do_attack",body)
 
 
+func finish_attack():
+	self.queue_free()
