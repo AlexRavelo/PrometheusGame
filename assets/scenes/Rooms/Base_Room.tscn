@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqurmf18jjjfv"]
+
+[ext_resource type="PackedScene" uid="uid://idxqroy7456a" path="res://assets/scenes/terrain/developer_tiles/dev_grid.tscn" id="1_rqa24"]
+[ext_resource type="Script" path="res://assets/scenes/Rooms/Room_Script.gd" id="2_x1y1g"]
+[ext_resource type="Script" path="res://assets/code/Spawner.gd" id="3_gafqc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_isy8l"]
+size = Vector3(7, 2, 7)
+
+[node name="BaseRoom" type="Node3D"]
+script = ExtResource("2_x1y1g")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_isy8l")
+
+[node name="Spawner" type="Node3D" parent="."]
+script = ExtResource("3_gafqc")
+
+[node name="DevGrid" parent="." instance=ExtResource("1_rqa24")]
+data = {
+"cells": PackedInt32Array(1, 65534, 458752, 2, 65534, 458752, 65533, 65534, 458752, 65533, 65535, 458752, 65533, 0, 458752, 65533, 1, 458752, 65533, 2, 458752, 65534, 2, 458752, 65535, 2, 458752, 0, 2, 458752, 1, 2, 458752, 2, 2, 458752, 2, 1, 458752, 2, 0, 458752, 2, 65535, 458752, 1, 65535, 458752, 1, 0, 458752, 1, 1, 458752, 0, 0, 458752, 65535, 0, 458752, 65534, 0, 458752, 65534, 1, 458752, 65535, 1, 458752, 65533, 65533, 458752, 65535, 65533, 458752, 65535, 65535, 458752, 65534, 65535, 458752, 0, 1, 458752, 65534, 65533, 458752, 65534, 65534, 458752, 0, 65533, 458752, 1, 65533, 458752, 2, 65533, 458752, 65532, 65535, 458752, 65532, 0, 458752, 3, 65535, 458752, 3, 0, 458752, 4, 65535, 458752, 4, 0, 458752, 65531, 65535, 458752, 65531, 0, 458752, 0, 65534, 458752, 0, 65535, 458752, 65535, 65534, 458752)
+}
+metadata/_edit_lock_ = true
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

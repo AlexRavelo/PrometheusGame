@@ -18,7 +18,7 @@ var target: PlayerEntity = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	basic_attack.damage = base_damage
+	#basic_attack.damage = base_damage
 	modifier_state = get_modifier_state()
 	behavior_state = GlobalScript.EnemyState.Idle
 	
