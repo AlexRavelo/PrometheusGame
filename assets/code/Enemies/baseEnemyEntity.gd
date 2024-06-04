@@ -17,7 +17,7 @@ var target: PlayerEntity = null
 @export var modifier_state: GlobalScript.Area
 @export var behavior_state: GlobalScript.EnemyState
 
-func _init(health, id):
+func _init(health = current_health, id = 0):
 	current_health = set_health(health)
 	
 	

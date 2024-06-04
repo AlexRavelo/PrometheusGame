@@ -10,7 +10,7 @@ extends Node3D
 @onready var debug_unlit_sprite = $PLACEHOLDERUNLIT
 @onready var debug_lit_sprite = $PLACEHOLDERLIT
 
-func _init(id):
+func _init(id = 0):
 	self.id = id
 
 # Called when the node enters the scene tree for the first time.

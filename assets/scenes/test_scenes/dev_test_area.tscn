@@ -78,4 +78,4 @@ control = true
 lockdir = false
 
 [node name="campfireEntity" parent="." instance=ExtResource("6_46uee")]
-transform = Transform3D(0.625, 0, 0, 0, 0.625, 0, 0, 0, 0.625, 5.2251, 0.654746, 1.21024)
+transform = Transform3D(0.625, 0, 0, 0, 0.625, 0, 0, 0, 0.625, 4.11536, 0.739839, 0)

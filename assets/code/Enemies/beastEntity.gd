@@ -52,11 +52,11 @@ func _on_lunge_timer_timeout():
 	
 func _on_attack_bubble_body_entered(body):
 	if behavior_state == GlobalScript.EnemyState.Alert:
-		lunge_strength = 2.0
+		lunge_strength = 3.0
 		super(body)
 		
 
 func _on_attack_bubble_body_exited(body):
-		lunge_strength = 10.0
+		lunge_strength = 7.0
 
 

@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://nntssubnlacv" path="res://assets/scenes/Attacks/BasicEnemyAttack.tscn" id="5_o6nis"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ie5q0"]
-radius = 0.544756
+radius = 0.431602
 
 [sub_resource type="Animation" id="Animation_whhvg"]
 resource_name = "attack"
@@ -133,5 +133,6 @@ one_shot = true
 [node name="BasicEnemyAttack" parent="." index="8" instance=ExtResource("5_o6nis")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.432045, 0)
 visible = false
+damage = 3
 
 [connection signal="timeout" from="LungeTimer" to="." method="_on_lunge_timer_timeout"]
