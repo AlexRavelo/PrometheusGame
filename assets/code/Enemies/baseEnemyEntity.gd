@@ -17,6 +17,10 @@ var target: PlayerEntity = null
 @export var modifier_state: GlobalScript.Area
 @export var behavior_state: GlobalScript.EnemyState
 
+func _init(health, id):
+	current_health = set_health(health)
+	
+	
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	control = true

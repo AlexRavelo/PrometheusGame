@@ -8,8 +8,6 @@ extends BaseEnemyEntity
 @onready var bite_attack_entity = $BasicEnemyAttack
 
 
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	basic_attack = preload("res://assets/scenes/Attacks/BasicEnemyAttack.tscn")
