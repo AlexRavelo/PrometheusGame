@@ -4,7 +4,6 @@ extends BaseEntity
 
 
 
-
 @onready var sprite = $Sprite3D
 @onready var cooldown = $"Attack Cooldown"
 @onready var animation_tree = $AnimationTree
@@ -12,6 +11,7 @@ extends BaseEntity
 
 @export var state : States = States.NEUTRAL
 @export var ClawAttackCooldown: float = 0.25
+@export var FireAttackCooldown: float = 0.5
 
 var anim_state
 var attack_selection : AttackSelect
