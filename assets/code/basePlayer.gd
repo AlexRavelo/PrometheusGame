@@ -67,13 +67,7 @@ func state_neutral(): # Neutral State: Idle, Running, ETC
 	if inputdir and !lockdir:
 		direction.x = lerpf(direction.x, inputdir.x, 0.09)
 		direction.y = lerpf(direction.y, inputdir.y, 0.09)
-		anim_state.travel("Run")
-	else:
-		anim_state.travel("Idle")
-	
 	animation_tree.set("parameters/Idle/blend_position", direction.y)
-	animation_tree.set("parameters/Run/blend_position", direction.y)
-	
 	if direction.x < 0:
 		sprite.flip_h = true
 	else: 
