@@ -1,20 +1,125 @@
-[gd_scene load_steps=4 format=3 uid="uid://cngirnrsmq5o2"]
+[gd_scene load_steps=25 format=3 uid="uid://cngirnrsmq5o2"]
 
 [ext_resource type="PackedScene" uid="uid://ctb8oa2wm3r0u" path="res://assets/scenes/objects/entities/base_entity.tscn" id="1_l2wuk"]
 [ext_resource type="Script" path="res://assets/code/Enemies/beastEntity.gd" id="2_cx5hc"]
-[ext_resource type="Texture2D" uid="uid://8ior7uko5da2" path="res://assets/sprites/placeholders/PLACEHOLDER_BEAST.png" id="3_ava3w"]
+[ext_resource type="Texture2D" uid="uid://bqgy2ggqsheot" path="res://assets/sprites/enemies/BeastSheet.png" id="3_yrouy"]
+[ext_resource type="AnimationLibrary" uid="uid://c3h60mo161ciq" path="res://assets/Animations/beastAnimations.res" id="4_g0u4d"]
+
+[sub_resource type="Animation" id="Animation_whhvg"]
+resource_name = "attack"
+length = 4.0
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_rxrch"]
+resource_name = "idle"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oxcue"]
+_data = {
+"attack": SubResource("Animation_whhvg"),
+"idle": SubResource("Animation_rxrch")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j1fd6"]
+animation = &"beastAnimations/AttackFront"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c2iaf"]
+animation = &"beastAnimations/AttackBack"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_c62uf"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_j1fd6")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_c2iaf")
+blend_point_1/pos = -0.02
+snap = 0.02
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ohjgr"]
+animation = &"beastAnimations/Hit"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_flb3v"]
+animation = &"beastAnimations/IdleFront"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o1lil"]
+animation = &"beastAnimations/IdleBack"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_c53o6"]
+resource_local_to_scene = true
+blend_point_0/node = SubResource("AnimationNodeAnimation_flb3v")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_o1lil")
+blend_point_1/pos = -0.02
+snap = 0.02
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7frmj"]
+animation = &"beastAnimations/RunFront"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oria8"]
+animation = &"beastAnimations/RunBack"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_vkiw4"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_7frmj")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_oria8")
+blend_point_1/pos = -0.02
+snap = 0.02
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hbnw4"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v5mp5"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cwvi0"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c03xr"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fru3t"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_21tta"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_6gbj1"]
+states/Attack/node = SubResource("AnimationNodeBlendSpace1D_c62uf")
+states/Attack/position = Vector2(545, 147)
+states/Hit/node = SubResource("AnimationNodeAnimation_ohjgr")
+states/Hit/position = Vector2(545, 86)
+states/Idle/node = SubResource("AnimationNodeBlendSpace1D_c53o6")
+states/Idle/position = Vector2(354, 86)
+states/Run/node = SubResource("AnimationNodeBlendSpace1D_vkiw4")
+states/Run/position = Vector2(354, 147)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_hbnw4"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_v5mp5"), "Run", "Attack", SubResource("AnimationNodeStateMachineTransition_cwvi0"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_c03xr"), "Idle", "Hit", SubResource("AnimationNodeStateMachineTransition_fru3t"), "Hit", "Idle", SubResource("AnimationNodeStateMachineTransition_21tta")]
 
 [node name="BeastEnemy" instance=ExtResource("1_l2wuk")]
 script = ExtResource("2_cx5hc")
+control = false
+lockdir = true
+friction = 0.0
 
 [node name="Sprite3D" parent="." index="0"]
 transform = Transform3D(0.63, 0, 0, 0, 0.63, 0, 0, 0, 0.63, -0.0377417, 0.458719, 0)
-texture = ExtResource("3_ava3w")
+billboard = 1
+texture = ExtResource("3_yrouy")
+hframes = 12
+vframes = 2
+frame = 13
 
-[node name="DetectionBubble" parent="." index="3"]
-visible = false
+[node name="CollisionShape3D" parent="AttackBubble" index="0"]
+transform = Transform3D(0.83, 0, 0, 0, 0.83, 0, 0, 0, 0.83, 0, -0.008, 0)
 
-[node name="CollisionShape3D" parent="AttackBubble" index="1"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.008, 0)
+[node name="AnimationPlayer" parent="." index="5"]
+libraries = {
+"": SubResource("AnimationLibrary_oxcue"),
+"beastAnimations": ExtResource("4_g0u4d")
+}
 
-[node name="RetreatTimer" type="Timer" parent="." index="6"]
+[node name="AnimationTree" type="AnimationTree" parent="." index="6"]
+tree_root = SubResource("AnimationNodeStateMachine_6gbj1")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Attack/blend_position = 0.238411
+parameters/Idle/blend_position = -0.020202
+parameters/Run/blend_position = 0
+
+[node name="LungeTimer" type="Timer" parent="." index="7"]
+
+[connection signal="timeout" from="LungeTimer" to="." method="_on_lunge_timer_timeout"]

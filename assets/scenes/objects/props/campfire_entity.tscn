@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://bjrk7jvt7oh22"]
+
+[ext_resource type="Script" path="res://assets/code/campfireEntity.gd" id="1_plx83"]
+[ext_resource type="Texture2D" uid="uid://cgh46g0wtqs37" path="res://assets/sprites/placeholders/PLACEHOLDER_CAMPFIRE_UNLIT.png" id="2_8tare"]
+[ext_resource type="Texture2D" uid="uid://c8i2ljwr2s0ws" path="res://assets/sprites/placeholders/PLACEHOLDER_CAMPFIRE_LIT.png" id="3_dsgc7"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ytt4i"]
+radius = 0.323412
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_1ouf2"]
+height = 0.921682
+radius = 0.204804
+
+[node name="campfireEntity" type="Node3D"]
+transform = Transform3D(0.625, 0, 0, 0, 0.625, 0, 0, 0, 0.625, 0, -0.00942886, 0)
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." groups=["enemies"]]
+script = ExtResource("1_plx83")
+
+[node name="InteractionRange" type="Area3D" parent="CharacterBody3D"]
+transform = Transform3D(0.755, 0, 0, 0, 0.755, 0, 0, 0, 0.755, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/InteractionRange"]
+transform = Transform3D(12.405, 0, 0, 0, 12.405, 0, 0, 0, 12.405, 0, 0, 0)
+shape = SubResource("SphereShape3D_ytt4i")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(4.325, 0, 0, 0, 4.325, 0, 0, 0, 4.325, 0, 1.99597, 0)
+shape = SubResource("CylinderShape3D_1ouf2")
+
+[node name="PLACEHOLDERUNLIT" type="Sprite3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.24342, 0)
+texture = ExtResource("2_8tare")
+
+[node name="PLACEHOLDERLIT" type="Sprite3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22929, 0)
+visible = false
+texture = ExtResource("3_dsgc7")
+
+[connection signal="body_entered" from="CharacterBody3D/InteractionRange" to="." method="_on_interaction_range_body_entered"]
+[connection signal="body_exited" from="CharacterBody3D/InteractionRange" to="." method="_on_interaction_range_body_exited"]

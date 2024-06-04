@@ -1,16 +1,95 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhskbg50ix0dm"]
+[gd_scene load_steps=20 format=3 uid="uid://dhskbg50ix0dm"]
 
 [ext_resource type="PackedScene" uid="uid://ctb8oa2wm3r0u" path="res://assets/scenes/objects/entities/base_entity.tscn" id="1_l3ul8"]
 [ext_resource type="Script" path="res://assets/code/Enemies/SpearEnemyEntity.gd" id="2_tpm3o"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j1fd6"]
+animation = &"beastAnimations/AttackFront"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c2iaf"]
+animation = &"beastAnimations/AttackBack"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_c62uf"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_j1fd6")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_c2iaf")
+blend_point_1/pos = -0.02
+snap = 0.02
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ohjgr"]
+animation = &"beastAnimations/Hit"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_flb3v"]
+animation = &"beastAnimations/IdleFront"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o1lil"]
+animation = &"beastAnimations/IdleBack"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_c53o6"]
+resource_local_to_scene = true
+blend_point_0/node = SubResource("AnimationNodeAnimation_flb3v")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_o1lil")
+blend_point_1/pos = -0.02
+snap = 0.02
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7frmj"]
+animation = &"beastAnimations/RunFront"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oria8"]
+animation = &"beastAnimations/RunBack"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_vkiw4"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_7frmj")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_oria8")
+blend_point_1/pos = -0.02
+snap = 0.02
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hbnw4"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v5mp5"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cwvi0"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c03xr"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fru3t"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_21tta"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_gxqon"]
+states/Attack/node = SubResource("AnimationNodeBlendSpace1D_c62uf")
+states/Attack/position = Vector2(545, 147)
+states/Hit/node = SubResource("AnimationNodeAnimation_ohjgr")
+states/Hit/position = Vector2(545, 86)
+states/Idle/node = SubResource("AnimationNodeBlendSpace1D_c53o6")
+states/Idle/position = Vector2(354, 86)
+states/Run/node = SubResource("AnimationNodeBlendSpace1D_vkiw4")
+states/Run/position = Vector2(354, 147)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_hbnw4"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_v5mp5"), "Run", "Attack", SubResource("AnimationNodeStateMachineTransition_cwvi0"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_c03xr"), "Idle", "Hit", SubResource("AnimationNodeStateMachineTransition_fru3t"), "Hit", "Idle", SubResource("AnimationNodeStateMachineTransition_21tta")]
 
 [node name="SpearEnemy" instance=ExtResource("1_l3ul8")]
 script = ExtResource("2_tpm3o")
 
 [node name="Sprite3D" parent="." index="0"]
+billboard = 1
 texture = null
 
 [node name="DetectionBubble" parent="." index="3"]
 visible = false
 
-[node name="CollisionShape3D" parent="AttackBubble" index="1"]
+[node name="CollisionShape3D" parent="AttackBubble" index="0"]
 transform = Transform3D(0.895, 0, 0, 0, 0.895, 0, 0, 0, 0.895, 0, -0.008, 0)
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="6"]
+tree_root = SubResource("AnimationNodeStateMachine_gxqon")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Attack/blend_position = 0.238411
+parameters/Idle/blend_position = 0
+parameters/Run/blend_position = 0
