@@ -2,7 +2,7 @@ extends Node
 
 enum Area{First, Second, Third}
 enum EnemyState{Idle, Alert, Attack, Retreat}
-enum EnemyType{Beaset,Axe, Spear}
+enum EnemyType{Beast,Axe, Spear}
 enum AttackProperty{Basic, Fire} # Will Add more
 var LitCampfires: Dictionary
 var CurrentArea
