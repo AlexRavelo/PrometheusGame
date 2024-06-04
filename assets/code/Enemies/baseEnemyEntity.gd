@@ -72,13 +72,14 @@ func handle_sprite():
 			sprite.flip_h = false
 	
 func handle_direction():
-	update_target_location(target.global_transform.origin)
-	var current_location = global_transform.origin
-	var target_position = nav_agent.target_position
+	if not lockdir:
+		update_target_location(target.global_transform.origin)
+		var current_location = global_transform.origin
+		var target_position = nav_agent.target_position
 	
 	
-	direction.x = clamp(lerpf(direction.x, (target_position.x - current_location.x), 0.09), -1, 1)
-	direction.y = clamp(lerpf(direction.y, (target_position.z - current_location.z), 0.09), -1, 1)
+		direction.x = clamp(lerpf(direction.x, (target_position.x - current_location.x), 0.09), -1, 1)
+		direction.y = clamp(lerpf(direction.y, (target_position.z - current_location.z), 0.09), -1, 1)
 	
 
 func _on_navigation_agent_3d_target_reached():

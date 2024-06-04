@@ -92,6 +92,7 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 
 [node name="BeastEnemy" instance=ExtResource("1_l2wuk")]
 script = ExtResource("2_cx5hc")
+lunge_strength = 10.0
 control = false
 lockdir = true
 friction = 0.0
@@ -102,7 +103,7 @@ billboard = 1
 texture = ExtResource("3_yrouy")
 hframes = 12
 vframes = 2
-frame = 13
+frame = 12
 
 [node name="CollisionShape3D" parent="AttackBubble" index="0"]
 transform = Transform3D(0.83, 0, 0, 0, 0.83, 0, 0, 0, 0.83, 0, -0.008, 0)
