@@ -16,6 +16,10 @@ var target: PlayerEntity = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+<<<<<<< Updated upstream
+=======
+	#basic_attack.damage = base_damage
+>>>>>>> Stashed changes
 	modifier_state = get_modifier_state()
 	behavior_state = GlobalScript.EnemyState.Idle
 	set_health(max_health)

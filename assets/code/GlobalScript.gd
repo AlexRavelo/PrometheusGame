@@ -2,7 +2,13 @@ extends Node
 
 enum Area{First, Second, Third}
 enum EnemyState{Idle, Alert, Attack, Retreat}
+<<<<<<< Updated upstream
 enum EnemyType{Boss, Normal}
+=======
+enum EnemyType{Beast, Axe, Spear}
+enum AttackProperty{Basic, Fire} # Will Add more
+var LitCampfires: Dictionary
+>>>>>>> Stashed changes
 var CurrentArea
 
 func areaSet():

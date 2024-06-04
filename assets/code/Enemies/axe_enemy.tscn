@@ -37,10 +37,6 @@ _data = {
 [node name="AxeEnemy" type="CharacterBody3D" groups=["enemies"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.54333, 1.12021, 0.0117173)
 script = ExtResource("1_ax1md")
-modifier_state = null
-behavior_state = null
-base_speed = null
-base_damage = null
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(0.63, 0, 0, 0, 0.63, 0, 0, 0, 0.63, -0.0377417, 0.510186, 0)
@@ -85,6 +81,8 @@ shape = SubResource("SphereShape3D_igskt")
 libraries = {
 "": SubResource("AnimationLibrary_oxcue")
 }
+
+[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="."]
 
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]

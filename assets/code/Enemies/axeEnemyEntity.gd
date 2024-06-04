@@ -21,6 +21,7 @@ func _ready():
 
 func attack(): # TODO: refine this later
 	nav_agent.set_velocity(Vector3.ZERO)
+<<<<<<< Updated upstream
 	anim.play("attack")
 
 
@@ -43,3 +44,7 @@ func _on_hitbox_body_entered(body):
 func _on_attack_bubble_body_exited(body):
 	if(body == target): # TODO: When animations are implemented make sure this doesnt happen before the animation finishes
 		behavior_state = GlobalScript.EnemyState.Alert
+=======
+	super();
+
+>>>>>>> Stashed changes

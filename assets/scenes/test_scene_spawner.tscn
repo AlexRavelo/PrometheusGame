@@ -56,3 +56,4 @@ Camera_Target = NodePath("../Player")
 [node name="Node3D" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.38617, 1.64864, 0)
 script = ExtResource("5_884es")
+type = 2

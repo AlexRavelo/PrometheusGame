@@ -38,14 +38,12 @@ func spawnEnemy(type):
 	#
 	#pass
 	
+	
 func _ready():
 	spawnEnemy(type)
 	
 
 func _process(delta):
-	
 	pass
 	
-
-
 
