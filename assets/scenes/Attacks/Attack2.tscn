@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5kmb6ak363x6"]
+
+[ext_resource type="Script" path="res://assets/code/Attacks/Player/Attack2.gd" id="1_wj0kf"]
+[ext_resource type="Texture2D" uid="uid://cjjmesdej6ts8" path="res://assets/sprites/placeholders/PLACEHOLDER_AXE_FX.png" id="2_06ggh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ih6uj"]
+size = Vector3(1.3, 0.639, 1.415)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g5qln"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_06ggh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Attack1" type="Area3D"]
+script = ExtResource("1_wj0kf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00241661, 0, -1.18411)
+shape = SubResource("BoxShape3D_ih6uj")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, -7.36537e-08, -0.4, 0, 1.685, -1.74846e-08, 0, 0, -1.43853)
+modulate = Color(0.87744, 0.339851, 0, 1)
+sprite_frames = SubResource("SpriteFrames_g5qln")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
