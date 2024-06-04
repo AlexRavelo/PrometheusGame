@@ -25,7 +25,7 @@ enum States{
 }
 
 enum AttackSelect{
-	Claw = 2,
+	Claw,
 	Fire,
 }
 
