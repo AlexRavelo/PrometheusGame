@@ -10,8 +10,10 @@ extends BaseEntity
 @onready var animation_player = $AnimationPlayer
 
 @export var state : States = States.NEUTRAL
+@export var RollCooldown: float = 0.5
 @export var ClawAttackCooldown: float = 0.25
 @export var FireAttackCooldown: float = 0.5
+@export var isGravity = true # TODO: add this to baseentity whenever i'm sure that there'll be no conflicts
 
 var attack_selection : AttackSelect
 var Attack1 = preload("res://assets/scenes/Attacks/Attack1.tscn")
@@ -35,8 +37,9 @@ func _ready():
 	
 
 func _process(delta):
-	if !is_on_floor(): #Gravity
-		velocity.y -= gravity * delta
+	if isGravity: # TODO: add this to baseentity whenever i'm sure that there'll be no conflicts
+		if !is_on_floor(): #Gravity
+			velocity.y -= gravity * delta
 	
 #region State Code
 	match state:
@@ -62,6 +65,8 @@ func state_neutral(): # Neutral State: Idle, Running, ETC
 	var inputdir = Vector2(0, 0)
 	if control: 
 		inputdir = Input.get_vector("Left","Right", "Up", "Down")
+		if Input.is_action_just_pressed("Roll"):
+			state = States.ROLLING
 		if Input.is_action_just_pressed("ClawAttack"):
 			attack_selection = AttackSelect.Claw
 			state = States.ATTACKING
@@ -72,12 +77,19 @@ func state_neutral(): # Neutral State: Idle, Running, ETC
 		inputdir = Vector2(0, 0)
 #endregion 
 
-
 #region Direction Handling
 	if inputdir and !lockdir:
-		direction.x = lerpf(direction.x, inputdir.x, 0.09)
-		direction.y = lerpf(direction.y, inputdir.y, 0.09)
+		direction.x = lerpf(direction.x, inputdir.x, 0.05)
+		direction.y = lerpf(direction.y, inputdir.y, 0.05)
+		anim_state.travel("Run")
+		
+	else:
+		anim_state.travel("Idle")
 	animation_tree.set("parameters/Idle/blend_position", direction.y)
+	animation_tree.set("parameters/Run/blend_position", direction.y)
+	
+	$RayCast3D.target_position = Vector3(direction.x * 3, 0, direction.y * 3)
+	
 	if direction.x < 0:
 		sprite.flip_h = true
 	else: 
@@ -107,7 +119,16 @@ func state_attacking(): #Attacking State: Regular Attack Handling.
 
 
 func state_rolling(): # TODO: Rolling State for dodging.
-	pass
+	if cooldown.time_left <= 0:
+		direction = Input.get_vector("Left","Right", "Up", "Down")
+		# Direction is usually interpolated to make it smooth, but this needs to
+		# be precise.
+		velocity = Vector3.ZERO
+		cooldown.start(RollCooldown)
+		anim_state.travel("Roll")
+		print("Ratchet ROLL")
+	else:
+		state = States.NEUTRAL
 
 
 func claw_attack(): 
