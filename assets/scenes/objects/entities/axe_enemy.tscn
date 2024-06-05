@@ -72,5 +72,5 @@ libraries = {
 [connection signal="body_exited" from="DetectionBubble" to="." method="_on_detection_bubble_body_exited"]
 [connection signal="body_entered" from="AttackBubble" to="." method="_on_detection_bubble_body_entered"]
 [connection signal="body_entered" from="AttackBubble" to="." method="_on_attack_bubble_body_entered"]
-[connection signal="body_exited" from="AttackBubble" to="." method="_on_attack_bubble_body_exited"]
 [connection signal="body_exited" from="AttackBubble" to="." method="_on_detection_bubble_body_exited"]
+[connection signal="body_exited" from="AttackBubble" to="." method="_on_attack_bubble_body_exited"]
