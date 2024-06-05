@@ -76,7 +76,6 @@ func state_neutral(): # Neutral State: Idle, Running, ETC
 		inputdir = Vector2(0, 0)
 #endregion 
 
-
 #region Direction Handling
 	if inputdir and !lockdir:
 		direction.x = lerpf(direction.x, inputdir.x, 0.09)
