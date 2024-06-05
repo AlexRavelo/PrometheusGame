@@ -114,7 +114,7 @@ func state_attacking(): #Attacking State: Regular Attack Handling.
 		state = States.NEUTRAL
 
 
-func state_rolling(): # TODO: Rolling State for dodging.
+func state_rolling(): #Rolling State: Like attack but simpler
 	if cooldown.time_left <= 0:
 		velocity = Vector3.ZERO
 		cooldown.start(RollCooldown)

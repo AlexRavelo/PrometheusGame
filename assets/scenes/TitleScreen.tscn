@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://da3v5r4u1gj4u"]
+
+[ext_resource type="Script" path="res://assets/code/TitleScreen.gd" id="1_jiqmx"]
+[ext_resource type="PackedScene" uid="uid://fyraxy32q3kx" path="res://assets/scenes/options.tscn" id="2_0xsq6"]
+
+[node name="TitleScreen" type="Node2D"]
+script = ExtResource("1_jiqmx")
+
+[node name="Main" type="Node2D" parent="."]
+
+[node name="Label" type="Label" parent="Main"]
+offset_left = 338.0
+offset_top = 111.0
+offset_right = 756.0
+offset_bottom = 206.0
+text = "prometheus game :D"
+
+[node name="Start Button" type="Button" parent="Main"]
+offset_left = 400.0
+offset_top = 312.0
+offset_right = 697.0
+offset_bottom = 390.0
+text = "Start"
+
+[node name="Options Button" type="Button" parent="Main"]
+offset_left = 400.0
+offset_top = 460.0
+offset_right = 697.0
+offset_bottom = 538.0
+text = "Options"
+
+[node name="Options" parent="." instance=ExtResource("2_0xsq6")]
+visible = true
+
+[connection signal="button_up" from="Main/Start Button" to="." method="_on_start_button_button_up"]
+[connection signal="button_up" from="Main/Options Button" to="." method="_on_options_button_button_up"]

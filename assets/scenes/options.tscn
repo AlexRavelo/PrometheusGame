@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://fyraxy32q3kx"]
+
+[node name="Options" type="Node2D"]
+visible = false
+
+[node name="Back Button" type="Button" parent="."]
+offset_left = 912.0
+offset_top = 521.0
+offset_right = 1105.0
+offset_bottom = 600.0
+text = "Back"
