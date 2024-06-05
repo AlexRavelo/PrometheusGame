@@ -10,6 +10,7 @@ extends BaseEntity
 @onready var animation_player = $AnimationPlayer
 
 @export var state : States = States.NEUTRAL
+@export var RollCooldown: float = 0.5
 @export var ClawAttackCooldown: float = 0.25
 @export var FireAttackCooldown: float = 0.5
 
@@ -63,6 +64,8 @@ func state_neutral(): # Neutral State: Idle, Running, ETC
 	var inputdir = Vector2(0, 0)
 	if control: 
 		inputdir = Input.get_vector("Left","Right", "Up", "Down")
+		if Input.is_action_just_pressed("Roll"):
+			state = States.ROLLING
 		if Input.is_action_just_pressed("ClawAttack"):
 			attack_selection = AttackSelect.Claw
 			state = States.ATTACKING
@@ -72,7 +75,6 @@ func state_neutral(): # Neutral State: Idle, Running, ETC
 	else:
 		inputdir = Vector2(0, 0)
 #endregion 
-
 
 #region Direction Handling
 	if inputdir and !lockdir:
@@ -113,7 +115,13 @@ func state_attacking(): #Attacking State: Regular Attack Handling.
 
 
 func state_rolling(): # TODO: Rolling State for dodging.
-	pass
+	if cooldown.time_left <= 0:
+		velocity = Vector3.ZERO
+		cooldown.start(RollCooldown)
+		anim_state.travel("Roll")
+		print("Ratchet ROLL")
+	else:
+		state = States.NEUTRAL
 
 
 func claw_attack(): 
