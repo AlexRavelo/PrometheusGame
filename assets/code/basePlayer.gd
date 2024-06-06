@@ -15,7 +15,6 @@ extends BaseEntity
 @export var FireAttackCooldown: float = 0.5
 @export var isGravity = true # TODO: add this to baseentity whenever i'm sure that there'll be no conflicts
 
-var anim_state
 var attack_selection : AttackSelect
 var Attack1 = preload("res://assets/scenes/Attacks/Attack1.tscn")
 var Attack2 = preload("res://assets/scenes/Attacks/Attack2.tscn")
