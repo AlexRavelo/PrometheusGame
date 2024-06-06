@@ -6,6 +6,7 @@ extends CharacterBody3D
 var direction := Vector2(0, 1)
 var gravity := 10
 var current_health = 1
+var anim_state
 
 @export var control := true # Wether or not the creature can move
 @export var lockdir := false # Wether or not to lock the direction of the creature
@@ -38,10 +39,10 @@ func set_health(health):
 	current_health = clamp(health, 0, 100)
 
 # Upon Entity getting hit
-func on_hit(attack):
-	set_health(current_health - attack.damage)
+func on_hit(incoming_attack):
+	set_health(current_health - incoming_attack.damage)
 	print(current_health)
-	applyvelocity(attack.knockback, true) #NOT WORKING YET !!
+	applyvelocity(incoming_attack.knockback, true) #NOT WORKING YET !!
 	
 	if current_health <= 0:
 		self.on_death()

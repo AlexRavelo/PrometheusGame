@@ -1,7 +1,7 @@
 [gd_resource type="MeshLibrary" load_steps=13 format=3 uid="uid://cxgpoqkhlq158"]
 
 [ext_resource type="Texture2D" uid="uid://db1jdms2tg2k5" path="res://assets/sprites/DEVTERRAIN.png" id="1_cqutt"]
-[ext_resource type="NavigationMesh" path="res://assets/meshes/devtile_nav.tres" id="2_ny3mi"]
+[ext_resource type="NavigationMesh" uid="uid://dwvlnp6aiqn28" path="res://assets/meshes/devtile_nav.tres" id="2_ny3mi"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5jeb2"]
 albedo_texture = ExtResource("1_cqutt")

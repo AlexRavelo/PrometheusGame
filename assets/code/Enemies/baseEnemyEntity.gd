@@ -8,6 +8,7 @@ extends BaseEntity
 @onready var attack_bubble = $AttackBubble
 @onready var animation_player = $AnimationPlayer
 @onready var basic_attack = $AttackBubble/BasicEnemyAttack
+@onready var sprite = $Sprite3D
 
 var enemy_id: int
 var target: PlayerEntity = null
@@ -16,9 +17,13 @@ var target: PlayerEntity = null
 @export var modifier_state: GlobalScript.Area
 @export var behavior_state: GlobalScript.EnemyState
 
+func _init(health = current_health, id = 0):
+	current_health = set_health(health)
+	
+	
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#basic_attack.damage = base_damage
+	control = true
 	modifier_state = get_modifier_state()
 	behavior_state = GlobalScript.EnemyState.Idle
 	
@@ -28,22 +33,25 @@ func update_target_location(target_location):
 	nav_agent.target_position = target_location
 	
 func attack():
-	animation_player.play("attack")
+	pass
 	
 func idle():
 	pass
 	
 
 func _physics_process(delta):
-	match behavior_state:
-		GlobalScript.EnemyState.Idle:
-			idle()
-		GlobalScript.EnemyState.Alert:
-			alert()
-		GlobalScript.EnemyState.Attack:
-			attack()
-		GlobalScript.EnemyState.Retreat:
-			retreat()
+	if control:
+		match behavior_state:
+			GlobalScript.EnemyState.Idle:
+				idle()
+			GlobalScript.EnemyState.Alert:
+				alert()
+			GlobalScript.EnemyState.Attack:
+				attack()
+			GlobalScript.EnemyState.Retreat:
+				retreat()
+				
+		handle_sprite()
 	
 
 func retreat():
@@ -55,13 +63,30 @@ func retreat():
 	nav_agent.set_velocity(new_velocity)
 	
 func alert():
-	update_target_location(target.global_transform.origin)
-	var current_location = global_transform.origin
-	attack_bubble.look_at(nav_agent.target_position, Vector3.UP, true)
+	handle_direction()
 	var next_location = nav_agent.get_next_path_position()
-	var new_velocity = (next_location - current_location).normalized() * base_speed
+	var new_velocity = (next_location - global_transform.origin).normalized() * base_speed
+	
 	
 	nav_agent.set_velocity(new_velocity)
+		
+func handle_sprite():
+	if not lockdir:
+		if direction.x < 0:
+			sprite.flip_h = true
+		else: 
+			sprite.flip_h = false
+	
+func handle_direction():
+	if not lockdir:
+		update_target_location(target.global_transform.origin)
+		var current_location = global_transform.origin
+		var target_position = nav_agent.target_position
+	
+	
+		direction.x = clamp(lerpf(direction.x, (target_position.x - current_location.x), 0.09), -1, 1)
+		direction.y = clamp(lerpf(direction.y, (target_position.z - current_location.z), 0.09), -1, 1)
+	
 
 func _on_navigation_agent_3d_target_reached():
 	pass
@@ -76,9 +101,11 @@ func get_modifier_state():
 	return GlobalScript.areaGet()
 	
 func _on_detection_bubble_body_entered(body):
-	if(behavior_state != GlobalScript.EnemyState.Attack):
-		behavior_state = GlobalScript.EnemyState.Alert
-	target = body
+	if control:
+		if body is PlayerEntity:
+			if(behavior_state != GlobalScript.EnemyState.Attack):
+				behavior_state = GlobalScript.EnemyState.Alert
+			target = body
 	
 func _on_attack_bubble_body_entered(body):
 	behavior_state = GlobalScript.EnemyState.Attack
