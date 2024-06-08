@@ -51,6 +51,9 @@ func _process(delta):
 			state_rolling()
 #endregion
 	
+	if Input.is_action_just_pressed("Pause"):
+		get_tree().paused = true
+	
 	debug_commands()#REMOVE THIS FUNCTION FOR FINAL RELEASE !!
 	move_and_slide()
 

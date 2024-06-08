@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://da3v5r4u1gj4u"]
 
-[ext_resource type="Script" path="res://assets/code/TitleScreen.gd" id="1_jiqmx"]
-[ext_resource type="PackedScene" uid="uid://fyraxy32q3kx" path="res://assets/scenes/options.tscn" id="2_0xsq6"]
+[ext_resource type="Script" path="res://assets/code/Menus/TitleScreen.gd" id="1_w7qvb"]
+[ext_resource type="PackedScene" uid="uid://fyraxy32q3kx" path="res://assets/scenes/options.tscn" id="2_v5ib1"]
 
 [node name="TitleScreen" type="Node2D"]
-script = ExtResource("1_jiqmx")
+script = ExtResource("1_w7qvb")
 
 [node name="Main" type="Node2D" parent="."]
 
@@ -29,8 +29,7 @@ offset_right = 697.0
 offset_bottom = 538.0
 text = "Options"
 
-[node name="Options" parent="." instance=ExtResource("2_0xsq6")]
-visible = true
+[node name="Options" parent="." instance=ExtResource("2_v5ib1")]
 
 [connection signal="button_up" from="Main/Start Button" to="." method="_on_start_button_button_up"]
 [connection signal="button_up" from="Main/Options Button" to="." method="_on_options_button_button_up"]
