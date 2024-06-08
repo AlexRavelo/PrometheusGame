@@ -3,6 +3,7 @@ class_name PlayerEntity
 extends BaseEntity
 
 
+var pause_menu = preload("res://assets/scenes/Menus/PauseMenu.tscn")
 
 @onready var sprite = $Sprite3D
 @onready var cooldown = $"Attack Cooldown"
@@ -52,6 +53,8 @@ func _process(delta):
 #endregion
 	
 	if Input.is_action_just_pressed("Pause"):
+		var pause = pause_menu.instantiate()
+		add_child(pause)
 		get_tree().paused = true
 	
 	debug_commands()#REMOVE THIS FUNCTION FOR FINAL RELEASE !!
