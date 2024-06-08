@@ -15,7 +15,6 @@ extends BaseEntity
 @export var FireAttackCooldown: float = 0.5
 @export var isGravity = true # TODO: add this to baseentity whenever i'm sure that there'll be no conflicts
 
-var anim_state
 var attack_selection : AttackSelect
 var Attack1 = preload("res://assets/scenes/Attacks/Attack1.tscn")
 var Attack2 = preload("res://assets/scenes/Attacks/Attack2.tscn")
@@ -89,8 +88,6 @@ func state_neutral(): # Neutral State: Idle, Running, ETC
 	animation_tree.set("parameters/Idle/blend_position", direction.y)
 	animation_tree.set("parameters/Run/blend_position", direction.y)
 	
-	$RayCast3D.target_position = Vector3(direction.x * 3, 0, direction.y * 3)
-	
 	if direction.x < 0:
 		sprite.flip_h = true
 	else: 
@@ -110,11 +107,10 @@ func state_attacking(): #Attacking State: Regular Attack Handling.
 		
 		match attack_selection:
 			AttackSelect.Claw:
-				anim_state.travel("AttackFront")
+				anim_state.travel("ClawAttack")
+				animation_tree.set("parameters/ClawAttack/blend_position", direction.y)
 			AttackSelect.Fire:
 				anim_state.travel("FireAttack")
-			
-		print("Ratchet ATTACK")
 	else:
 		state = States.NEUTRAL
 

@@ -2,20 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2vf84s7ph0mv"
-path="res://.godot/imported/PlayerSheet.png-b2fb22c710eab2fb2ee8a61df70ca59d.ctex"
+uid="uid://cgh46g0wtqs37"
+path.s3tc="res://.godot/imported/PLACEHOLDER_CAMPFIRE_UNLIT.png-25a808e38d49fbae382c595b7232eac2.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://assets/sprites/player/PlayerSheet.png"
-dest_files=["res://.godot/imported/PlayerSheet.png-b2fb22c710eab2fb2ee8a61df70ca59d.ctex"]
+source_file="res://assets/sprites/placeholders/PLACEHOLDER_CAMPFIRE_UNLIT.png"
+dest_files=["res://.godot/imported/PLACEHOLDER_CAMPFIRE_UNLIT.png-25a808e38d49fbae382c595b7232eac2.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
