@@ -1,15 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://juug0xuc5h7s"]
+[gd_scene load_steps=5 format=3 uid="uid://juug0xuc5h7s"]
 
 [ext_resource type="Texture2D" uid="uid://db1jdms2tg2k5" path="res://assets/sprites/DEVTERRAIN.png" id="1_j15eq"]
-
-[sub_resource type="NavigationMesh" id="NavigationMesh_44ga4"]
-cell_size = 0.1
-cell_height = 0.1
-agent_height = 0.1
-agent_radius = 0.1
-agent_max_climb = 3.0
-region_min_size = 1.0
-edge_max_length = 1.0
 
 [sub_resource type="PrismMesh" id="PrismMesh_yuuop"]
 lightmap_size_hint = Vector2i(14, 21)
@@ -22,8 +13,7 @@ uv1_scale = Vector3(3, 2, 2)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_f8bx0"]
 points = PackedVector3Array(-1, 0, 1, 1, 0, 1, 1, 0, -1, -1, 0, -1, 1, 2, -1, 1, 2, 1)
 
-[node name="Devramp" type="NavigationRegion3D"]
-navigation_mesh = SubResource("NavigationMesh_44ga4")
+[node name="Devramp" type="Node3D"]
 
 [node name="Ramp" type="MeshInstance3D" parent="."]
 mesh = SubResource("PrismMesh_yuuop")
