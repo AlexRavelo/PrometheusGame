@@ -1,16 +1,28 @@
-[gd_scene load_steps=2 format=3 uid="uid://dstqjrss8bu4k"]
+[gd_scene load_steps=3 format=3 uid="uid://dstqjrss8bu4k"]
 
 [ext_resource type="Script" path="res://assets/code/Menus/PauseMenu.gd" id="1_xl2jj"]
+[ext_resource type="PackedScene" uid="uid://fyraxy32q3kx" path="res://assets/scenes/Menus/options.tscn" id="2_djfsj"]
 
 [node name="PauseMenu" type="Node2D"]
 process_mode = 2
 script = ExtResource("1_xl2jj")
 
-[node name="Resume" type="Button" parent="."]
+[node name="Resume Button" type="Button" parent="."]
 offset_left = 857.0
 offset_top = 533.0
 offset_right = 1112.0
 offset_bottom = 602.0
 text = "unplause"
 
-[connection signal="button_up" from="Resume" to="." method="_on_resume_button_up"]
+[node name="Options Button" type="Button" parent="."]
+offset_left = 882.0
+offset_top = 402.0
+offset_right = 1089.0
+offset_bottom = 487.0
+text = "Options"
+
+[node name="Options" parent="." instance=ExtResource("2_djfsj")]
+visible = false
+
+[connection signal="button_up" from="Resume Button" to="." method="_on_resume_button_button_up"]
+[connection signal="button_up" from="Options Button" to="." method="_on_options_button_button_up"]
