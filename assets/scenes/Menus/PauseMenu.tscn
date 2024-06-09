@@ -7,14 +7,14 @@
 process_mode = 2
 script = ExtResource("1_xl2jj")
 
-[node name="Resume Button" type="Button" parent="."]
+[node name="Resume Button" type="Button" parent="." groups=["Buttons"]]
 offset_left = 857.0
 offset_top = 533.0
 offset_right = 1112.0
 offset_bottom = 602.0
 text = "unplause"
 
-[node name="Options Button" type="Button" parent="."]
+[node name="Options Button" type="Button" parent="." groups=["Buttons"]]
 offset_left = 882.0
 offset_top = 402.0
 offset_right = 1089.0

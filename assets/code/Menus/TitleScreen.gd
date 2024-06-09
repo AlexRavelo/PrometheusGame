@@ -6,5 +6,5 @@ func _on_start_button_button_up():
 
 
 func _on_options_button_button_up():
-	$Main.hide()
+	get_tree().call_group("Buttons","set_disabled", true)
 	$Options.show()

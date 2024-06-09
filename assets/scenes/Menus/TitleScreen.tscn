@@ -15,14 +15,14 @@ offset_right = 756.0
 offset_bottom = 206.0
 text = "prometheus game :D"
 
-[node name="Start Button" type="Button" parent="Main"]
+[node name="Start Button" type="Button" parent="Main" groups=["Buttons"]]
 offset_left = 400.0
 offset_top = 312.0
 offset_right = 697.0
 offset_bottom = 390.0
 text = "Start"
 
-[node name="Options Button" type="Button" parent="Main"]
+[node name="Options Button" type="Button" parent="Main" groups=["Buttons"]]
 offset_left = 400.0
 offset_top = 460.0
 offset_right = 697.0
@@ -30,6 +30,7 @@ offset_bottom = 538.0
 text = "Options"
 
 [node name="Options" parent="." instance=ExtResource("2_v5ib1")]
+visible = false
 
 [connection signal="button_up" from="Main/Start Button" to="." method="_on_start_button_button_up"]
 [connection signal="button_up" from="Main/Options Button" to="." method="_on_options_button_button_up"]
