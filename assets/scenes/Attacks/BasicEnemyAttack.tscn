@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cjjmesdej6ts8" path="res://assets/sprites/placeholders/PLACEHOLDER_AXE_FX.png" id="2_8e82g"]
 [ext_resource type="Script" path="res://assets/code/Attacks/Enemy/BasicEnemyAttack.gd" id="2_hcrci"]
+[ext_resource type="Texture2D" uid="uid://de8y3st2gpe6v" path="res://assets/sprites/shared/BasicAttack-sheet.png" id="3_vmcvf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ih6uj"]
 size = Vector3(2.02924, 1.2726, 1.00838)
