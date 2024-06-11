@@ -1,9 +1,9 @@
-[gd_scene load_steps=28 format=3 uid="uid://dmhbiafol2nv"]
+[gd_scene load_steps=28 format=3 uid="uid://cv4doml36onrl"]
 
 [ext_resource type="Script" path="res://assets/code/Enemies/TreeTest.gd" id="1_560bv"]
-[ext_resource type="Texture2D" uid="uid://cuyy3c8b0kjc2" path="res://assets/sprites/enemies/TreeBoss.png" id="2_7xgi1"]
-[ext_resource type="Texture2D" uid="uid://dhpl26io3nyr5" path="res://assets/sprites/enemies/FirePlaceholder.png" id="3_eywi4"]
-[ext_resource type="Texture2D" uid="uid://rqg720t7twv7" path="res://assets/sprites/enemies/TreeLeg.png" id="4_6lrh1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/enemies/TreeBoss.png" id="2_7xgi1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/enemies/FirePlaceholder.png" id="3_eywi4"]
+[ext_resource type="Texture2D" path="res://assets/sprites/enemies/TreeLeg.png" id="4_6lrh1"]
 
 [sub_resource type="Curve" id="Curve_r7kuq"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.604396), 0.0, 0.0, 0, 0]

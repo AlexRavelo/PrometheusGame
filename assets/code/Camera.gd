@@ -11,4 +11,4 @@ func _ready():
 func _process(_delta):
 	if Camera_Target:
 		position.x = lerpf(position.x, Camera_Target.position.x, 0.04)
-		position.z = lerpf(position.z, Camera_Target.position.z + 5, 0.04)
+		position.z = lerpf(position.z, Camera_Target.position.z + 10, 0.04)
