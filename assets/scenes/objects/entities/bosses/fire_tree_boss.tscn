@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://ck2wbdv6v35ov"]
+
+[ext_resource type="PackedScene" uid="uid://bek711pq27gl3" path="res://assets/scenes/objects/entities/bosses/base_boss.tscn" id="1_8l1bj"]
+[ext_resource type="Script" path="res://assets/code/Enemies/Bosses/treeBossEntity.gd" id="2_5e3rx"]
+[ext_resource type="PackedScene" uid="uid://b0fegy63ilwbq" path="res://assets/scenes/Attacks/BeamAttack.tscn" id="3_70gb4"]
+
+[node name="FireTreeBoss" instance=ExtResource("1_8l1bj")]
+script = ExtResource("2_5e3rx")
+attack_state = 0
+
+[node name="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.49204, 0)
+
+[node name="DetectionBubble" parent="." index="3"]
+transform = Transform3D(29.5, 0, 0, 0, 29.5, 0, 0, 0, 29.5, 0, 0.050616, 0)
+visible = true
+
+[node name="AttackTimer" parent="." index="6"]
+wait_time = 10.0
+
+[node name="BeamAttack" parent="." index="7" instance=ExtResource("3_70gb4")]

@@ -1,11 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://p0aiilgf8her"]
+[gd_scene load_steps=15 format=3 uid="uid://p0aiilgf8her"]
 
 [ext_resource type="PackedScene" uid="uid://cepw0irhctadj" path="res://assets/scenes/Player.tscn" id="1_a7fbt"]
 [ext_resource type="Texture2D" uid="uid://db1jdms2tg2k5" path="res://assets/sprites/DEVTERRAIN.png" id="2_a4v3o"]
 [ext_resource type="Script" path="res://assets/code/Camera.gd" id="2_qymli"]
-[ext_resource type="PackedScene" uid="uid://cngirnrsmq5o2" path="res://assets/scenes/objects/entities/beast_enemy.tscn" id="5_mfwh0"]
 [ext_resource type="PackedScene" uid="uid://c7wqvk2k4qlpa" path="res://assets/scenes/objects/entities/training_dummy.tscn" id="5_suali"]
 [ext_resource type="PackedScene" uid="uid://bjrk7jvt7oh22" path="res://assets/scenes/objects/props/campfire_entity.tscn" id="6_46uee"]
+[ext_resource type="PackedScene" uid="uid://bop0ovxfb2l3x" path="res://assets/scenes/objects/entities/tree_stump_enemy.tscn" id="7_22f1x"]
+[ext_resource type="PackedScene" uid="uid://ck2wbdv6v35ov" path="res://assets/scenes/objects/entities/bosses/fire_tree_boss.tscn" id="7_m3ktn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0uxwf"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -72,10 +73,14 @@ Camera_Target = NodePath("../Player")
 [node name="TrainingDummy" parent="." instance=ExtResource("5_suali")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.219, 1.7, 0.587)
 
-[node name="BeastEnemy" parent="." instance=ExtResource("5_mfwh0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.79459, 1.06133, -7.91504)
-control = true
-lockdir = false
-
 [node name="campfireEntity" parent="." instance=ExtResource("6_46uee")]
 transform = Transform3D(0.625, 0, 0, 0, 0.625, 0, 0, 0, 0.625, 4.11536, 0.739839, 0)
+
+[node name="TreeStumpEnemy" parent="." instance=ExtResource("7_22f1x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.54094, 2.10493, 7.34161)
+visible = false
+fuse_time = 5.0
+base_speed = 3.5
+
+[node name="FireTreeBoss" parent="." instance=ExtResource("7_m3ktn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.17716, 0.851511, -6.11297)
