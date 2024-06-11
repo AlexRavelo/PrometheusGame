@@ -56,4 +56,3 @@ func _on_attack_bubble_body_entered(body):
 func _on_attack_bubble_body_exited(body):
 		lunge_strength = 7.0
 
-

@@ -3,5 +3,7 @@ class_name BasicEnemyAttack
 extends BaseAttack
 
 func do_attack(body):
+	print(collision_layer)
+	print(body.collision_layer)
 	if body is PlayerEntity:
 		body.on_hit(self)
