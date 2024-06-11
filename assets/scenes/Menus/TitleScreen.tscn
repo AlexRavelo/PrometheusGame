@@ -17,38 +17,23 @@ text = "prometheus game :D"
 
 [node name="Start Button" type="Button" parent="Main" groups=["Buttons"]]
 offset_left = 400.0
-<<<<<<< Updated upstream
-offset_top = 312.0
-offset_right = 697.0
-offset_bottom = 390.0
-=======
 offset_top = 300.0
 offset_right = 700.0
-offset_bottom = 378.0
-theme = ExtResource("2_ysu17")
->>>>>>> Stashed changes
+offset_bottom = 380.0
 text = "Start"
 
 [node name="Options Button" type="Button" parent="Main" groups=["Buttons"]]
 offset_left = 400.0
-<<<<<<< Updated upstream
-offset_top = 460.0
-offset_right = 697.0
-offset_bottom = 538.0
-=======
 offset_top = 400.0
 offset_right = 700.0
-offset_bottom = 478.0
-theme = ExtResource("2_ysu17")
->>>>>>> Stashed changes
+offset_bottom = 480.0
 text = "Options"
 
 [node name="Exit Button" type="Button" parent="Main" groups=["Buttons"]]
 offset_left = 400.0
 offset_top = 500.0
 offset_right = 700.0
-offset_bottom = 578.0
-theme = ExtResource("2_ysu17")
+offset_bottom = 580.0
 text = "Exit Game"
 
 [node name="Options" parent="." instance=ExtResource("2_v5ib1")]
