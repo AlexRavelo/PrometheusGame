@@ -7,18 +7,18 @@ extends BaseEntity
 @onready var detection_bubble = $DetectionBubble/CollisionShape3D
 @onready var attack_bubble = $AttackBubble
 @onready var animation_player = $AnimationPlayer
-@onready var basic_attack = $AttackBubble/BasicEnemyAttack
 @onready var sprite = $Sprite3D
 
 var enemy_id: int
-var target: PlayerEntity = null
+var target: CharacterBody3D = null
 
 
 @export var modifier_state: GlobalScript.Area
 @export var behavior_state: GlobalScript.EnemyState
 
-func _init(health = current_health, id = 0):
-	current_health = set_health(health)
+#func _init(health: int = 100, id: int = 0):
+	#max_health = health
+	#current_health = set_health(health)
 	
 	
 # Called when the node enters the scene tree for the first time.
@@ -63,7 +63,11 @@ func retreat():
 	nav_agent.set_velocity(new_velocity)
 	
 func alert():
-	handle_direction()
+	handle_movement(target)
+	
+func handle_movement(body):
+	print(base_speed)
+	handle_direction(body)
 	var next_location = nav_agent.get_next_path_position()
 	var new_velocity = (next_location - global_transform.origin).normalized() * base_speed
 	
@@ -77,9 +81,9 @@ func handle_sprite():
 		else: 
 			sprite.flip_h = false
 	
-func handle_direction():
+func handle_direction(body):
 	if not lockdir:
-		update_target_location(target.global_transform.origin)
+		update_target_location(body.global_transform.origin)
 		var current_location = global_transform.origin
 		var target_position = nav_agent.target_position
 	
@@ -108,10 +112,11 @@ func _on_detection_bubble_body_entered(body):
 			target = body
 	
 func _on_attack_bubble_body_entered(body):
-	behavior_state = GlobalScript.EnemyState.Attack
+	if body is PlayerEntity:
+		behavior_state = GlobalScript.EnemyState.Attack
 
 
 func _on_attack_bubble_body_exited(body):
-	if(body == target): # TODO: When animations are implemented make sure this doesnt happen before the animation finishes
+	if body is PlayerEntity: # TODO: When animations are implemented make sure this doesnt happen before the animation finishes
 		behavior_state = GlobalScript.EnemyState.Alert
 	

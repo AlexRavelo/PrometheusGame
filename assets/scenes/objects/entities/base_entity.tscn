@@ -3,9 +3,12 @@
 [ext_resource type="Script" path="res://assets/code/Enemies/baseEnemyEntity.gd" id="1_b2bgc"]
 [ext_resource type="Texture2D" uid="uid://bqjxn8e8mrx4o" path="res://assets/sprites/placeholders/PLACEHOLDER_AXE_ENEMY.png" id="1_jy6lu"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_miu2h"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fm7oc"]
+radius = 1.14725
+height = 4.95991
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_igskt"]
+radius = 0.462163
 
 [sub_resource type="Animation" id="Animation_whhvg"]
 resource_name = "attack"
@@ -42,8 +45,8 @@ transform = Transform3D(0.63, 0, 0, 0, 0.63, 0, 0, 0, 0.63, -0.0377417, 0.510186
 texture = ExtResource("1_jy6lu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03989, 0)
-shape = SubResource("CylinderShape3D_miu2h")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.716861, 0)
+shape = SubResource("CapsuleShape3D_fm7oc")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true
@@ -76,7 +79,7 @@ autoplay = "attack"
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
 [connection signal="body_entered" from="DetectionBubble" to="." method="_on_detection_bubble_body_entered"]
 [connection signal="body_exited" from="DetectionBubble" to="." method="_on_detection_bubble_body_exited"]
-[connection signal="body_entered" from="AttackBubble" to="." method="_on_detection_bubble_body_entered"]
 [connection signal="body_entered" from="AttackBubble" to="." method="_on_attack_bubble_body_entered"]
+[connection signal="body_entered" from="AttackBubble" to="." method="_on_detection_bubble_body_entered"]
 [connection signal="body_exited" from="AttackBubble" to="." method="_on_attack_bubble_body_exited"]
 [connection signal="body_exited" from="AttackBubble" to="." method="_on_detection_bubble_body_exited"]

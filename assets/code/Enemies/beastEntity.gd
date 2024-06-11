@@ -10,7 +10,6 @@ extends BaseEnemyEntity
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	basic_attack = preload("res://assets/scenes/Attacks/BasicEnemyAttack.tscn")
 	anim_state = anim_tree["parameters/playback"]
 	enemy_id = 102
 	super()
@@ -25,7 +24,6 @@ func alert():
 	if control:
 		if lunge_timer.is_stopped():
 			lunge_timer.start(randf_range(0.7, 1.5))
-			print(lunge_timer.time_left)
 		anim_state.travel("Run")
 		anim_tree.set("parameters/Run/blend_position", direction.y)
 		super()
@@ -33,14 +31,13 @@ func alert():
 	
 func attack():
 	if control:
-		handle_direction()
+		handle_direction(target)
 		anim_state.travel("Attack")
 		anim_tree.set("parameters/Run/blend_position", direction.y)
 	
 func bite_attack():
 	bite_attack_entity.look_at(Vector3(position.x + direction.x, position.y, position.z + direction.y))
 	await get_tree().create_timer(0.2).timeout
-	behavior_state = GlobalScript.EnemyState.Alert
 	
 	
 func apply_velocity():
