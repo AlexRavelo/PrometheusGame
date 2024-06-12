@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://fyraxy32q3kx"]
+
+[ext_resource type="Script" path="res://assets/code/Menus/Options.gd" id="1_5jw81"]
+[ext_resource type="Theme" uid="uid://ca0u2si7si0ty" path="res://assets/sprites/UI/buttontheme.tres" id="2_m6adu"]
+
+[node name="Options" type="Node2D"]
+z_index = 3
+script = ExtResource("1_5jw81")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+modulate = Color(1, 1, 1, 0.823529)
+position = Vector2(-64, -64)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(112, 104, 1168, 104, 1168, 672, 112, 672)
+
+[node name="Back Button" type="Button" parent="."]
+offset_left = 809.0
+offset_top = 475.0
+offset_right = 1002.0
+offset_bottom = 554.0
+theme = ExtResource("2_m6adu")
+text = "Back"
+
+[connection signal="button_up" from="Back Button" to="." method="_on_back_button_button_up"]
