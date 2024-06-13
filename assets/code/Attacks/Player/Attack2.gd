@@ -1,8 +1,8 @@
 extends BaseAttack
 #fire attack
 
-func _ready():
-	attack_property = GlobalScript.AttackProperty.Fire
+#func _ready():
+	#attack_property = GlobalScript.AttackProperty.Fire
 
 func do_attack(body):
 	damage = 30
