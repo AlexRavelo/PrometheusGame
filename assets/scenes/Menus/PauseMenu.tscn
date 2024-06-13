@@ -4,11 +4,15 @@
 [ext_resource type="PackedScene" uid="uid://fyraxy32q3kx" path="res://assets/scenes/Menus/options.tscn" id="2_djfsj"]
 [ext_resource type="Theme" uid="uid://ca0u2si7si0ty" path="res://assets/sprites/UI/buttontheme.tres" id="2_w3d3o"]
 
-[node name="PauseMenu" type="Node2D"]
-process_mode = 2
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 script = ExtResource("1_xl2jj")
 
 [node name="Resume Button" type="Button" parent="." groups=["Buttons"]]
+layout_mode = 0
 offset_left = 857.0
 offset_top = 533.0
 offset_right = 1112.0
@@ -17,6 +21,7 @@ theme = ExtResource("2_w3d3o")
 text = "unplause"
 
 [node name="Options Button" type="Button" parent="." groups=["Buttons"]]
+layout_mode = 0
 offset_left = 882.0
 offset_top = 402.0
 offset_right = 1089.0

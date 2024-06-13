@@ -55,7 +55,3 @@ Camera_Target = NodePath("../Player")
 
 [node name="AxeEnemy" parent="." instance=ExtResource("5_o2q0s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.54333, 1.12021, 0.0117173)
-modifier_state = null
-behavior_state = null
-base_speed = null
-base_damage = null
