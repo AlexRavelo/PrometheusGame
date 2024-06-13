@@ -94,7 +94,7 @@ states/Run/node = SubResource("AnimationNodeBlendSpace1D_sasjc")
 states/Run/position = Vector2(519.831, 11.0779)
 states/Start/position = Vector2(355, 100)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_h8lq8"), "Idle", "FireAttack", SubResource("AnimationNodeStateMachineTransition_3i1ci"), "FireAttack", "Idle", SubResource("AnimationNodeStateMachineTransition_nx13g"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_5sxhr"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_ym25p"), "Idle", "Roll", SubResource("AnimationNodeStateMachineTransition_poo4r"), "Roll", "Idle", SubResource("AnimationNodeStateMachineTransition_o21tm"), "Idle", "ClawAttack", SubResource("AnimationNodeStateMachineTransition_k408w"), "ClawAttack", "Idle", SubResource("AnimationNodeStateMachineTransition_uoapv")]
-graph_offset = Vector2(-23.169, 54.0779)
+graph_offset = Vector2(-187.871, -23.1762)
 
 [sub_resource type="Animation" id="Animation_ocelt"]
 resource_name = "AttackBack"

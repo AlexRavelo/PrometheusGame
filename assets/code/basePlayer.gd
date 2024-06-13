@@ -140,7 +140,9 @@ func claw_attack():
 	attack.damage = base_damage
 	attack.knockback = Vector3(0,0,0) # TODO CHANGE LATER
 	attack.look_at(Vector3(position.x + direction.x, position.y, position.z + direction.y))
-	await get_tree().create_timer(0.2).timeout
+	await get_tree().create_timer(0.1).timeout
+	attack.handle_hitsound()
+	await get_tree().create_timer(0.1).timeout
 	attack.queue_free()
 	#individual attack properties are located in their respective .gd scripts
 	
@@ -150,7 +152,9 @@ func fire_attack():
 	attack.damage = base_damage
 	attack.knockback = Vector3(0,0,0) # TODO CHANGE LATER
 	attack.look_at(Vector3(position.x + direction.x, position.y, position.z + direction.y))
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.1).timeout
+	attack.handle_hitsound()
+	await get_tree().create_timer(0.4).timeout
 	attack.queue_free()
 
 func on_death():
