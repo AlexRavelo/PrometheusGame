@@ -9,3 +9,4 @@ func _on_credits_buton_button_up():
 	var credits_scene = load("res://assets/scenes/Menus/credits.tscn")
 	var credits = credits_scene.instantiate()
 	add_child(credits)
+	#i will be changing this later. why did i do this
