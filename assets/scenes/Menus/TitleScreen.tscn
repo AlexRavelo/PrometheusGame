@@ -18,15 +18,17 @@ visible = false
 layout_mode = 1
 
 [node name="Main" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-offset_left = 495.0
-offset_top = 194.0
-offset_right = 657.0
-offset_bottom = 454.0
+offset_left = 472.0
+offset_top = 125.0
+offset_right = 672.0
+offset_bottom = 523.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_constants/separation = 35
 
 [node name="Label" type="Label" parent="Main"]
 layout_mode = 2
