@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://da3v5r4u1gj4u"]
+
+[ext_resource type="Script" path="res://assets/code/Menus/TitleScreen.gd" id="1_w7qvb"]
+[ext_resource type="Theme" uid="uid://ca0u2si7si0ty" path="res://assets/sprites/UI/buttontheme.tres" id="2_duv48"]
+[ext_resource type="PackedScene" uid="uid://fyraxy32q3kx" path="res://assets/scenes/Menus/options.tscn" id="2_v5ib1"]
+
+[node name="TitleScreen" type="Node2D"]
+script = ExtResource("1_w7qvb")
+
+[node name="Main" type="Node2D" parent="."]
+
+[node name="Label" type="Label" parent="Main"]
+offset_left = 338.0
+offset_top = 111.0
+offset_right = 756.0
+offset_bottom = 206.0
+text = "prometheus game :D"
+
+[node name="Start Button" type="Button" parent="Main" groups=["Buttons"]]
+offset_left = 400.0
+offset_top = 300.0
+offset_right = 700.0
+offset_bottom = 380.0
+theme = ExtResource("2_duv48")
+text = "Start"
+
+[node name="Options Button" type="Button" parent="Main" groups=["Buttons"]]
+offset_left = 400.0
+offset_top = 400.0
+offset_right = 700.0
+offset_bottom = 480.0
+theme = ExtResource("2_duv48")
+text = "Options"
+
+[node name="Exit Button" type="Button" parent="Main" groups=["Buttons"]]
+offset_left = 400.0
+offset_top = 500.0
+offset_right = 700.0
+offset_bottom = 580.0
+theme = ExtResource("2_duv48")
+text = "Exit Game"
+
+[node name="Options" parent="." instance=ExtResource("2_v5ib1")]
+visible = false
+
+[connection signal="button_up" from="Main/Start Button" to="." method="_on_start_button_button_up"]
+[connection signal="button_up" from="Main/Options Button" to="." method="_on_options_button_button_up"]
+[connection signal="button_up" from="Main/Exit Button" to="." method="_on_exit_button_button_up"]

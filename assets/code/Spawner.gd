@@ -4,19 +4,16 @@ extends Node3D
 @export var type : GlobalScript.EnemyType
 var enemyDetails = []
 var enemyAxe = preload("res://assets/code/Enemies/axe_enemy.tscn")
-#var locationID = GlobalScript.CurrentArea TODO: Uncomment and delete below when we start using the setArea() function
+var enemyBeast= preload("res://assets/scenes/objects/entities/beast_enemy.tscn")
 var locationID = GlobalScript.Area.First
 var enemy
 
 func spawnEnemy(type):
-	match locationID: 
+	match type: 
 		0:
-			if(type == 0):
-				enemy = enemyAxe.instantiate()
-				enemy.global_position = Vector3.ZERO
-				add_child(enemy)
-			else:  #you get the gist
-				pass
+			enemy = enemyBeast.instantiate()
+			enemy.global_position = Vector3.ZERO
+			add_child(enemy)
 			
 		1:
 			pass
@@ -25,19 +22,6 @@ func spawnEnemy(type):
 			pass
 
 
-#TODO: NEED HELP WITH THIS, VisibleOnScreenNotifier3D doesn't seem to work on afaik. Was thinking about binding it to the camera areas 
-#func OnCameraExit():
-	##destroy enemy object and store stats
-	#enemyDetails = []
-		#enemy.queue_free()
-	#else:
-		#print("Enemy Defeated")
-		#
-#func OnCameraReEnter():
-	#spawnEnemy()
-	#
-	#pass
-	
 func _ready():
 	spawnEnemy(type)
 	

@@ -17,6 +17,7 @@ _data = {
 
 [node name="TrainingDummy" type="CharacterBody3D" groups=["enemies"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 257
 script = ExtResource("2_vil0r")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

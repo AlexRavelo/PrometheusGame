@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://ctb8oa2wm3r0u"]
+[gd_scene load_steps=8 format=3 uid="uid://ctb8oa2wm3r0u"]
 
 [ext_resource type="Script" path="res://assets/code/Enemies/baseEnemyEntity.gd" id="1_b2bgc"]
 [ext_resource type="Texture2D" uid="uid://bqjxn8e8mrx4o" path="res://assets/sprites/placeholders/PLACEHOLDER_AXE_ENEMY.png" id="1_jy6lu"]
-[ext_resource type="PackedScene" uid="uid://nntssubnlacv" path="res://assets/scenes/Attacks/BasicEnemyAttack.tscn" id="3_s2atw"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_miu2h"]
 
@@ -62,10 +61,6 @@ shape = SubResource("SphereShape3D_igskt")
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.0645003, 0)
 collision_layer = 2
 collision_mask = 2
-
-[node name="BasicEnemyAttack" parent="AttackBubble" instance=ExtResource("3_s2atw")]
-transform = Transform3D(-0.39, 0, -3.40949e-08, 0, 0.39, 0, 3.40949e-08, 0, -0.39, 0, 0, 0)
-visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AttackBubble"]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, -0.008, 0)
