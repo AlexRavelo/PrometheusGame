@@ -1,9 +1,7 @@
-[gd_scene load_steps=38 format=3 uid="uid://cepw0irhctadj"]
+[gd_scene load_steps=36 format=3 uid="uid://cepw0irhctadj"]
 
 [ext_resource type="Script" path="res://assets/code/basePlayer.gd" id="1_2wclh"]
 [ext_resource type="Texture2D" uid="uid://2vf84s7ph0mv" path="res://assets/sprites/player/PlayerSheet.png" id="2_cps28"]
-[ext_resource type="PackedScene" uid="uid://dpmbqspyh7ts2" path="res://assets/scenes/Attacks/Attack1.tscn" id="3_oicu1"]
-[ext_resource type="PackedScene" uid="uid://b5kmb6ak363x6" path="res://assets/scenes/Attacks/Attack2.tscn" id="4_6vh7j"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ov8xy"]
 radius = 0.290733
@@ -85,18 +83,18 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_se11t"]
 states/ClawAttack/node = SubResource("AnimationNodeBlendSpace1D_yn3dw")
-states/ClawAttack/position = Vector2(419.831, 203.078)
+states/ClawAttack/position = Vector2(418.831, 203.078)
 states/FireAttack/node = SubResource("AnimationNodeAnimation_qxxer")
-states/FireAttack/position = Vector2(633, 203.078)
+states/FireAttack/position = Vector2(632, 203.078)
 states/Idle/node = SubResource("AnimationNodeBlendSpace1D_loqg8")
 states/Idle/position = Vector2(530, 100)
 states/Roll/node = SubResource("AnimationNodeAnimation_20iur")
 states/Roll/position = Vector2(685.831, 100)
 states/Run/node = SubResource("AnimationNodeBlendSpace1D_sasjc")
-states/Run/position = Vector2(530, 11.0779)
+states/Run/position = Vector2(519.831, 11.0779)
 states/Start/position = Vector2(355, 100)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_h8lq8"), "Idle", "FireAttack", SubResource("AnimationNodeStateMachineTransition_3i1ci"), "FireAttack", "Idle", SubResource("AnimationNodeStateMachineTransition_nx13g"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_5sxhr"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_ym25p"), "Idle", "Roll", SubResource("AnimationNodeStateMachineTransition_poo4r"), "Roll", "Idle", SubResource("AnimationNodeStateMachineTransition_o21tm"), "Idle", "ClawAttack", SubResource("AnimationNodeStateMachineTransition_k408w"), "ClawAttack", "Idle", SubResource("AnimationNodeStateMachineTransition_uoapv")]
-graph_offset = Vector2(35.831, -49.9221)
+graph_offset = Vector2(-187.871, -23.1762)
 
 [sub_resource type="Animation" id="Animation_ocelt"]
 resource_name = "AttackBack"
@@ -157,14 +155,14 @@ tracks/4/path = NodePath(".")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.05),
+"times": PackedFloat32Array(0.05, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
-"args": [],
-"method": &"attack_direction"
-}, {
 "args": [Vector3(10, 0, 0), true],
 "method": &"applyvelocity"
+}, {
+"args": [],
+"method": &"claw_attack"
 }]
 }
 tracks/5/type = "value"
@@ -178,30 +176,6 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.5, 0.8]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Attack1:monitoring")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0.15, 0.575),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Attack1:visible")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0.15, 0.575),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_hkp8y"]
@@ -263,14 +237,14 @@ tracks/4/path = NodePath(".")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.05),
+"times": PackedFloat32Array(0.05, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
-"args": [],
-"method": &"attack_direction"
-}, {
 "args": [Vector3(10, 0, 0), true],
 "method": &"applyvelocity"
+}, {
+"args": [],
+"method": &"claw_attack"
 }]
 }
 tracks/5/type = "value"
@@ -285,34 +259,10 @@ tracks/5/keys = {
 "update": 0,
 "values": [0.5, 0.8]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Attack1:monitoring")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0.15, 0.575),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Attack1:visible")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0.15, 0.575),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
 
 [sub_resource type="Animation" id="Animation_vvm05"]
 resource_name = "FireAttack"
-length = 0.8
+length = 0.65
 step = 0.025
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -333,7 +283,7 @@ tracks/1/path = NodePath(".:control")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.8),
+"times": PackedFloat32Array(0, 0.65),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -345,7 +295,7 @@ tracks/2/path = NodePath(".:lockdir")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.8),
+"times": PackedFloat32Array(0, 0.65),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -357,7 +307,7 @@ tracks/3/path = NodePath(".:state")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.8),
+"times": PackedFloat32Array(0.65),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
@@ -369,14 +319,14 @@ tracks/4/path = NodePath(".")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.2),
+"times": PackedFloat32Array(0.2, 0.35),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
-"args": [],
-"method": &"attack_direction"
-}, {
 "args": [Vector3(15, 0, 0), true],
 "method": &"applyvelocity"
+}, {
+"args": [],
+"method": &"fire_attack"
 }]
 }
 tracks/5/type = "value"
@@ -386,34 +336,10 @@ tracks/5/path = NodePath(".:friction")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.8),
+"times": PackedFloat32Array(0, 0.65),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.5, 0.8]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Attack2:monitoring")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0.325, 0.75),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Attack2:visible")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0.325, 0.75),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_crmfv"]
@@ -483,30 +409,6 @@ tracks/2/path = NodePath(".:isGravity")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Attack1:monitoring")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Attack1:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -675,6 +577,7 @@ floor_max_angle = 0.872665
 script = ExtResource("1_2wclh")
 control = false
 lockdir = true
+base_speed = 5.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0670587, 0)
@@ -694,7 +597,7 @@ region_rect = Rect2(0, 0, 142, 128)
 deterministic = false
 tree_root = SubResource("AnimationNodeStateMachine_se11t")
 anim_player = NodePath("../AnimationPlayer")
-parameters/ClawAttack/blend_position = -0.122372
+parameters/ClawAttack/blend_position = -0.210265
 parameters/Idle/blend_position = 0.125828
 parameters/Run/blend_position = 0.0463576
 
@@ -707,10 +610,3 @@ libraries = {
 wait_time = 0.1
 one_shot = true
 autostart = true
-
-[node name="Attack1" parent="." instance=ExtResource("3_oicu1")]
-monitoring = false
-
-[node name="Attack2" parent="." instance=ExtResource("4_6vh7j")]
-visible = false
-monitoring = false
