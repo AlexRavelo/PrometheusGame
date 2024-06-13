@@ -12,17 +12,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5jw81")
 
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.0277778
-anchor_top = 0.037037
-anchor_right = 0.979167
-anchor_bottom = 0.950617
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
-
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -65,5 +54,4 @@ size_flags_vertical = 8
 theme = ExtResource("2_m6adu")
 text = "Back"
 
-[connection signal="button_up" from="PanelContainer/MarginContainer/HBoxContainer/Credits Buton" to="." method="_on_back_button_button_up"]
 [connection signal="button_up" from="PanelContainer/MarginContainer/HBoxContainer/Back Button" to="." method="_on_back_button_button_up"]
