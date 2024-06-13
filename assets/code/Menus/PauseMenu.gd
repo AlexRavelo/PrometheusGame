@@ -1,5 +1,7 @@
 extends Node
 
+func _ready():
+	GlobalScript.default_focused_button = $"Options Button"
 
 func _on_resume_button_button_up():
 	get_tree().paused = false

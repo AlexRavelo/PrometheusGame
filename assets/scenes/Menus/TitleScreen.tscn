@@ -6,34 +6,46 @@
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_w7qvb")
 
 [node name="Options" parent="." instance=ExtResource("2_v5ib1")]
 visible = false
+layout_mode = 1
 
 [node name="Main" type="VBoxContainer" parent="."]
-layout_mode = 1
-offset_right = 162.0
-offset_bottom = 104.0
+layout_mode = 2
+offset_left = 495.0
+offset_top = 194.0
+offset_right = 657.0
+offset_bottom = 454.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="Label" type="Label" parent="Main"]
 layout_mode = 2
+size_flags_vertical = 6
 text = "prometheus game :D"
 
 [node name="Start Button" type="Button" parent="Main" groups=["Buttons"]]
+custom_minimum_size = Vector2(150, 75)
 layout_mode = 2
+size_flags_vertical = 6
 focus_neighbor_bottom = NodePath("../Options Button")
 focus_next = NodePath("../Options Button")
 theme = ExtResource("2_duv48")
 text = "Start"
 
 [node name="Options Button" type="Button" parent="Main" groups=["Buttons"]]
+custom_minimum_size = Vector2(150, 75)
 layout_mode = 2
+size_flags_vertical = 6
 focus_neighbor_top = NodePath("../Start Button")
 focus_neighbor_bottom = NodePath("../Exit Button")
 focus_next = NodePath("../Exit Button")
@@ -42,7 +54,9 @@ theme = ExtResource("2_duv48")
 text = "Options"
 
 [node name="Exit Button" type="Button" parent="Main" groups=["Buttons"]]
+custom_minimum_size = Vector2(150, 75)
 layout_mode = 2
+size_flags_vertical = 6
 focus_neighbor_top = NodePath("../Options Button")
 focus_previous = NodePath("../Options Button")
 theme = ExtResource("2_duv48")

@@ -5,10 +5,13 @@
 [ext_resource type="Theme" uid="uid://ca0u2si7si0ty" path="res://assets/sprites/UI/buttontheme.tres" id="2_w3d3o"]
 
 [node name="PauseMenu" type="Control"]
+process_mode = 2
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_xl2jj")
 
 [node name="Resume Button" type="Button" parent="." groups=["Buttons"]]
@@ -31,6 +34,7 @@ text = "Options"
 
 [node name="Options" parent="." instance=ExtResource("2_djfsj")]
 visible = false
+layout_mode = 1
 
 [connection signal="button_up" from="Resume Button" to="." method="_on_resume_button_button_up"]
 [connection signal="button_up" from="Options Button" to="." method="_on_options_button_button_up"]
