@@ -1,10 +1,11 @@
 extends Control
 
-func _ready():
-	#$"PanelContainer/Back Button".grab_focus()
-	pass
-
 func _on_back_button_button_up():
 	get_tree().call_group("Buttons","set_disabled", false)
-	GlobalScript.default_focused_button.grab_focus()
 	$".".hide()
+
+
+func _on_credits_buton_button_up():
+	var credits_scene = load("res://assets/scenes/Menus/credits.tscn")
+	var credits = credits_scene.instantiate()
+	add_child(credits)

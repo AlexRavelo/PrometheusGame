@@ -54,4 +54,5 @@ size_flags_vertical = 8
 theme = ExtResource("2_m6adu")
 text = "Back"
 
+[connection signal="button_up" from="PanelContainer/MarginContainer/HBoxContainer/Credits Buton" to="." method="_on_credits_buton_button_up"]
 [connection signal="button_up" from="PanelContainer/MarginContainer/HBoxContainer/Back Button" to="." method="_on_back_button_button_up"]

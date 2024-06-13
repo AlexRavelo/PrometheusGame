@@ -4,7 +4,6 @@ enum Area{First, Second, Third}
 enum EnemyState{Idle, Alert, Attack, Retreat}
 enum EnemyType{Beast,Axe, Spear}
 enum AttackProperty{Basic, Fire} # Will Add more
-var default_focused_button #for titlescreen/pausemenu
 var LitCampfires: Dictionary
 var CurrentArea
 
