@@ -19,6 +19,10 @@ config/icon="res://assets/sprites/icon.png"
 
 GlobalScript="*res://assets/code/GlobalScript.gd"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [file_customization]
 
 folder_colors={
