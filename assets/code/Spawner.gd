@@ -8,6 +8,9 @@ var enemyDetails = []
 var enemyBeast= preload("res://assets/scenes/objects/entities/beast_enemy.tscn")
 var locationID = GlobalScript.Area.First
 var enemy
+var enemy_count : int = 0
+
+signal on_enemies_cleared
 
 func listener_entry():
 	spawnEnemy(GlobalScript.EnemyType.Beast)
@@ -17,16 +20,19 @@ func listener_exit():
 	for n in enemy_list:
 		n.queue_free()
 
+func listener_death():
+	var enemy_total = get_child_count()
+	if enemy_total == 0:
+		on_enemies_cleared.emit()
 
 func spawnEnemy(type):
-	print("AHHH")
 	if spawn_enemy == true:
 		match type: 
 			0:
 				enemy = enemyBeast.instantiate()
 				enemy.global_position = Vector3.ZERO
 				add_child(enemy)
-				
+				enemy.connect("on_death", listener_death)
 			1:
 				pass
 			
