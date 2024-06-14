@@ -17,6 +17,8 @@ var target: CharacterBody3D = null
 @export var modifier_state: GlobalScript.Area
 @export var behavior_state: GlobalScript.EnemyState
 
+signal on_enemy_death
+
 #func _init(health: int = 100, id: int = 0):
 	#max_health = health
 	#current_health = set_health(health)
@@ -103,6 +105,10 @@ func handle_direction(body):
 		direction.x = clamp(lerpf(direction.x, (target_position.x - current_location.x), 0.09), -1, 1)
 		direction.y = clamp(lerpf(direction.y, (target_position.z - current_location.z), 0.09), -1, 1)
 	
+
+func on_death():
+	on_enemy_death.emit()
+	super()
 
 func _on_navigation_agent_3d_target_reached():
 	pass
