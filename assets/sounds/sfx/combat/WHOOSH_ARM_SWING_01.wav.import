@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://e5wooiw1gpcq"
-path="res://.godot/imported/WHOOSH_ARM_SWING_01.wav-c6323d44e6cd3a5d346e61ab09227f82.sample"
+path="res://.godot/imported/WHOOSH_ARM_SWING_01.wav-253408540aa4bbacd27884df05c34cb7.sample"
 
 [deps]
 
-source_file="res://assets/sounds/sfx/WHOOSH_ARM_SWING_01.wav"
-dest_files=["res://.godot/imported/WHOOSH_ARM_SWING_01.wav-c6323d44e6cd3a5d346e61ab09227f82.sample"]
+source_file="res://assets/sounds/sfx/combat/WHOOSH_ARM_SWING_01.wav"
+dest_files=["res://.godot/imported/WHOOSH_ARM_SWING_01.wav-253408540aa4bbacd27884df05c34cb7.sample"]
 
 [params]
 

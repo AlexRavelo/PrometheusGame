@@ -1,7 +1,12 @@
-[gd_scene load_steps=38 format=3 uid="uid://cepw0irhctadj"]
+[gd_scene load_steps=43 format=3 uid="uid://cepw0irhctadj"]
 
 [ext_resource type="Script" path="res://assets/code/basePlayer.gd" id="1_2wclh"]
 [ext_resource type="Texture2D" uid="uid://2vf84s7ph0mv" path="res://assets/sprites/player/PlayerSheet.png" id="2_cps28"]
+[ext_resource type="Material" uid="uid://keb6hdc0l7vm" path="res://assets/code/PlayerHitFlash.tres" id="2_rme65"]
+[ext_resource type="AudioStream" uid="uid://dyjema3bl3j5j" path="res://assets/sounds/sfx/movement/Step 01.wav" id="3_m4de3"]
+[ext_resource type="AudioStream" uid="uid://bulkybmm6ivh5" path="res://assets/sounds/sfx/movement/Step 02.wav" id="4_eqhiq"]
+[ext_resource type="AudioStream" uid="uid://cx8ewo5i5fj5o" path="res://assets/sounds/sfx/movement/Step 3.wav" id="5_y7wn1"]
+[ext_resource type="AudioStream" uid="uid://7k6rvtnjhihn" path="res://assets/sounds/sfx/movement/Roll.wav" id="6_cok3k"]
 [ext_resource type="PackedScene" uid="uid://dpmbqspyh7ts2" path="res://assets/scenes/Attacks/Attack1.tscn" id="3_1gu3k"]
 [ext_resource type="PackedScene" uid="uid://b5kmb6ak363x6" path="res://assets/scenes/Attacks/Attack2.tscn" id="4_jw442"]
 
@@ -91,7 +96,7 @@ states/FireAttack/position = Vector2(632, 203.078)
 states/Idle/node = SubResource("AnimationNodeBlendSpace1D_loqg8")
 states/Idle/position = Vector2(530, 100)
 states/Roll/node = SubResource("AnimationNodeAnimation_20iur")
-states/Roll/position = Vector2(685.831, 100)
+states/Roll/position = Vector2(682.831, 100)
 states/Run/node = SubResource("AnimationNodeBlendSpace1D_sasjc")
 states/Run/position = Vector2(519.831, 11.0779)
 states/Start/position = Vector2(355, 100)
@@ -591,6 +596,20 @@ tracks/7/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("SoundPlayers/RollSound")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.275),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_5jsmj"]
 resource_name = "RunBack"
@@ -608,6 +627,23 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [17, 18, 19, 20]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SoundPlayers/StepSound")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_y8brd"]
@@ -627,6 +663,23 @@ tracks/0/keys = {
 "update": 1,
 "values": [13, 14, 15, 16]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SoundPlayers/StepSound")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_5wudq"]
 resource_name = "new_animation"
@@ -645,12 +698,26 @@ _data = {
 "new_animation": SubResource("Animation_5wudq")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_64f1o"]
+random_pitch = 1.1
+streams_count = 3
+stream_0/stream = ExtResource("3_m4de3")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("4_eqhiq")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("5_y7wn1")
+stream_2/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kgg7c"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("6_cok3k")
+stream_0/weight = 1.0
+
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
-collision_layer = 2
+collision_layer = 3
 floor_max_angle = 0.872665
 script = ExtResource("1_2wclh")
-control = false
-lockdir = true
 base_speed = 5.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -659,6 +726,8 @@ shape = SubResource("CapsuleShape3D_ov8xy")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(0.672, 0, 0, 0, 0.672, 0, 0, 0, 0.672, 0, 0, 0)
+material_override = ExtResource("2_rme65")
+cast_shadow = 0
 billboard = 1
 texture_filter = 0
 texture = ExtResource("2_cps28")
@@ -684,6 +753,18 @@ libraries = {
 wait_time = 0.1
 one_shot = true
 autostart = true
+
+[node name="SoundPlayers" type="Node" parent="."]
+
+[node name="StepSound" type="AudioStreamPlayer" parent="SoundPlayers"]
+stream = SubResource("AudioStreamRandomizer_64f1o")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="RollSound" type="AudioStreamPlayer" parent="SoundPlayers"]
+stream = SubResource("AudioStreamRandomizer_kgg7c")
+volume_db = -5.0
+bus = &"SFX"
 
 [node name="Attack1" parent="." instance=ExtResource("3_1gu3k")]
 visible = false

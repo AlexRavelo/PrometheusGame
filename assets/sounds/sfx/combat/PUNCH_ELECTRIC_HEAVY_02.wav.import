@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bi1ocqp45arda"
-path="res://.godot/imported/PUNCH_ELECTRIC_HEAVY_02.wav-d3cc99c9ea03149cbeed3542d8698e23.sample"
+path="res://.godot/imported/PUNCH_ELECTRIC_HEAVY_02.wav-1a134f9a82dad6fcc991893f9e5cffaa.sample"
 
 [deps]
 
-source_file="res://assets/sounds/sfx/PUNCH_ELECTRIC_HEAVY_02.wav"
-dest_files=["res://.godot/imported/PUNCH_ELECTRIC_HEAVY_02.wav-d3cc99c9ea03149cbeed3542d8698e23.sample"]
+source_file="res://assets/sounds/sfx/combat/PUNCH_ELECTRIC_HEAVY_02.wav"
+dest_files=["res://.godot/imported/PUNCH_ELECTRIC_HEAVY_02.wav-1a134f9a82dad6fcc991893f9e5cffaa.sample"]
 
 [params]
 
