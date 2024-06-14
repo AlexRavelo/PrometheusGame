@@ -8,6 +8,7 @@ extends BaseEntity
 @onready var attack_bubble = $AttackBubble
 @onready var animation_player = $AnimationPlayer
 @onready var sprite = $Sprite3D
+@onready var target_position = global_transform.origin
 
 var enemy_id: int
 var target: CharacterBody3D = null
@@ -56,9 +57,8 @@ func _physics_process(delta):
 
 func retreat():
 	update_target_location(target.global_transform.origin)
-	var current_location = global_transform.origin
 	var next_location = nav_agent.get_next_path_position()
-	var new_velocity = ((next_location - current_location).normalized() * base_speed) * Vector3(-1,-1,-1)
+	var new_velocity = ((next_location - global_transform.origin).normalized() * base_speed) * Vector3(-1,-1,-1)
 	
 	nav_agent.set_velocity(new_velocity)
 	
@@ -66,13 +66,25 @@ func alert():
 	handle_movement(target)
 	
 func handle_movement(body):
-	print(base_speed)
 	handle_direction(body)
 	var next_location = nav_agent.get_next_path_position()
 	var new_velocity = (next_location - global_transform.origin).normalized() * base_speed
 	
 	
 	nav_agent.set_velocity(new_velocity)
+		
+func handle_random_movement():
+	target_position = Vector3(global_transform.origin.x - randf_range(-32, 32), global_transform.origin.y, global_transform.origin.z - randf_range(-32, 32))
+	update_target_location(target_position)
+	
+	
+	var next_location = nav_agent.get_next_path_position()
+	var new_velocity = (next_location - global_transform.origin).normalized() * base_speed
+	
+	
+	nav_agent.set_velocity(new_velocity)
+	
+	
 		
 func handle_sprite():
 	if not lockdir:
@@ -110,6 +122,7 @@ func _on_detection_bubble_body_entered(body):
 			if(behavior_state != GlobalScript.EnemyState.Attack):
 				behavior_state = GlobalScript.EnemyState.Alert
 			target = body
+			
 	
 func _on_attack_bubble_body_entered(body):
 	if body is PlayerEntity:

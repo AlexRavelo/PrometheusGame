@@ -112,7 +112,7 @@ billboard = 1
 texture = ExtResource("3_yrouy")
 hframes = 12
 vframes = 2
-frame = 13
+frame = 12
 
 [node name="CollisionShape3D" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.589256, 0)
@@ -139,11 +139,11 @@ parameters/Idle/blend_position = -0.020202
 parameters/Run/blend_position = 0
 
 [node name="LungeTimer" type="Timer" parent="." index="7"]
+process_callback = 0
 one_shot = true
 
 [node name="BasicEnemyAttack" parent="." index="8" instance=ExtResource("5_o6nis")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.432045, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.432045, -0.710108)
 collision_layer = 4
-damage = 3
 
 [connection signal="timeout" from="LungeTimer" to="." method="_on_lunge_timer_timeout"]

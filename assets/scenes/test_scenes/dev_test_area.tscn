@@ -5,8 +5,8 @@
 [ext_resource type="Script" path="res://assets/code/Camera.gd" id="2_qymli"]
 [ext_resource type="PackedScene" uid="uid://c7wqvk2k4qlpa" path="res://assets/scenes/objects/entities/training_dummy.tscn" id="5_suali"]
 [ext_resource type="PackedScene" uid="uid://bjrk7jvt7oh22" path="res://assets/scenes/objects/props/campfire_entity.tscn" id="6_46uee"]
-[ext_resource type="PackedScene" uid="uid://bop0ovxfb2l3x" path="res://assets/scenes/objects/entities/tree_stump_enemy.tscn" id="7_22f1x"]
 [ext_resource type="PackedScene" uid="uid://ck2wbdv6v35ov" path="res://assets/scenes/objects/entities/bosses/fire_tree_boss.tscn" id="7_m3ktn"]
+[ext_resource type="PackedScene" uid="uid://cngirnrsmq5o2" path="res://assets/scenes/objects/entities/beast_enemy.tscn" id="8_fls2d"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0uxwf"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -46,7 +46,7 @@ light_color = Color(0.481789, 0.481789, 0.481789, 1)
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_a7fbt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.62652, 3.076, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.14092, 1.51582, 1.38245)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 0, 0.351572, 0)
@@ -76,11 +76,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.219, 1.7, 0.587)
 [node name="campfireEntity" parent="." instance=ExtResource("6_46uee")]
 transform = Transform3D(0.625, 0, 0, 0, 0.625, 0, 0, 0, 0.625, 4.11536, 0.739839, 0)
 
-[node name="TreeStumpEnemy" parent="." instance=ExtResource("7_22f1x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.54094, 2.10493, 7.34161)
-visible = false
-fuse_time = 5.0
-base_speed = 3.5
-
 [node name="FireTreeBoss" parent="." instance=ExtResource("7_m3ktn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.17716, 0.851511, -6.11297)
+attack_state = 2
+attack_time = 3.0
+current_health = 100
+base_speed = 1.5
+
+[node name="BeastEnemy" parent="." instance=ExtResource("8_fls2d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.44784, 1.13233, 1.03739)
+control = true
+lockdir = false

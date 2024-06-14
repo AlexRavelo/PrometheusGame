@@ -20,6 +20,7 @@ func idle():
 	anim_tree.set("parameters/Idle/blend_position", direction.y)
 	
 	
+	
 func alert():
 	if control:
 		if lunge_timer.is_stopped():
@@ -37,7 +38,6 @@ func attack():
 	
 func bite_attack():
 	bite_attack_entity.look_at(Vector3(position.x + direction.x, position.y, position.z + direction.y))
-	await get_tree().create_timer(0.2).timeout
 	
 	
 func apply_velocity():

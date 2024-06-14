@@ -8,7 +8,7 @@ radius = 1.14725
 height = 4.95991
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_igskt"]
-radius = 0.462163
+radius = 0.295014
 
 [sub_resource type="Animation" id="Animation_whhvg"]
 resource_name = "attack"

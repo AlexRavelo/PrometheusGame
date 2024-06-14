@@ -15,7 +15,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.49204, 0)
 transform = Transform3D(29.5, 0, 0, 0, 29.5, 0, 0, 0, 29.5, 0, 0.050616, 0)
 visible = true
 
-[node name="AttackTimer" parent="." index="6"]
-wait_time = 10.0
+[node name="AttackBubble" parent="." index="4"]
+visible = true
+
+[node name="CollisionShape3D" parent="AttackBubble" index="0"]
+disabled = true
 
 [node name="BeamAttack" parent="." index="7" instance=ExtResource("3_70gb4")]

@@ -8,12 +8,16 @@ extends BaseEntity
 @onready var cooldown = $"Attack Cooldown"
 @onready var animation_tree = $AnimationTree
 @onready var animation_player = $AnimationPlayer
+@onready var burn_timer = $BurnTimer
 
 @export var state : States = States.NEUTRAL
 @export var RollCooldown: float = 0.5
 @export var ClawAttackCooldown: float = 0.25
 @export var FireAttackCooldown: float = 0.5
 @export var isGravity = true # TODO: add this to baseentity whenever i'm sure that there'll be no conflicts
+@export var isBurned = false
+@export var burnTime = 3.0
+
 
 var attack_selection : AttackSelect
 var Attack1 = preload("res://assets/scenes/Attacks/Attack1.tscn")
@@ -37,6 +41,8 @@ func _ready():
 	
 
 func _process(delta):
+	if isBurned:
+		set_health(current_health - 1)
 	if isGravity: # TODO: add this to baseentity whenever i'm sure that there'll be no conflicts
 		if !is_on_floor(): #Gravity
 			velocity.y -= gravity * delta
@@ -141,11 +147,27 @@ func claw_attack():
 func fire_attack():
 	var attack = Attack2.instantiate()
 	add_child(attack)
-	attack.damage = base_damage
+	attack.damage = base_damage * 3
 	attack.knockback = Vector3(0,0,0) # TODO CHANGE LATER
 	attack.look_at(Vector3(position.x + direction.x, position.y, position.z + direction.y))
 	await get_tree().create_timer(0.5).timeout
 	attack.queue_free()
 
+func on_hit(incoming_attack):
+	super(incoming_attack)
+	print("ow!")
+	
+func get_burned():
+	isBurned = true
+	sprite.modulate = Color8(224, 87, 0)
+	burn_timer.start(burnTime)
+	
+
+
 func on_death():
 	print("FUCK IM DEAD")
+
+
+func _on_burn_timer_timeout():
+	isBurned = false
+	sprite.modulate = Color(1,1,1)
