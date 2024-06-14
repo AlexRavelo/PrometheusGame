@@ -191,10 +191,10 @@ tracks/6/path = NodePath("Attack1:monitoring")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0.1, 0.35),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.05, 0.1, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [true, false]
+"values": [false, true, false]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -203,10 +203,36 @@ tracks/7/path = NodePath("Attack1:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0.1, 0.35),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.05, 0.1, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [true, false]
+"values": [false, true, false]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Attack1")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.15),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"handle_hitsound"
+}]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Attack1:enemy_hit")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.05),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_hkp8y"]
@@ -297,10 +323,10 @@ tracks/6/path = NodePath("Attack1:monitoring")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0.1, 0.35),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.05, 0.1, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [true, false]
+"values": [false, true, false]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -309,10 +335,36 @@ tracks/7/path = NodePath("Attack1:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0.1, 0.35),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.05, 0.1, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [true, false]
+"values": [false, true, false]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Attack1")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.15),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"handle_hitsound"
+}]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Attack1:enemy_hit")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.05),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_vvm05"]
@@ -403,10 +455,10 @@ tracks/6/path = NodePath("Attack2:monitoring")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0.35, 0.75),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.3, 0.35, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [true, false]
+"values": [false, true, false]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -415,10 +467,36 @@ tracks/7/path = NodePath("Attack2:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0.35, 0.75),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.3, 0.35, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [true, false]
+"values": [false, true, false]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Attack2")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"handle_hitsound"
+}]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Attack2:enemy_hit")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_crmfv"]
@@ -718,6 +796,8 @@ stream_0/weight = 1.0
 collision_layer = 3
 floor_max_angle = 0.872665
 script = ExtResource("1_2wclh")
+control = false
+lockdir = true
 base_speed = 5.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -768,8 +848,6 @@ bus = &"SFX"
 
 [node name="Attack1" parent="." instance=ExtResource("3_1gu3k")]
 visible = false
-monitoring = false
 
 [node name="Attack2" parent="." instance=ExtResource("4_jw442")]
 visible = false
-monitoring = false

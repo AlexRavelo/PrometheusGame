@@ -9,8 +9,8 @@ extends Area3D
 
 var attack_property: GlobalScript.AttackProperty = GlobalScript.AttackProperty.Basic
 
-#Did we hit an enemy?
-var enemy_hit = false
+#Did we hit an enemy? Export for anim player
+@export var enemy_hit = false
 #The sound that we're going to use
 var picked_sound: AudioStreamPlayer
 
