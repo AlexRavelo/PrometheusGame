@@ -14,16 +14,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_w7qvb")
 
-[node name="Credits" parent="." instance=ExtResource("3_oyssd")]
-visible = false
-z_index = 1
-layout_mode = 1
-
-[node name="Options" parent="." instance=ExtResource("2_v5ib1")]
-visible = false
-z_index = 1
-layout_mode = 1
-
 [node name="Main" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
@@ -89,6 +79,14 @@ size_flags_horizontal = 3
 size_flags_vertical = 0
 theme = ExtResource("2_duv48")
 text = "Credits"
+
+[node name="Credits" parent="." instance=ExtResource("3_oyssd")]
+visible = false
+layout_mode = 1
+
+[node name="Options" parent="." instance=ExtResource("2_v5ib1")]
+visible = false
+layout_mode = 1
 
 [connection signal="button_up" from="Main/Start Button" to="." method="_on_start_button_button_up"]
 [connection signal="button_up" from="Main/Options Button" to="." method="_on_options_button_button_up"]
