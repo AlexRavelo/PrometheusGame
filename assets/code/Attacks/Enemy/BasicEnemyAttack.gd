@@ -7,3 +7,4 @@ func do_attack(body):
 	print(body.collision_layer)
 	if body is PlayerEntity:
 		body.on_hit(self)
+		enemy_hit = true

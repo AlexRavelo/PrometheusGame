@@ -1,0 +1,69 @@
+[gd_scene load_steps=4 format=3 uid="uid://da3v5r4u1gj4u"]
+
+[ext_resource type="Script" path="res://assets/code/Menus/TitleScreen.gd" id="1_w7qvb"]
+[ext_resource type="Theme" uid="uid://ca0u2si7si0ty" path="res://assets/sprites/UI/buttontheme.tres" id="2_duv48"]
+[ext_resource type="PackedScene" uid="uid://fyraxy32q3kx" path="res://assets/scenes/Menus/options.tscn" id="2_v5ib1"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w7qvb")
+
+[node name="Options" parent="." instance=ExtResource("2_v5ib1")]
+visible = false
+layout_mode = 1
+
+[node name="Main" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+offset_left = 472.0
+offset_top = 125.0
+offset_right = 672.0
+offset_bottom = 523.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 35
+
+[node name="Label" type="Label" parent="Main"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "prometheus game :D"
+
+[node name="Start Button" type="Button" parent="Main" groups=["Buttons"]]
+custom_minimum_size = Vector2(150, 75)
+layout_mode = 2
+size_flags_vertical = 6
+focus_neighbor_bottom = NodePath("../Options Button")
+focus_next = NodePath("../Options Button")
+theme = ExtResource("2_duv48")
+text = "Start"
+
+[node name="Options Button" type="Button" parent="Main" groups=["Buttons"]]
+custom_minimum_size = Vector2(150, 75)
+layout_mode = 2
+size_flags_vertical = 6
+focus_neighbor_top = NodePath("../Start Button")
+focus_neighbor_bottom = NodePath("../Exit Button")
+focus_next = NodePath("../Exit Button")
+focus_previous = NodePath("../Start Button")
+theme = ExtResource("2_duv48")
+text = "Options"
+
+[node name="Exit Button" type="Button" parent="Main" groups=["Buttons"]]
+custom_minimum_size = Vector2(150, 75)
+layout_mode = 2
+size_flags_vertical = 6
+focus_neighbor_top = NodePath("../Options Button")
+focus_previous = NodePath("../Options Button")
+theme = ExtResource("2_duv48")
+text = "Exit Game"
+
+[connection signal="button_up" from="Main/Start Button" to="." method="_on_start_button_button_up"]
+[connection signal="button_up" from="Main/Options Button" to="." method="_on_options_button_button_up"]
+[connection signal="button_up" from="Main/Exit Button" to="." method="_on_exit_button_button_up"]

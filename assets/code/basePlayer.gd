@@ -3,6 +3,7 @@ class_name PlayerEntity
 extends BaseEntity
 
 
+var pause_menu = preload("res://assets/scenes/Menus/PauseMenu.tscn")
 
 @onready var sprite = $Sprite3D
 @onready var cooldown = $"Attack Cooldown"
@@ -56,6 +57,11 @@ func _process(delta):
 		States.ROLLING:
 			state_rolling()
 #endregion
+	
+	if Input.is_action_just_pressed("Pause"):
+		var pause = pause_menu.instantiate()
+		add_child(pause)
+		get_tree().paused = true
 	
 	debug_commands()#REMOVE THIS FUNCTION FOR FINAL RELEASE !!
 	move_and_slide()
@@ -121,7 +127,7 @@ func state_attacking(): #Attacking State: Regular Attack Handling.
 		state = States.NEUTRAL
 
 
-func state_rolling(): # TODO: Rolling State for dodging.
+func state_rolling(): #Rolling State: Like attack but simpler
 	if cooldown.time_left <= 0:
 		direction = Input.get_vector("Left","Right", "Up", "Down")
 		# Direction is usually interpolated to make it smooth, but this needs to
@@ -134,24 +140,8 @@ func state_rolling(): # TODO: Rolling State for dodging.
 		state = States.NEUTRAL
 
 
-func claw_attack(): 
-	var attack = Attack1.instantiate()
-	add_child(attack)
-	attack.damage = base_damage
-	attack.knockback = Vector3(0,0,0) # TODO CHANGE LATER
-	attack.look_at(Vector3(position.x + direction.x, position.y, position.z + direction.y))
-	await get_tree().create_timer(0.2).timeout
-	attack.queue_free()
-	#individual attack properties are located in their respective .gd scripts
-	
-func fire_attack():
-	var attack = Attack2.instantiate()
-	add_child(attack)
-	attack.damage = base_damage * 3
-	attack.knockback = Vector3(0,0,0) # TODO CHANGE LATER
-	attack.look_at(Vector3(position.x + direction.x, position.y, position.z + direction.y))
-	await get_tree().create_timer(0.5).timeout
-	attack.queue_free()
+func attack_direction(): 
+	self.look_at(Vector3(position.x + direction.x, position.y, position.z + direction.y))
 
 func on_hit(incoming_attack):
 	super(incoming_attack)
