@@ -848,6 +848,8 @@ bus = &"SFX"
 
 [node name="Attack1" parent="." instance=ExtResource("3_1gu3k")]
 visible = false
+monitoring = false
 
 [node name="Attack2" parent="." instance=ExtResource("4_jw442")]
 visible = false
+monitoring = false
