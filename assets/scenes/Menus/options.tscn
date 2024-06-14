@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://fyraxy32q3kx"]
+[gd_scene load_steps=4 format=3 uid="uid://fyraxy32q3kx"]
 
 [ext_resource type="Script" path="res://assets/code/Menus/Options.gd" id="1_5jw81"]
 [ext_resource type="Theme" uid="uid://ca0u2si7si0ty" path="res://assets/sprites/UI/buttontheme.tres" id="2_m6adu"]
+[ext_resource type="Script" path="res://assets/code/Menus/VolumeSlider.gd" id="3_ppnjv"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -29,28 +30,63 @@ layout_mode = 2
 size_flags_horizontal = 8
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
-[node name="HBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
-custom_minimum_size = Vector2(250, 0)
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 8
+size_flags_vertical = 8
 theme_override_constants/separation = 400
 
-[node name="Credits Buton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer"]
+[node name="Back Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-theme = ExtResource("2_m6adu")
-text = "Credits"
-
-[node name="Back Button" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(0, 75)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 8
+size_flags_vertical = 4
 theme = ExtResource("2_m6adu")
 text = "Back"
 
-[connection signal="button_up" from="PanelContainer/MarginContainer/HBoxContainer/Credits Buton" to="." method="_on_credits_buton_button_up"]
-[connection signal="button_up" from="PanelContainer/MarginContainer/HBoxContainer/Back Button" to="." method="_on_back_button_button_up"]
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 15
+
+[node name="Bumpscosity" type="Label" parent="PanelContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Bumpscosity"
+
+[node name="Bumpscosity Slider" type="HSlider" parent="PanelContainer/MarginContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+
+[node name="Master Volume" type="Label" parent="PanelContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Master Volume"
+
+[node name="Master Slider" type="HSlider" parent="PanelContainer/MarginContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+script = ExtResource("3_ppnjv")
+bus_name = "Master"
+
+[node name="SFX Volume" type="Label" parent="PanelContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "SFX Volume"
+
+[node name="SFX Slider" type="HSlider" parent="PanelContainer/MarginContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+script = ExtResource("3_ppnjv")
+bus_name = "SFX"
+
+[connection signal="button_up" from="PanelContainer/MarginContainer/VBoxContainer/Back Button" to="." method="_on_back_button_button_up"]

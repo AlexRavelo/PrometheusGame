@@ -1,14 +1,14 @@
-[gd_scene load_steps=43 format=3 uid="uid://cepw0irhctadj"]
+[gd_scene load_steps=45 format=3 uid="uid://cepw0irhctadj"]
 
 [ext_resource type="Script" path="res://assets/code/basePlayer.gd" id="1_2wclh"]
 [ext_resource type="Texture2D" uid="uid://2vf84s7ph0mv" path="res://assets/sprites/player/PlayerSheet.png" id="2_cps28"]
 [ext_resource type="Material" uid="uid://keb6hdc0l7vm" path="res://assets/code/PlayerHitFlash.tres" id="2_rme65"]
+[ext_resource type="PackedScene" uid="uid://dpmbqspyh7ts2" path="res://assets/scenes/Attacks/Attack1.tscn" id="3_1gu3k"]
 [ext_resource type="AudioStream" uid="uid://dyjema3bl3j5j" path="res://assets/sounds/sfx/movement/Step 01.wav" id="3_m4de3"]
 [ext_resource type="AudioStream" uid="uid://bulkybmm6ivh5" path="res://assets/sounds/sfx/movement/Step 02.wav" id="4_eqhiq"]
+[ext_resource type="PackedScene" uid="uid://b5kmb6ak363x6" path="res://assets/scenes/Attacks/Attack2.tscn" id="4_jw442"]
 [ext_resource type="AudioStream" uid="uid://cx8ewo5i5fj5o" path="res://assets/sounds/sfx/movement/Step 3.wav" id="5_y7wn1"]
 [ext_resource type="AudioStream" uid="uid://7k6rvtnjhihn" path="res://assets/sounds/sfx/movement/Roll.wav" id="6_cok3k"]
-[ext_resource type="PackedScene" uid="uid://dpmbqspyh7ts2" path="res://assets/scenes/Attacks/Attack1.tscn" id="3_1gu3k"]
-[ext_resource type="PackedScene" uid="uid://b5kmb6ak363x6" path="res://assets/scenes/Attacks/Attack2.tscn" id="4_jw442"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ov8xy"]
 radius = 0.290733

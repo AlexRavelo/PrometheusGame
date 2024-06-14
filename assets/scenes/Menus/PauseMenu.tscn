@@ -16,19 +16,19 @@ script = ExtResource("1_xl2jj")
 
 [node name="Resume Button" type="Button" parent="." groups=["Buttons"]]
 layout_mode = 0
-offset_left = 857.0
-offset_top = 533.0
-offset_right = 1112.0
-offset_bottom = 602.0
+offset_left = 875.0
+offset_top = 500.0
+offset_right = 1075.0
+offset_bottom = 575.0
 theme = ExtResource("2_w3d3o")
 text = "unplause"
 
 [node name="Options Button" type="Button" parent="." groups=["Buttons"]]
 layout_mode = 0
-offset_left = 882.0
-offset_top = 402.0
-offset_right = 1089.0
-offset_bottom = 487.0
+offset_left = 875.0
+offset_top = 400.0
+offset_right = 1075.0
+offset_bottom = 475.0
 theme = ExtResource("2_w3d3o")
 text = "Options"
 
