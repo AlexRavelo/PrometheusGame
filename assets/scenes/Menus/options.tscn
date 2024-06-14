@@ -29,28 +29,20 @@ layout_mode = 2
 size_flags_horizontal = 8
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
 [node name="HBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 8
+size_flags_vertical = 8
 theme_override_constants/separation = 400
-
-[node name="Credits Buton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(0, 75)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-theme = ExtResource("2_m6adu")
-text = "Credits"
 
 [node name="Back Button" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 8
+size_flags_vertical = 4
 theme = ExtResource("2_m6adu")
 text = "Back"
 
-[connection signal="button_up" from="PanelContainer/MarginContainer/HBoxContainer/Credits Buton" to="." method="_on_credits_buton_button_up"]
 [connection signal="button_up" from="PanelContainer/MarginContainer/HBoxContainer/Back Button" to="." method="_on_back_button_button_up"]
