@@ -157,6 +157,9 @@ func fire_attack():
 	await get_tree().create_timer(0.4).timeout
 	attack.queue_free()
 
+func attack_direction(): 
+	self.look_at(Vector3(position.x + direction.x, position.y, position.z + direction.y))
+
 func on_hit(incoming_attack):
 	super(incoming_attack)
 	# Plays the hit flash effect so we know we're taking damage

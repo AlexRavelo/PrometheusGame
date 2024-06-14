@@ -58,6 +58,6 @@ func load_sprite():
 # forward is positive X instead of the usual negative Z
 func applyvelocity(givenVelocity : Vector3, towardsDir : bool): 
 	if towardsDir:
-		velocity += givenVelocity.rotated(Vector3(0, 1, 0).normalized(), -direction.angle())
+		velocity = givenVelocity.rotated(Vector3(0, 1, 0).normalized(), -direction.angle())
 	else:
-		velocity += givenVelocity
+		velocity = givenVelocity

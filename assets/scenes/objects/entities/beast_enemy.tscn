@@ -147,7 +147,6 @@ one_shot = true
 
 [node name="BasicEnemyAttack" parent="." index="8" instance=ExtResource("5_o6nis")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.432045, 0)
-visible = false
 collision_layer = 4
 damage = 3
 

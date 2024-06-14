@@ -7,6 +7,8 @@
 [ext_resource type="AudioStream" uid="uid://bulkybmm6ivh5" path="res://assets/sounds/sfx/movement/Step 02.wav" id="4_eqhiq"]
 [ext_resource type="AudioStream" uid="uid://cx8ewo5i5fj5o" path="res://assets/sounds/sfx/movement/Step 3.wav" id="5_y7wn1"]
 [ext_resource type="AudioStream" uid="uid://7k6rvtnjhihn" path="res://assets/sounds/sfx/movement/Roll.wav" id="6_cok3k"]
+[ext_resource type="PackedScene" uid="uid://dpmbqspyh7ts2" path="res://assets/scenes/Attacks/Attack1.tscn" id="3_1gu3k"]
+[ext_resource type="PackedScene" uid="uid://b5kmb6ak363x6" path="res://assets/scenes/Attacks/Attack2.tscn" id="4_jw442"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ov8xy"]
 radius = 0.290733
@@ -160,14 +162,14 @@ tracks/4/path = NodePath(".")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.05, 0.1),
+"times": PackedFloat32Array(0, 0.05),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"attack_direction"
+}, {
 "args": [Vector3(10, 0, 0), true],
 "method": &"applyvelocity"
-}, {
-"args": [],
-"method": &"claw_attack"
 }]
 }
 tracks/5/type = "value"
@@ -181,6 +183,30 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.5, 0.8]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Attack1:monitoring")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.1, 0.35),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Attack1:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.1, 0.35),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_hkp8y"]
@@ -242,14 +268,14 @@ tracks/4/path = NodePath(".")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.05, 0.1),
+"times": PackedFloat32Array(0, 0.05),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"attack_direction"
+}, {
 "args": [Vector3(10, 0, 0), true],
 "method": &"applyvelocity"
-}, {
-"args": [],
-"method": &"claw_attack"
 }]
 }
 tracks/5/type = "value"
@@ -264,10 +290,34 @@ tracks/5/keys = {
 "update": 0,
 "values": [0.5, 0.8]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Attack1:monitoring")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.1, 0.35),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Attack1:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.1, 0.35),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_vvm05"]
 resource_name = "FireAttack"
-length = 0.65
+length = 0.8
 step = 0.025
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -288,7 +338,7 @@ tracks/1/path = NodePath(".:control")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.65),
+"times": PackedFloat32Array(0, 0.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -300,7 +350,7 @@ tracks/2/path = NodePath(".:lockdir")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.65),
+"times": PackedFloat32Array(0, 0.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -312,7 +362,7 @@ tracks/3/path = NodePath(".:state")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.65),
+"times": PackedFloat32Array(0.8),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
@@ -324,14 +374,14 @@ tracks/4/path = NodePath(".")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.2, 0.35),
+"times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"attack_direction"
+}, {
 "args": [Vector3(15, 0, 0), true],
 "method": &"applyvelocity"
-}, {
-"args": [],
-"method": &"fire_attack"
 }]
 }
 tracks/5/type = "value"
@@ -341,10 +391,34 @@ tracks/5/path = NodePath(".:friction")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.65),
+"times": PackedFloat32Array(0, 0.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.5, 0.8]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Attack2:monitoring")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.35, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Attack2:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.35, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_crmfv"]
@@ -691,3 +765,11 @@ bus = &"SFX"
 stream = SubResource("AudioStreamRandomizer_kgg7c")
 volume_db = -5.0
 bus = &"SFX"
+
+[node name="Attack1" parent="." instance=ExtResource("3_1gu3k")]
+visible = false
+monitoring = false
+
+[node name="Attack2" parent="." instance=ExtResource("4_jw442")]
+visible = false
+monitoring = false
