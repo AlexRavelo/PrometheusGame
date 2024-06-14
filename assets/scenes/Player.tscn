@@ -687,7 +687,6 @@ autostart = true
 
 [node name="BurnTimer" type="Timer" parent="."]
 
-[connection signal="timeout" from="BurnTimer" to="." method="_on_burn_timer_timeout"]
 [node name="Attack1" parent="." instance=ExtResource("3_1gu3k")]
 visible = false
 monitoring = false
@@ -695,3 +694,5 @@ monitoring = false
 [node name="Attack2" parent="." instance=ExtResource("4_jw442")]
 visible = false
 monitoring = false
+
+[connection signal="timeout" from="BurnTimer" to="." method="_on_burn_timer_timeout"]
