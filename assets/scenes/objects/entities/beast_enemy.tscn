@@ -1,3 +1,4 @@
+
 [gd_scene load_steps=28 format=3 uid="uid://cngirnrsmq5o2"]
 
 [ext_resource type="PackedScene" uid="uid://ctb8oa2wm3r0u" path="res://assets/scenes/objects/entities/base_entity.tscn" id="1_l2wuk"]
@@ -5,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bqgy2ggqsheot" path="res://assets/sprites/enemies/BeastSheet.png" id="3_yrouy"]
 [ext_resource type="AnimationLibrary" uid="uid://c3h60mo161ciq" path="res://assets/Animations/beastAnimations.res" id="4_g0u4d"]
 [ext_resource type="PackedScene" uid="uid://nntssubnlacv" path="res://assets/scenes/Attacks/BasicEnemyAttack.tscn" id="5_o6nis"]
+
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_btae7"]
 height = 1.23308
