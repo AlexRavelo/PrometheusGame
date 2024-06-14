@@ -120,7 +120,7 @@ billboard = 1
 texture = ExtResource("3_yrouy")
 hframes = 12
 vframes = 2
-frame = 13
+frame = 12
 
 [node name="NavigationAgent3D" parent="." index="2"]
 avoidance_layers = 256
@@ -147,7 +147,9 @@ one_shot = true
 
 [node name="BasicEnemyAttack" parent="." index="8" instance=ExtResource("5_o6nis")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.432045, 0)
+visible = false
 collision_layer = 4
+monitoring = false
 damage = 3
 
 [connection signal="timeout" from="LungeTimer" to="." method="_on_lunge_timer_timeout"]
