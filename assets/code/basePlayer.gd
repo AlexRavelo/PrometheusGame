@@ -149,13 +149,23 @@ func claw_attack():
 func fire_attack():
 	var attack = Attack2.instantiate()
 	add_child(attack)
-	attack.damage = base_damage
+	attack.damage = base_damage * 3
 	attack.knockback = Vector3(0,0,0) # TODO CHANGE LATER
 	attack.look_at(Vector3(position.x + direction.x, position.y, position.z + direction.y))
 	await get_tree().create_timer(0.1).timeout
 	attack.handle_hitsound()
 	await get_tree().create_timer(0.4).timeout
 	attack.queue_free()
+
+func attack_direction(): 
+	self.look_at(Vector3(position.x + direction.x, position.y, position.z + direction.y))
+
+func on_hit(incoming_attack):
+	super(incoming_attack)
+	# Plays the hit flash effect so we know we're taking damage
+	sprite.material_override.set_shader_parameter("active",true)
+	await get_tree().create_timer(0.1).timeout 
+	sprite.material_override.set_shader_parameter("active",false)
 
 func on_death():
 	print("FUCK IM DEAD")
