@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cr0yuvupi2dxc"
-path="res://.godot/imported/WHOOSH_AIRY_FLUTTER_01.wav-1c4391d84cb8b35fe926a069e2fa7beb.sample"
+path="res://.godot/imported/WHOOSH_AIRY_FLUTTER_01.wav-c6f87ec195748b8b5a31f12159ca5f4a.sample"
 
 [deps]
 
-source_file="res://assets/sounds/sfx/WHOOSH_AIRY_FLUTTER_01.wav"
-dest_files=["res://.godot/imported/WHOOSH_AIRY_FLUTTER_01.wav-1c4391d84cb8b35fe926a069e2fa7beb.sample"]
+source_file="res://assets/sounds/sfx/combat/WHOOSH_AIRY_FLUTTER_01.wav"
+dest_files=["res://.godot/imported/WHOOSH_AIRY_FLUTTER_01.wav-c6f87ec195748b8b5a31f12159ca5f4a.sample"]
 
 [params]
 

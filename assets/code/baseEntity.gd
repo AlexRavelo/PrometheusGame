@@ -44,6 +44,7 @@ func on_hit(incoming_attack):
 	print(current_health)
 	applyvelocity(incoming_attack.knockback, true) #NOT WORKING YET !!
 	
+	
 	if current_health <= 0:
 		self.on_death()
 	
