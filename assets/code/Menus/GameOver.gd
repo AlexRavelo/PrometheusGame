@@ -1,9 +1,10 @@
 extends Control
 
+@export var deathsound: AudioStreamPlayer
 
 func _ready():
 	get_tree().paused = true
-
+	deathsound.play()
 
 func _on_return_to_title_button_button_up():
 	get_tree().paused = false

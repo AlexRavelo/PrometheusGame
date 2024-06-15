@@ -173,7 +173,7 @@ func on_death():
 	print("FUCK IM DEAD")
 
 func state_dead():
-	pass 
+	pass #Lol
 
 func _on_burn_timer_timeout():
 	isBurned = false

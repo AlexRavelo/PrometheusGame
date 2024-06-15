@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://dnvxlariopo01"]
+[gd_scene load_steps=4 format=3 uid="uid://dnvxlariopo01"]
 
 [ext_resource type="Script" path="res://assets/code/Menus/GameOver.gd" id="1_3utxa"]
 [ext_resource type="Theme" uid="uid://ca0u2si7si0ty" path="res://assets/sprites/UI/buttontheme.tres" id="2_vswxi"]
+[ext_resource type="AudioStream" uid="uid://rwsg436atn7p" path="res://assets/sounds/sfx/deathsound.wav" id="3_c0301"]
 
-[node name="GameOver" type="Control"]
+[node name="GameOver" type="Control" node_paths=PackedStringArray("deathsound")]
 process_mode = 2
 layout_mode = 3
 anchors_preset = 15
@@ -12,6 +13,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3utxa")
+deathsound = NodePath("Deathsound")
 
 [node name="BoxContainer" type="BoxContainer" parent="."]
 layout_mode = 1
@@ -40,6 +42,10 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme = ExtResource("2_vswxi")
 text = "Return to Title"
+
+[node name="Deathsound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_c0301")
+bus = &"Music"
 
 [connection signal="button_up" from="BoxContainer/Continue Button" to="." method="_on_continue_button_button_up"]
 [connection signal="button_up" from="BoxContainer/Return to Title Button" to="." method="_on_return_to_title_button_button_up"]
