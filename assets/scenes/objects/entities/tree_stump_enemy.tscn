@@ -1,108 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://buxnuaci83en4"]
+[gd_scene load_steps=5 format=3 uid="uid://bop0ovxfb2l3x"]
 
 [ext_resource type="PackedScene" uid="uid://ctb8oa2wm3r0u" path="res://assets/scenes/objects/entities/base_entity.tscn" id="1_37wwl"]
 [ext_resource type="Script" path="res://assets/code/Enemies/tree_stump_enemy.gd" id="2_1lvg2"]
-[ext_resource type="Texture2D" uid="uid://chx5qnbxk3vao" path="res://assets/sprites/enemies/TreeAdd_0000-sheet.png" id="3_11ihq"]
-[ext_resource type="PackedScene" path="res://assets/scenes/Attacks/explosion_attack.tscn" id="4_6ag1r"]
-
-[sub_resource type="Animation" id="Animation_je1a3"]
-resource_name = "Idle"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 1]
-}
-
-[sub_resource type="Animation" id="Animation_bs5qc"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_1nqcv"]
-resource_name = "Run"
-length = 0.3
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [2, 3, 4]
-}
-
-[sub_resource type="Animation" id="Animation_6qjgs"]
-resource_name = "Explode"
-length = 0.7
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.25, 0.35, 0.45, 0.55),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [5, 6, 7, 8, 9, 10, 11]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_souw4"]
-_data = {
-"Explode": SubResource("Animation_6qjgs"),
-"Idle": SubResource("Animation_je1a3"),
-"RESET": SubResource("Animation_bs5qc"),
-"Run": SubResource("Animation_1nqcv")
-}
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bcg08"]
-animation = &"Explode"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1von0"]
-animation = &"Idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i2g82"]
-animation = &"Run"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s5115"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2olp7"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6k8yt"]
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_17tv8"]
-states/Explode/node = SubResource("AnimationNodeAnimation_bcg08")
-states/Explode/position = Vector2(625, 105)
-states/Idle/node = SubResource("AnimationNodeAnimation_1von0")
-states/Idle/position = Vector2(380, 105)
-states/Run/node = SubResource("AnimationNodeAnimation_i2g82")
-states/Run/position = Vector2(499, 105)
-states/Start/position = Vector2(199, 100)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_s5115"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_2olp7"), "Run", "Explode", SubResource("AnimationNodeStateMachineTransition_6k8yt")]
+[ext_resource type="Texture2D" uid="uid://jruvpdmv8f1t" path="res://assets/sprites/placeholders/PLACEHOLDER_TREE_ADD.png" id="2_xnvly"]
+[ext_resource type="PackedScene" uid="uid://b2dvu1mjah3dd" path="res://assets/scenes/Attacks/explosion_attack.tscn" id="4_6ag1r"]
 
 [node name="TreeStumpEnemy" instance=ExtResource("1_37wwl")]
 script = ExtResource("2_1lvg2")
@@ -110,15 +11,10 @@ fuse_time = 4.0
 speedup = 0.0045
 
 [node name="Sprite3D" parent="." index="0"]
-billboard = 1
-texture = ExtResource("3_11ihq")
-hframes = 6
-vframes = 2
+texture = ExtResource("2_xnvly")
 
-[node name="AnimationPlayer" parent="." index="5"]
-libraries = {
-"": SubResource("AnimationLibrary_souw4")
-}
+[node name="AttackBubble" parent="." index="4"]
+collision_mask = 4
 
 [node name="ExplosionAttack" parent="." index="6" instance=ExtResource("4_6ag1r")]
 transform = Transform3D(3.705, 0, 0, 0, 3.705, 0, 0, 0, 3.705, 0.0127068, 0.0133667, 2.59192)
@@ -126,9 +22,5 @@ transform = Transform3D(3.705, 0, 0, 0, 3.705, 0, 0, 0, 3.705, 0.0127068, 0.0133
 [node name="FuseTimer" type="Timer" parent="." index="7"]
 process_callback = 0
 one_shot = true
-
-[node name="AnimationTree" type="AnimationTree" parent="." index="8"]
-tree_root = SubResource("AnimationNodeStateMachine_17tv8")
-anim_player = NodePath("../AnimationPlayer")
 
 [connection signal="timeout" from="FuseTimer" to="." method="_on_fuse_timer_timeout"]
