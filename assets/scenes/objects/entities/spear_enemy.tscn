@@ -105,7 +105,6 @@ parameters/Run/blend_position = 0
 [node name="BasicEnemyAttack" parent="." index="8" instance=ExtResource("3_iw08w")]
 transform = Transform3D(-7.71506e-08, 1.765, 0, 7.71506e-08, 3.37236e-15, 1.765, 1.765, 7.71506e-08, -7.71506e-08, 0, 1.735, -1.17)
 
-
 [node name="ThrowTimer" type="Timer" parent="." index="9"]
 one_shot = true
 
