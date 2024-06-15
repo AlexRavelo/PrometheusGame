@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://cepw0irhctadj"]
+[gd_scene load_steps=54 format=3 uid="uid://cepw0irhctadj"]
 
 [ext_resource type="Script" path="res://assets/code/basePlayer.gd" id="1_2wclh"]
 [ext_resource type="Texture2D" uid="uid://2vf84s7ph0mv" path="res://assets/sprites/player/PlayerSheet.png" id="2_cps28"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://b5kmb6ak363x6" path="res://assets/scenes/Attacks/Attack2.tscn" id="4_jw442"]
 [ext_resource type="AudioStream" uid="uid://cx8ewo5i5fj5o" path="res://assets/sounds/sfx/movement/Step 3.wav" id="5_y7wn1"]
 [ext_resource type="AudioStream" uid="uid://7k6rvtnjhihn" path="res://assets/sounds/sfx/movement/Roll.wav" id="6_cok3k"]
+[ext_resource type="Texture2D" uid="uid://dndu1c4epjldj" path="res://assets/sprites/UI/HealthbarUnder.png" id="10_b7arf"]
+[ext_resource type="Texture2D" uid="uid://k6atxlab40lj" path="res://assets/sprites/UI/HealthbarProgress.png" id="11_nyikn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ov8xy"]
 radius = 0.290733
@@ -855,6 +857,7 @@ stream_0/weight = 1.0
 collision_layer = 3
 floor_max_angle = 0.872665
 script = ExtResource("1_2wclh")
+current_health = 100
 base_speed = 5.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -913,5 +916,22 @@ visible = false
 monitoring = false
 
 [node name="BurnTimer" type="Timer" parent="."]
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HealthBar" type="TextureProgressBar" parent="HUD"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 560.0
+offset_right = 370.0
+offset_bottom = 587.0
+texture_under = ExtResource("10_b7arf")
+texture_progress = ExtResource("11_nyikn")
 
 [connection signal="timeout" from="BurnTimer" to="." method="_on_burn_timer_timeout"]

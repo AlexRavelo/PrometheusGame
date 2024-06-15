@@ -11,6 +11,7 @@ var game_over = preload("res://assets/scenes/Menus/GameOver.tscn")
 @onready var animation_tree = $AnimationTree
 @onready var animation_player = $AnimationPlayer
 @onready var burn_timer = $BurnTimer
+@onready var healthbar = $HUD/HealthBar
 
 @export var state : States = States.NEUTRAL
 @export var RollCooldown: float = 0.5
@@ -41,7 +42,8 @@ func _ready():
 	anim_state = animation_tree["parameters/playback"]
 	control = true
 	lockdir = false
-	
+	healthbar.max_value = max_health
+	healthbar.value = current_health
 
 func _process(delta):
 	if isBurned:
@@ -152,6 +154,7 @@ func on_hit(incoming_attack):
 	sprite.material_override.set_shader_parameter("active",true)
 	await get_tree().create_timer(0.1).timeout 
 	sprite.material_override.set_shader_parameter("active",false)
+	healthbar.value = current_health
 	
 func get_burned():
 	isBurned = true
