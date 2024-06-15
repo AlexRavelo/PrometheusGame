@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cngirnrsmq5o2"]
+[gd_scene load_steps=30 format=3 uid="uid://cngirnrsmq5o2"]
 
 [ext_resource type="PackedScene" uid="uid://ctb8oa2wm3r0u" path="res://assets/scenes/objects/entities/base_entity.tscn" id="1_l2wuk"]
 [ext_resource type="Script" path="res://assets/code/Enemies/beastEntity.gd" id="2_cx5hc"]
@@ -14,6 +14,9 @@ shader_parameter/active = false
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/scale = 0.63
 shader_parameter/tex = ExtResource("3_yrouy")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_btae7"]
+height = 1.23308
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ie5q0"]
 radius = 0.431602
@@ -120,7 +123,11 @@ billboard = 1
 texture = ExtResource("3_yrouy")
 hframes = 12
 vframes = 2
-frame = 12
+frame = 13
+
+[node name="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.589256, 0)
+shape = SubResource("CapsuleShape3D_btae7")
 
 [node name="NavigationAgent3D" parent="." index="2"]
 avoidance_layers = 256
@@ -147,7 +154,6 @@ one_shot = true
 
 [node name="BasicEnemyAttack" parent="." index="8" instance=ExtResource("5_o6nis")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.432045, 0)
-visible = false
 collision_layer = 4
 monitoring = false
 

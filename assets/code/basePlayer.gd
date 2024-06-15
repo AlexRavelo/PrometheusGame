@@ -11,6 +11,8 @@ var game_over = preload("res://assets/scenes/Menus/GameOver.tscn")
 @onready var animation_tree = $AnimationTree
 @onready var animation_player = $AnimationPlayer
 @onready var burn_timer = $BurnTimer
+@onready var claw_attack = $Attack1
+@onready var fire_attack = $Attack2
 @onready var healthbar = $HUD/HealthBar
 
 @export var state : States = States.NEUTRAL
@@ -42,6 +44,9 @@ func _ready():
 	anim_state = animation_tree["parameters/playback"]
 	control = true
 	lockdir = false
+	claw_attack.damage = base_damage
+	fire_attack.damage = base_damage * 3
+	
 	healthbar.max_value = max_health
 	healthbar.value = current_health
 	music.play() #TEMPORARY!! CHANGE FOR FINAL RELEASE
