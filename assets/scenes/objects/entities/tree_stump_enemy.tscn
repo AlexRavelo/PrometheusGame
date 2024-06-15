@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://buxnuaci83en4"]
+[gd_scene load_steps=17 format=3 uid="uid://buxnuaci83en4"]
 
 [ext_resource type="PackedScene" uid="uid://ctb8oa2wm3r0u" path="res://assets/scenes/objects/entities/base_entity.tscn" id="1_37wwl"]
 [ext_resource type="Script" path="res://assets/code/Enemies/tree_stump_enemy.gd" id="2_1lvg2"]
@@ -78,6 +78,32 @@ _data = {
 "Run": SubResource("Animation_1nqcv")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bcg08"]
+animation = &"Explode"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1von0"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i2g82"]
+animation = &"Run"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s5115"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2olp7"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6k8yt"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_17tv8"]
+states/Explode/node = SubResource("AnimationNodeAnimation_bcg08")
+states/Explode/position = Vector2(625, 105)
+states/Idle/node = SubResource("AnimationNodeAnimation_1von0")
+states/Idle/position = Vector2(380, 105)
+states/Run/node = SubResource("AnimationNodeAnimation_i2g82")
+states/Run/position = Vector2(499, 105)
+states/Start/position = Vector2(199, 100)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_s5115"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_2olp7"), "Run", "Explode", SubResource("AnimationNodeStateMachineTransition_6k8yt")]
+
 [node name="TreeStumpEnemy" instance=ExtResource("1_37wwl")]
 script = ExtResource("2_1lvg2")
 fuse_time = 4.0
@@ -100,5 +126,9 @@ transform = Transform3D(3.705, 0, 0, 0, 3.705, 0, 0, 0, 3.705, 0.0127068, 0.0133
 [node name="FuseTimer" type="Timer" parent="." index="7"]
 process_callback = 0
 one_shot = true
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="8"]
+tree_root = SubResource("AnimationNodeStateMachine_17tv8")
+anim_player = NodePath("../AnimationPlayer")
 
 [connection signal="timeout" from="FuseTimer" to="." method="_on_fuse_timer_timeout"]
