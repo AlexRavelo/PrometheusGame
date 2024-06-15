@@ -6,6 +6,8 @@ enum AttackStates{Beam, Fireball, Spawn}
 
 @export var attack_state: AttackStates
 @onready var beam_attack_entity = $BeamAttack
+@onready var anim_tree = $AnimationTree
+var blendpoint = Vector2(0,0)
 var adds_spawned: bool = false
 var fireball_entity = preload("res://assets/scenes/Attacks/TreeFireballAttack.tscn")
 var tree_add_entity = preload("res://assets/scenes/objects/entities/tree_stump_enemy.tscn")
@@ -15,12 +17,20 @@ func _ready():
 	attack_state = AttackStates.Beam
 	
 func alert():
+	control = true
+	anim_state = anim_tree["parameters/playback"]
+	anim_state.travel("Neutral")
 	if target_position == global_position:
 		handle_random_movement()
 	super()
 
+
+func _process(delta):
+	blendpoint.x = move_toward(blendpoint.x, velocity.x, 0.25)
+	blendpoint.y = move_toward(blendpoint.y, velocity.z, 0.25)
+	anim_tree.set("parameters/Neutral/blend_position", blendpoint)
+
 func attack():
-	print(attack_state)
 	if control:
 		target_position = global_position
 		nav_agent.set_velocity(Vector3.ZERO)
@@ -31,13 +41,12 @@ func attack():
 				fireball_attack()
 			AttackStates.Spawn:
 				spawn_adds()
-	
-				
 			
 func beam_attack():
 	control = false
 	velocity = Vector3.ZERO
 	self.look_at(Vector3(position.x + direction.x, position.y, position.z + direction.y))
+	anim_state.travel("BeamAttack")
 	# Bottom four lines will be removed when animations are added
 	await get_tree().create_timer(.5).timeout
 	beam_attack_entity.monitoring = true

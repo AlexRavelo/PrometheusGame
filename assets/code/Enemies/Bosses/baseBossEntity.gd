@@ -9,6 +9,7 @@ extends BaseEnemyEntity
 func alert():
 	if attack_timer.is_stopped():
 		attack_timer.start(attack_time)
+	super()
 		
 	
 func get_n():
@@ -25,7 +26,6 @@ func get_n():
 
 func _on_attack_timer_timeout():
 	behavior_state = GlobalScript.EnemyState.Attack
-
 	
 # Bosses will behave differently from normal enemies so uhh ye lol
 # Definitely is a better solution but not enough time to do code it rn

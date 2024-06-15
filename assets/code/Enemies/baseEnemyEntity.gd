@@ -94,7 +94,7 @@ func handle_sprite():
 			sprite.flip_h = true
 		else: 
 			sprite.flip_h = false
-
+			
 func handle_direction(body):
 	if not lockdir:
 		update_target_location(body.global_transform.origin)
