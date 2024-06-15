@@ -1,7 +1,12 @@
-[gd_scene load_steps=20 format=3 uid="uid://dhskbg50ix0dm"]
+[gd_scene load_steps=24 format=3 uid="uid://dhskbg50ix0dm"]
 
 [ext_resource type="PackedScene" uid="uid://ctb8oa2wm3r0u" path="res://assets/scenes/objects/entities/base_entity.tscn" id="1_l3ul8"]
 [ext_resource type="Script" path="res://assets/code/Enemies/SpearEnemyEntity.gd" id="2_tpm3o"]
+[ext_resource type="PackedScene" uid="uid://b57ojmd40yjvt" path="res://assets/scenes/Attacks/spear_throw_attack.tscn" id="3_ivbbd"]
+[ext_resource type="PackedScene" uid="uid://nntssubnlacv" path="res://assets/scenes/Attacks/BasicEnemyAttack.tscn" id="3_iw08w"]
+[ext_resource type="Texture2D" uid="uid://dhntv3thrwss5" path="res://assets/sprites/placeholders/PLACEHOLDER_SPEAR_ENEMY.png" id="4_kfden"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_k7ia2"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j1fd6"]
 animation = &"beastAnimations/AttackFront"
@@ -77,19 +82,31 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 [node name="SpearEnemy" instance=ExtResource("1_l3ul8")]
 script = ExtResource("2_tpm3o")
 
-[node name="Sprite3D" parent="." index="0"]
-billboard = 1
-texture = null
+[node name="SpearThrowAttack" parent="." index="0" instance=ExtResource("3_ivbbd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.33378, -1.2165)
 
-[node name="DetectionBubble" parent="." index="3"]
-visible = false
+[node name="Sprite3D" parent="." index="1"]
+billboard = 1
+texture = ExtResource("4_kfden")
+
+[node name="CollisionShape3D" parent="." index="2"]
+shape = SubResource("CapsuleShape3D_k7ia2")
 
 [node name="CollisionShape3D" parent="AttackBubble" index="0"]
-transform = Transform3D(0.895, 0, 0, 0, 0.895, 0, 0, 0, 0.895, 0, -0.008, 0)
+transform = Transform3D(1.03, 0, 0, 0, 1.03, 0, 0, 0, 1.03, 0, -0.008, 0)
 
-[node name="AnimationTree" type="AnimationTree" parent="." index="6"]
+[node name="AnimationTree" type="AnimationTree" parent="." index="7"]
 tree_root = SubResource("AnimationNodeStateMachine_gxqon")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Attack/blend_position = 0.238411
 parameters/Idle/blend_position = 0
 parameters/Run/blend_position = 0
+
+[node name="BasicEnemyAttack" parent="." index="8" instance=ExtResource("3_iw08w")]
+transform = Transform3D(-7.71506e-08, 1.765, 0, 7.71506e-08, 3.37236e-15, 1.765, 1.765, 7.71506e-08, -7.71506e-08, 0, 1.735, -1.17)
+
+
+[node name="ThrowTimer" type="Timer" parent="." index="9"]
+one_shot = true
+
+[connection signal="timeout" from="ThrowTimer" to="." method="_on_throw_timer_timeout"]

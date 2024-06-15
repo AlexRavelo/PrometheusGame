@@ -5,7 +5,7 @@ extends CharacterBody3D
 # Basic Stats
 var direction := Vector2(0, 1)
 var gravity := 10
-var current_health = 1
+@export var current_health = 1
 var anim_state
 
 @export var control := true # Wether or not the creature can move
@@ -17,6 +17,7 @@ var anim_state
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	current_health = max_health
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

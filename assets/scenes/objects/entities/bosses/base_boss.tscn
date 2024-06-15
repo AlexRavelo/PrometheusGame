@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bek711pq27gl3"]
+
+[ext_resource type="PackedScene" uid="uid://ctb8oa2wm3r0u" path="res://assets/scenes/objects/entities/base_entity.tscn" id="1_0uuwk"]
+[ext_resource type="Script" path="res://assets/code/Enemies/Bosses/baseBossEntity.gd" id="2_x5euf"]
+
+[node name="BaseBoss" instance=ExtResource("1_0uuwk")]
+script = ExtResource("2_x5euf")
+attack_time = 1.0
+
+[node name="DetectionBubble" parent="." index="3"]
+visible = false
+
+[node name="AttackBubble" parent="." index="4"]
+visible = false
+
+[node name="AttackTimer" type="Timer" parent="." index="6"]
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

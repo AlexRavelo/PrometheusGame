@@ -150,6 +150,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.432045, 0)
 visible = false
 collision_layer = 4
 monitoring = false
-damage = 3
 
 [connection signal="timeout" from="LungeTimer" to="." method="_on_lunge_timer_timeout"]

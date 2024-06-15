@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://docqvsy1avx3c"]
+
+[ext_resource type="Script" path="res://assets/code/Props/SpearProp.gd" id="1_6cjwq"]
+[ext_resource type="Texture2D" uid="uid://clky8hei32nwn" path="res://assets/sprites/placeholders/PLACEHOLDER_SPEAR_STUCK.png" id="2_r3prx"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e82so"]
+height = 1.66207
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_f3gfv"]
+radius = 0.702274
+
+[node name="SpearProp" type="CharacterBody3D"]
+script = ExtResource("1_6cjwq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["enemies"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.627777, 0)
+shape = SubResource("CapsuleShape3D_e82so")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, 0, 0.592346, 0)
+texture = ExtResource("2_r3prx")
+
+[node name="PickupRange" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickupRange"]
+transform = Transform3D(1.14, 0, 0, 0, 1.14, 0, 0, 0, 1.14, 0, 0, 0)
+shape = SubResource("SphereShape3D_f3gfv")
+
+[connection signal="body_entered" from="PickupRange" to="." method="_on_pickup_range_body_entered"]
