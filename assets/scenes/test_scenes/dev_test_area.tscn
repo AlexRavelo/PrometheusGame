@@ -33,7 +33,7 @@ light_color = Color(0.481789, 0.481789, 0.481789, 1)
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_a7fbt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5701, 1.63652, 7.50768)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5701, 3.076, 7.50768)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, 0, 0.351572, 0)
@@ -57,7 +57,7 @@ script = ExtResource("2_qymli")
 Camera_Target = NodePath("../Player")
 
 [node name="TrainingDummy" parent="." instance=ExtResource("5_suali")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.27256, 1.7, 5.11013)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.30432, 1.7, 5.11013)
 
 [node name="campfireEntity" parent="." instance=ExtResource("6_46uee")]
-transform = Transform3D(0.625, 0, 0, 0, 0.625, 0, 0, 0, 0.625, -1.68668, 0.739839, 6.34186)
+transform = Transform3D(0.625, 0, 0, 0, 0.625, 0, 0, 0, 0.625, 4.04124, 0.739839, 6.34186)

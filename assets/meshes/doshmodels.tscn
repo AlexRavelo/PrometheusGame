@@ -1,8 +1,8 @@
-[gd_scene load_steps=42 format=3 uid="uid://dnt4vbe3cvd2n"]
+[gd_scene load_steps=43 format=3 uid="uid://dnt4vbe3cvd2n"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mxc14"]
 resource_name = "standardSurface1"
-albedo_color = Color(0.35, 0.193025, 0.1085, 1)
+albedo_color = Color(1, 1, 1, 1)
 roughness = 0.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_tts5j"]
@@ -41,7 +41,7 @@ shadow_mesh = SubResource("ArrayMesh_tts5j")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u6fdp"]
 resource_name = "standardSurface1"
-albedo_color = Color(0.509804, 0.658824, 0.411765, 1)
+albedo_color = Color(1, 1, 1, 1)
 roughness = 0.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_nauva"]
@@ -81,8 +81,7 @@ size = Vector3(0.01, 0.01, 0.01)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aeaqb"]
 resource_name = "standardSurface1"
-cull_mode = 2
-albedo_color = Color(0.156863, 1, 0.105882, 1)
+albedo_color = Color(1, 1, 1, 1)
 roughness = 0.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_b3bjd"]
@@ -121,7 +120,7 @@ shadow_mesh = SubResource("ArrayMesh_b3bjd")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e1yw6"]
 resource_name = "standardSurface1"
-albedo_color = Color(0.509804, 0.658824, 0.411765, 1)
+albedo_color = Color(1, 1, 1, 1)
 roughness = 0.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_0pfyo"]
@@ -161,7 +160,7 @@ size = Vector3(1, 0.001, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iqhti"]
 resource_name = "standardSurface1"
-albedo_color = Color(0.34902, 0.192157, 0.109804, 1)
+albedo_color = Color(1, 1, 1, 1)
 roughness = 0.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_i8fuv"]
@@ -200,7 +199,7 @@ shadow_mesh = SubResource("ArrayMesh_i8fuv")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ap8a"]
 resource_name = "standardSurface1"
-albedo_color = Color(0.623453, 0.76, 0.1748, 1)
+albedo_color = Color(1, 1, 1, 1)
 roughness = 0.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_vrm7g"]
@@ -239,7 +238,7 @@ shadow_mesh = SubResource("ArrayMesh_vrm7g")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u4m25"]
 resource_name = "standardSurface1"
-albedo_color = Color(0.623529, 0.760784, 0.176471, 1)
+albedo_color = Color(1, 1, 1, 1)
 roughness = 0.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_sqara"]
@@ -278,7 +277,7 @@ shadow_mesh = SubResource("ArrayMesh_sqara")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jmuvp"]
 resource_name = "standardSurface1"
-albedo_color = Color(0.623529, 0.760784, 0.176471, 1)
+albedo_color = Color(1, 1, 1, 1)
 roughness = 0.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_dct2k"]
@@ -317,7 +316,7 @@ shadow_mesh = SubResource("ArrayMesh_dct2k")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dqs6e"]
 resource_name = "standardSurface1"
-albedo_color = Color(0.1365, 0.63, 0, 1)
+albedo_color = Color(1, 1, 1, 1)
 roughness = 0.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ulc3p"]
@@ -356,7 +355,7 @@ shadow_mesh = SubResource("ArrayMesh_ulc3p")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v6ph7"]
 resource_name = "standardSurface1"
-albedo_color = Color(0.137255, 0.631373, 0, 1)
+albedo_color = Color(1, 1, 1, 1)
 roughness = 0.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_d4h0s"]
@@ -395,7 +394,7 @@ shadow_mesh = SubResource("ArrayMesh_d4h0s")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gbb28"]
 resource_name = "standardSurface1"
-albedo_color = Color(0.137255, 0.631373, 0, 1)
+albedo_color = Color(1, 1, 1, 1)
 roughness = 0.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_gud78"]
@@ -432,7 +431,7 @@ shadow_mesh = SubResource("ArrayMesh_gud78")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fq0f8"]
 resource_name = "standardSurface1"
-albedo_color = Color(0.5428, 0.58056, 0.59, 1)
+albedo_color = Color(1, 1, 1, 1)
 roughness = 0.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_xtitl"]
@@ -504,11 +503,12 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_pcmnb")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_t7rgc"]
+
 [node name="DoshModels" type="Node3D"]
 
 [node name="campfire" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-visible = false
 mesh = SubResource("ArrayMesh_ysym0")
 skeleton = NodePath("")
 
@@ -527,7 +527,7 @@ visible = false
 shape = SubResource("BoxShape3D_5afdr")
 
 [node name="grass" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, -0.5, 0)
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.029661, -0.5, -0.0166406)
 mesh = SubResource("ArrayMesh_7wdtd")
 skeleton = NodePath("")
 
@@ -544,54 +544,55 @@ shape = SubResource("BoxShape3D_ot3jk")
 
 [node name="log" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.0727321, 0.270177, 0.0473764, 0.0670004, -4.55484e-08, -0.102859, -0.0727321, 0.270177, -0.0473764, -1.59328e-18, -0.384578, 1.59328e-18)
-visible = false
 mesh = SubResource("ArrayMesh_72oxg")
 skeleton = NodePath("")
 
 [node name="oak" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-visible = false
 mesh = SubResource("ArrayMesh_441qq")
 skeleton = NodePath("")
 
 [node name="oakforest" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-visible = false
 mesh = SubResource("ArrayMesh_pox1v")
 skeleton = NodePath("")
 
 [node name="oakforestinner" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-visible = false
 mesh = SubResource("ArrayMesh_b1tis")
 skeleton = NodePath("")
 
 [node name="pine" type="MeshInstance3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, -0.00222256, -0.496733, -0.00098697)
-visible = false
 mesh = SubResource("ArrayMesh_j1d6e")
 skeleton = NodePath("")
 
 [node name="pineforest" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-visible = false
 mesh = SubResource("ArrayMesh_77y6c")
 skeleton = NodePath("")
 
 [node name="pineforestinner" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-visible = false
 mesh = SubResource("ArrayMesh_itlvs")
 skeleton = NodePath("")
 
 [node name="rocks" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-visible = false
 mesh = SubResource("ArrayMesh_23p66")
 skeleton = NodePath("")
 
 [node name="snowman" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.845767, 0, 0.845767, 0, 1.1961, 0, -0.845767, 0, 0.845767, 2.30281e-05, -0.48851, -0.0015538)
-visible = false
 mesh = SubResource("ArrayMesh_ox1aj")
 skeleton = NodePath("")
+
+[node name="InvisibleWall" type="MeshInstance3D" parent="."]
+
+[node name="collision" type="StaticBody3D" parent="InvisibleWall"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InvisibleWall/collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.10352e-05, 0, 0)
+shape = SubResource("BoxShape3D_t7rgc")
+
+[node name="Marker3D" type="Marker3D" parent="InvisibleWall/collision"]
