@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://bqjxn8e8mrx4o" path="res://assets/sprites/placeholders/PLACEHOLDER_AXE_ENEMY.png" id="1_jy6lu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fm7oc"]
-radius = 1.14725
-height = 4.95991
+radius = 0.510426
+height = 1.84956
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_igskt"]
 radius = 0.295014
@@ -79,7 +79,7 @@ autoplay = "attack"
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
 [connection signal="body_entered" from="DetectionBubble" to="." method="_on_detection_bubble_body_entered"]
 [connection signal="body_exited" from="DetectionBubble" to="." method="_on_detection_bubble_body_exited"]
-[connection signal="body_entered" from="AttackBubble" to="." method="_on_attack_bubble_body_entered"]
 [connection signal="body_entered" from="AttackBubble" to="." method="_on_detection_bubble_body_entered"]
+[connection signal="body_entered" from="AttackBubble" to="." method="_on_attack_bubble_body_entered"]
 [connection signal="body_exited" from="AttackBubble" to="." method="_on_attack_bubble_body_exited"]
 [connection signal="body_exited" from="AttackBubble" to="." method="_on_detection_bubble_body_exited"]

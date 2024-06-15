@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://p0aiilgf8her"]
+[gd_scene load_steps=16 format=3 uid="uid://p0aiilgf8her"]
 
 [ext_resource type="PackedScene" uid="uid://cepw0irhctadj" path="res://assets/scenes/Player.tscn" id="1_a7fbt"]
 [ext_resource type="Texture2D" uid="uid://db1jdms2tg2k5" path="res://assets/sprites/DEVTERRAIN.png" id="2_a4v3o"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bjrk7jvt7oh22" path="res://assets/scenes/objects/props/campfire_entity.tscn" id="6_46uee"]
 [ext_resource type="PackedScene" uid="uid://ck2wbdv6v35ov" path="res://assets/scenes/objects/entities/bosses/fire_tree_boss.tscn" id="7_m3ktn"]
 [ext_resource type="PackedScene" uid="uid://cngirnrsmq5o2" path="res://assets/scenes/objects/entities/beast_enemy.tscn" id="8_fls2d"]
+[ext_resource type="PackedScene" uid="uid://bop0ovxfb2l3x" path="res://assets/scenes/objects/entities/tree_stump_enemy.tscn" id="8_gymcm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0uxwf"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -84,6 +85,9 @@ current_health = 100
 base_speed = 1.5
 
 [node name="BeastEnemy" parent="." instance=ExtResource("8_fls2d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.44784, 1.13233, 1.03739)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.44784, 1.33399, 1.03739)
 control = true
 lockdir = false
+
+[node name="TreeStumpEnemy" parent="." instance=ExtResource("8_gymcm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.12623, 2.21833, 7.29088)

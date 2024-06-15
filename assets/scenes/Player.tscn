@@ -853,3 +853,7 @@ monitoring = false
 [node name="Attack2" parent="." instance=ExtResource("4_jw442")]
 visible = false
 monitoring = false
+
+[node name="BurnTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="BurnTimer" to="." method="_on_burn_timer_timeout"]

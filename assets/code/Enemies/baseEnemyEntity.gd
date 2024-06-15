@@ -122,6 +122,12 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity):
 func get_modifier_state():
 	return GlobalScript.areaGet()
 	
+func applyvelocity(givenVelocity : Vector3, towardsDir : bool): 
+	if towardsDir:
+		velocity += givenVelocity.rotated(Vector3(0, 1, 0).normalized(), -direction.angle())
+	else:
+		velocity += givenVelocity
+	
 func _on_detection_bubble_body_entered(body):
 	if control:
 		if body is PlayerEntity:

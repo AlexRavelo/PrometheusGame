@@ -34,5 +34,5 @@ sprite_frames = SubResource("SpriteFrames_g5qln")
 one_shot = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="timeout" from="LingerTimer" to="." method="_on_linger_timer_timeout"]
 [connection signal="timeout" from="LingerTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="LingerTimer" to="." method="_on_linger_timer_timeout"]
