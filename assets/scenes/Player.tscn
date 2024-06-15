@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://cepw0irhctadj"]
+[gd_scene load_steps=56 format=3 uid="uid://cepw0irhctadj"]
 
 [ext_resource type="Script" path="res://assets/code/basePlayer.gd" id="1_2wclh"]
 [ext_resource type="Texture2D" uid="uid://2vf84s7ph0mv" path="res://assets/sprites/player/PlayerSheet.png" id="2_cps28"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://b5kmb6ak363x6" path="res://assets/scenes/Attacks/Attack2.tscn" id="4_jw442"]
 [ext_resource type="AudioStream" uid="uid://cx8ewo5i5fj5o" path="res://assets/sounds/sfx/movement/Step 3.wav" id="5_y7wn1"]
 [ext_resource type="AudioStream" uid="uid://7k6rvtnjhihn" path="res://assets/sounds/sfx/movement/Roll.wav" id="6_cok3k"]
+[ext_resource type="AudioStream" uid="uid://rwsg436atn7p" path="res://assets/sounds/sfx/deathsound.wav" id="8_naqgi"]
+[ext_resource type="AudioStream" uid="uid://cui7wvbwwtcxn" path="res://assets/sounds/music/winter.mp3" id="9_d4e6n"]
 [ext_resource type="Texture2D" uid="uid://dndu1c4epjldj" path="res://assets/sprites/UI/HealthbarUnder.png" id="10_b7arf"]
 [ext_resource type="Texture2D" uid="uid://k6atxlab40lj" path="res://assets/sprites/UI/HealthbarProgress.png" id="11_nyikn"]
 
@@ -853,11 +855,14 @@ streams_count = 1
 stream_0/stream = ExtResource("6_cok3k")
 stream_0/weight = 1.0
 
-[node name="Player" type="CharacterBody3D" groups=["Player"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("music") groups=["Player"]]
 collision_layer = 3
 floor_max_angle = 0.872665
 script = ExtResource("1_2wclh")
-current_health = 100
+music = NodePath("SoundPlayers/MUSIC")
+current_health = 10
+control = false
+lockdir = true
 base_speed = 5.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -907,11 +912,20 @@ stream = SubResource("AudioStreamRandomizer_kgg7c")
 volume_db = -5.0
 bus = &"SFX"
 
-[node name="Attack1" parent="." instance=ExtResource("3_1gu3k")]
+[node name="DeathSound" type="AudioStreamPlayer" parent="SoundPlayers"]
+process_mode = 3
+stream = ExtResource("8_naqgi")
+bus = &"Music"
+
+[node name="MUSIC" type="AudioStreamPlayer" parent="SoundPlayers"]
+stream = ExtResource("9_d4e6n")
+bus = &"Music"
+
+[node name="Attack1" parent="." groups=["Attack"] instance=ExtResource("3_1gu3k")]
 visible = false
 monitoring = false
 
-[node name="Attack2" parent="." instance=ExtResource("4_jw442")]
+[node name="Attack2" parent="." groups=["Attack"] instance=ExtResource("4_jw442")]
 visible = false
 monitoring = false
 

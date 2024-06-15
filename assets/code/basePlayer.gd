@@ -22,7 +22,7 @@ var game_over = preload("res://assets/scenes/Menus/GameOver.tscn")
 @export var isGravity = true # TODO: add this to baseentity whenever i'm sure that there'll be no conflicts
 @export var isBurned = false
 @export var burnTime = 3.0
-
+@export var music: AudioStreamPlayer #TEMPORARY!! CHANGE FOR FINAL RELEASE
 
 var attack_selection : AttackSelect
 var Attack1 = preload("res://assets/scenes/Attacks/Attack1.tscn")
@@ -49,6 +49,7 @@ func _ready():
 	
 	healthbar.max_value = max_health
 	healthbar.value = current_health
+	music.play() #TEMPORARY!! CHANGE FOR FINAL RELEASE
 
 func _process(delta):
 	if isBurned:
@@ -169,6 +170,7 @@ func get_burned():
 
 
 func on_death():
+	music.stop() #TEMPORARY
 	velocity = Vector3(0,0,0) #stops any momentum we have so we don't fly during the anim
 	state = States.DEAD
 	anim_state.travel("Death")
@@ -178,7 +180,7 @@ func on_death():
 	print("FUCK IM DEAD")
 
 func state_dead():
-	pass 
+	pass #Lol
 
 func _on_burn_timer_timeout():
 	isBurned = false
