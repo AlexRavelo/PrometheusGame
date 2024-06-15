@@ -139,13 +139,15 @@ func state_rolling(): #Rolling State: Like attack but simpler
 	else:
 		state = States.NEUTRAL
 
-
 func attack_direction(): 
 	self.look_at(Vector3(position.x + direction.x, position.y, position.z + direction.y))
 
 func on_hit(incoming_attack):
 	super(incoming_attack)
-	print("ow!")
+	# Plays the hit flash effect so we know we're taking damage
+	sprite.material_override.set_shader_parameter("active",true)
+	await get_tree().create_timer(0.1).timeout 
+	sprite.material_override.set_shader_parameter("active",false)
 	
 func get_burned():
 	isBurned = true

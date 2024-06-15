@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://keb6hdc0l7vm"]
+
+[ext_resource type="Shader" path="res://assets/code/PlayerHit.gdshader" id="1_1ke6j"]
+[ext_resource type="Texture2D" uid="uid://2vf84s7ph0mv" path="res://assets/sprites/player/PlayerSheet.png" id="2_kb8f3"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_1ke6j")
+shader_parameter/active = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/scale = 0.672
+shader_parameter/tex = ExtResource("2_kb8f3")

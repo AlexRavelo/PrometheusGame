@@ -2,10 +2,12 @@ class_name BeastEntity
 
 extends BaseEnemyEntity
 
-@onready var lunge_timer = $LungeTimer
-@onready var anim_tree = $AnimationTree
+@onready var lunge_timer := $LungeTimer
+@onready var anim_tree := $AnimationTree
+@onready var bite_attack_entity := $BasicEnemyAttack
+
 @export var lunge_strength: float = 10.0
-@onready var bite_attack_entity = $BasicEnemyAttack
+
 
 
 # Called when the node enters the scene tree for the first time.
@@ -56,3 +58,9 @@ func _on_attack_bubble_body_entered(body):
 func _on_attack_bubble_body_exited(body):
 		lunge_strength = 7.0
 
+func on_hit(incoming_attack):
+	super(incoming_attack)
+	# Plays the hit flash effect so we know we're taking damage
+	sprite.material_override.set_shader_parameter("active",true)
+	await get_tree().create_timer(0.1).timeout 
+	sprite.material_override.set_shader_parameter("active",false)

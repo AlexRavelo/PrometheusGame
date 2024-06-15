@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://assets/code/Attacks/Player/Attack2.gd" id="1_wj0kf"]
 [ext_resource type="Texture2D" uid="uid://cjjmesdej6ts8" path="res://assets/sprites/placeholders/PLACEHOLDER_AXE_FX.png" id="2_06ggh"]
-[ext_resource type="AudioStream" uid="uid://cr0yuvupi2dxc" path="res://assets/sounds/sfx/WHOOSH_AIRY_FLUTTER_01.wav" id="3_logrj"]
-[ext_resource type="AudioStream" uid="uid://bi1ocqp45arda" path="res://assets/sounds/sfx/PUNCH_ELECTRIC_HEAVY_02.wav" id="4_lulyn"]
+[ext_resource type="AudioStream" uid="uid://cr0yuvupi2dxc" path="res://assets/sounds/sfx/combat/WHOOSH_AIRY_FLUTTER_01.wav" id="3_t2n7j"]
+[ext_resource type="AudioStream" uid="uid://bi1ocqp45arda" path="res://assets/sounds/sfx/combat/PUNCH_ELECTRIC_HEAVY_02.wav" id="4_a0eyu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ih6uj"]
 size = Vector3(1.3, 0.639, 1.415)
@@ -22,13 +22,13 @@ animations = [{
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kqmvg"]
 random_pitch = 1.2
 streams_count = 1
-stream_0/stream = ExtResource("3_logrj")
+stream_0/stream = ExtResource("3_t2n7j")
 stream_0/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8tj1p"]
 random_pitch = 1.2
 streams_count = 1
-stream_0/stream = ExtResource("4_lulyn")
+stream_0/stream = ExtResource("4_a0eyu")
 stream_0/weight = 1.0
 
 [node name="Attack2" type="Area3D" node_paths=PackedStringArray("hitsound", "whiffsound")]
@@ -45,16 +45,14 @@ transform = Transform3D(0.4, 0, 0, 0, -7.36537e-08, -0.4, 0, 1.685, -1.74846e-08
 modulate = Color(0.87744, 0.339851, 0, 1)
 sprite_frames = SubResource("SpriteFrames_g5qln")
 
-[node name="WhiffSound" type="AudioStreamPlayer3D" parent="."]
+[node name="WhiffSound" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_kqmvg")
-volume_db = -10.0
-max_db = -1.0
+volume_db = -20.0
 bus = &"SFX"
 
-[node name="HitSound" type="AudioStreamPlayer3D" parent="."]
+[node name="HitSound" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_8tj1p")
-volume_db = -10.0
-max_db = -1.0
+volume_db = -20.0
 bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

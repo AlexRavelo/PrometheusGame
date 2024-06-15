@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://da3v5r4u1gj4u"]
+[gd_scene load_steps=5 format=3 uid="uid://da3v5r4u1gj4u"]
 
 [ext_resource type="Script" path="res://assets/code/Menus/TitleScreen.gd" id="1_w7qvb"]
 [ext_resource type="Theme" uid="uid://ca0u2si7si0ty" path="res://assets/sprites/UI/buttontheme.tres" id="2_duv48"]
 [ext_resource type="PackedScene" uid="uid://fyraxy32q3kx" path="res://assets/scenes/Menus/options.tscn" id="2_v5ib1"]
+[ext_resource type="PackedScene" uid="uid://c1ywckcvbqkc1" path="res://assets/scenes/Menus/credits.tscn" id="3_oyssd"]
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -13,17 +14,18 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_w7qvb")
 
-[node name="Options" parent="." instance=ExtResource("2_v5ib1")]
-visible = false
-layout_mode = 1
-
 [node name="Main" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-offset_left = 472.0
-offset_top = 125.0
-offset_right = 672.0
-offset_bottom = 523.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -199.0
+offset_right = 100.0
+offset_bottom = 199.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -64,6 +66,31 @@ focus_previous = NodePath("../Options Button")
 theme = ExtResource("2_duv48")
 text = "Exit Game"
 
+[node name="Credits Buton" type="Button" parent="." groups=["Buttons"]]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.798611
+anchor_top = 0.839506
+anchor_right = 0.972222
+anchor_bottom = 0.955247
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("2_duv48")
+text = "Credits"
+metadata/_edit_use_anchors_ = true
+
+[node name="Credits" parent="." instance=ExtResource("3_oyssd")]
+visible = false
+layout_mode = 1
+
+[node name="Options" parent="." instance=ExtResource("2_v5ib1")]
+visible = false
+layout_mode = 1
+
 [connection signal="button_up" from="Main/Start Button" to="." method="_on_start_button_button_up"]
 [connection signal="button_up" from="Main/Options Button" to="." method="_on_options_button_button_up"]
 [connection signal="button_up" from="Main/Exit Button" to="." method="_on_exit_button_button_up"]
+[connection signal="button_up" from="Credits Buton" to="." method="_on_credits_buton_button_up"]

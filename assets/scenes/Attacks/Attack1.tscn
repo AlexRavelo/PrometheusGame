@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://assets/code/Attacks/Player/Attack1.gd" id="1_frryr"]
 [ext_resource type="Texture2D" uid="uid://cy0dmq71qfl0g" path="res://assets/sprites/player/ClawAttack.png" id="2_o7471"]
-[ext_resource type="AudioStream" uid="uid://e5wooiw1gpcq" path="res://assets/sounds/sfx/WHOOSH_ARM_SWING_01.wav" id="3_wl87u"]
-[ext_resource type="AudioStream" uid="uid://ywqdcvnmgwb" path="res://assets/sounds/sfx/PUNCH_PERCUSSIVE_HEAVY_08.wav" id="4_tvrpp"]
+[ext_resource type="AudioStream" uid="uid://e5wooiw1gpcq" path="res://assets/sounds/sfx/combat/WHOOSH_ARM_SWING_01.wav" id="3_m71dl"]
+[ext_resource type="AudioStream" uid="uid://ywqdcvnmgwb" path="res://assets/sounds/sfx/combat/PUNCH_PERCUSSIVE_HEAVY_08.wav" id="4_xeefh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ih6uj"]
 size = Vector3(1.3, 0.638916, 0.6)
@@ -11,13 +11,13 @@ size = Vector3(1.3, 0.638916, 0.6)
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bt2h6"]
 random_pitch = 1.2
 streams_count = 1
-stream_0/stream = ExtResource("3_wl87u")
+stream_0/stream = ExtResource("3_m71dl")
 stream_0/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xhe08"]
 random_pitch = 1.2
 streams_count = 1
-stream_0/stream = ExtResource("4_tvrpp")
+stream_0/stream = ExtResource("4_xeefh")
 stream_0/weight = 1.0
 
 [node name="Attack1" type="Area3D" node_paths=PackedStringArray("hitsound", "whiffsound")]
@@ -35,16 +35,14 @@ texture = ExtResource("2_o7471")
 hframes = 3
 frame = 1
 
-[node name="WhiffSound" type="AudioStreamPlayer3D" parent="."]
+[node name="WhiffSound" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_bt2h6")
-volume_db = -10.0
-max_db = -1.0
+volume_db = -15.0
 bus = &"SFX"
 
-[node name="HitSound" type="AudioStreamPlayer3D" parent="."]
+[node name="HitSound" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_xhe08")
-volume_db = -10.0
-max_db = -1.0
+volume_db = -15.0
 bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

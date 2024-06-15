@@ -11,13 +11,17 @@ config_version=5
 [application]
 
 config/name="PrometheusGame"
-run/main_scene="res://assets/scenes/test_scenes/dev_test_area.tscn"
+run/main_scene="res://assets/scenes/Menus/TitleScreen.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://assets/sprites/icon.png"
 
 [autoload]
 
 GlobalScript="*res://assets/code/GlobalScript.gd"
+
+[display]
+
+window/stretch/mode="canvas_items"
 
 [file_customization]
 
