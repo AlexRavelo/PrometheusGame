@@ -4,6 +4,7 @@ extends BaseEntity
 
 
 var pause_menu = preload("res://assets/scenes/Menus/PauseMenu.tscn")
+var game_over = preload("res://assets/scenes/Menus/GameOver.tscn")
 
 @onready var sprite = $Sprite3D
 @onready var cooldown = $"Attack Cooldown"
@@ -28,6 +29,7 @@ enum States{
 	NEUTRAL,
 	ATTACKING,
 	ROLLING,
+	DEAD,
 }
 
 enum AttackSelect{
@@ -56,6 +58,8 @@ func _process(delta):
 			state_attacking()
 		States.ROLLING:
 			state_rolling()
+		States.DEAD:
+			state_dead()
 #endregion
 	
 	if Input.is_action_just_pressed("Pause"):
@@ -157,8 +161,16 @@ func get_burned():
 
 
 func on_death():
+	velocity = Vector3(0,0,0) #stops any momentum we have so we don't fly during the anim
+	state = States.DEAD
+	anim_state.travel("Death")
+	var gameover = game_over.instantiate()
+	$"../".add_child(gameover)
+	self.process_mode = PROCESS_MODE_WHEN_PAUSED
 	print("FUCK IM DEAD")
 
+func state_dead():
+	pass 
 
 func _on_burn_timer_timeout():
 	isBurned = false
