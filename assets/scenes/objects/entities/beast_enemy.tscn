@@ -149,9 +149,6 @@ one_shot = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.432045, 0)
 visible = false
 collision_layer = 4
-<<<<<<< HEAD
-=======
 monitoring = false
->>>>>>> parent of 2377076 (Merge branch 'tree_branch' into relly-branch)
 
 [connection signal="timeout" from="LungeTimer" to="." method="_on_lunge_timer_timeout"]
