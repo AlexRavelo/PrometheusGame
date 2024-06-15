@@ -7,9 +7,11 @@ extends BaseEnemyEntity
 
 
 func alert():
-	if attack_timer.is_stopped():
-		attack_timer.start(attack_time)
-		
+	if control:
+		if attack_timer.is_stopped():
+			attack_timer.start(attack_time)
+		super()
+			
 	
 func get_n():
 	# Where n is an arbitrary value determined by how much health the boss has left

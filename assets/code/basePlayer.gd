@@ -10,6 +10,8 @@ var pause_menu = preload("res://assets/scenes/Menus/PauseMenu.tscn")
 @onready var animation_tree = $AnimationTree
 @onready var animation_player = $AnimationPlayer
 @onready var burn_timer = $BurnTimer
+@onready var claw_attack = $Attack1
+@onready var fire_attack = $Attack2
 
 @export var state : States = States.NEUTRAL
 @export var RollCooldown: float = 0.5
@@ -39,6 +41,8 @@ func _ready():
 	anim_state = animation_tree["parameters/playback"]
 	control = true
 	lockdir = false
+	claw_attack.damage = base_damage
+	fire_attack.damage = base_damage * 3
 	
 
 func _process(delta):
