@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://b57ojmd40yjvt"]
+
+[ext_resource type="PackedScene" uid="uid://nntssubnlacv" path="res://assets/scenes/Attacks/BasicEnemyAttack.tscn" id="1_7xsti"]
+[ext_resource type="Script" path="res://assets/code/Attacks/Enemy/SpearThrowAttack.gd" id="2_oqox8"]
+[ext_resource type="PackedScene" uid="uid://docqvsy1avx3c" path="res://assets/scenes/objects/props/spear_prop.tscn" id="3_5qe6f"]
+[ext_resource type="Texture2D" uid="uid://cnnxy5kmgvvj2" path="res://assets/sprites/placeholders/PLACEHOLDER_SPEAR_THROW.png" id="3_13hoh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vfwkv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_13hoh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="SpearThrowAttack" instance=ExtResource("1_7xsti")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.33378, 0.697723)
+script = ExtResource("2_oqox8")
+landingtime = 1.6
+speed = 5.0
+travelState = false
+
+[node name="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -0.7)
+
+[node name="AnimatedSprite3D" parent="." index="1"]
+transform = Transform3D(0.487, 0, 0, 0, -2.62268e-08, -0.6, 0, 0.6, -2.62268e-08, 0, 0, -0.7)
+sprite_frames = SubResource("SpriteFrames_vfwkv")
+
+[node name="LandingTimer" type="Timer" parent="." index="2"]
+one_shot = true
+
+[node name="SpearProp" parent="." index="3" instance=ExtResource("3_5qe6f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.211394, -0.69723)
+
+[connection signal="timeout" from="LandingTimer" to="." method="_on_landing_timer_timeout"]

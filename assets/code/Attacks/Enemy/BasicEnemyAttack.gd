@@ -1,5 +1,6 @@
-extends BaseAttack
+class_name BasicEnemyAttack
 
+extends BaseAttack
 
 func do_attack(body):
 	print(collision_layer)

@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://bop0ovxfb2l3x"]
+
+[ext_resource type="PackedScene" uid="uid://ctb8oa2wm3r0u" path="res://assets/scenes/objects/entities/base_entity.tscn" id="1_37wwl"]
+[ext_resource type="Script" path="res://assets/code/Enemies/tree_stump_enemy.gd" id="2_1lvg2"]
+[ext_resource type="Texture2D" uid="uid://jruvpdmv8f1t" path="res://assets/sprites/placeholders/PLACEHOLDER_TREE_ADD.png" id="2_xnvly"]
+[ext_resource type="PackedScene" uid="uid://b2dvu1mjah3dd" path="res://assets/scenes/Attacks/explosion_attack.tscn" id="4_6ag1r"]
+
+[node name="TreeStumpEnemy" instance=ExtResource("1_37wwl")]
+script = ExtResource("2_1lvg2")
+fuse_time = 4.0
+speedup = 0.0045
+
+[node name="Sprite3D" parent="." index="0"]
+texture = ExtResource("2_xnvly")
+
+[node name="AttackBubble" parent="." index="4"]
+collision_mask = 4
+
+[node name="ExplosionAttack" parent="." index="6" instance=ExtResource("4_6ag1r")]
+transform = Transform3D(3.705, 0, 0, 0, 3.705, 0, 0, 0, 3.705, 0.0127068, 0.0133667, 2.59192)
+
+[node name="FuseTimer" type="Timer" parent="." index="7"]
+process_callback = 0
+one_shot = true
+
+[connection signal="timeout" from="FuseTimer" to="." method="_on_fuse_timer_timeout"]

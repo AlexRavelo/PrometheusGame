@@ -1,27 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://nntssubnlacv"]
+[gd_scene load_steps=5 format=3 uid="uid://b0fegy63ilwbq"]
 
-[ext_resource type="Texture2D" uid="uid://cjjmesdej6ts8" path="res://assets/sprites/placeholders/PLACEHOLDER_AXE_FX.png" id="2_8e82g"]
-[ext_resource type="Script" path="res://assets/code/Attacks/Enemy/BasicEnemyAttack.gd" id="2_hcrci"]
+[ext_resource type="Script" path="res://assets/code/Attacks/Enemy/BasicEnemyAttack.gd" id="1_at0o6"]
+[ext_resource type="Texture2D" uid="uid://cjjmesdej6ts8" path="res://assets/sprites/placeholders/PLACEHOLDER_AXE_FX.png" id="2_2g045"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ih6uj"]
-size = Vector3(2.02924, 1.2726, 1.00838)
+size = Vector3(2.02924, 1.2726, 61.4306)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_g5qln"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_8e82g")
+"texture": ExtResource("2_2g045")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
-[node name="BasicEnemyAttack" type="Area3D"]
-script = ExtResource("2_hcrci")
+[node name="BeamAttack" type="Area3D"]
+script = ExtResource("1_at0o6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.555618)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30.7667)
 shape = SubResource("BoxShape3D_ih6uj")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]

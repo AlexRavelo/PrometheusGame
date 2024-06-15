@@ -22,7 +22,6 @@ stream_0/weight = 1.0
 
 [node name="Attack1" type="Area3D" node_paths=PackedStringArray("hitsound", "whiffsound")]
 script = ExtResource("1_frryr")
-damage = 10
 hitsound = NodePath("HitSound")
 whiffsound = NodePath("WhiffSound")
 
