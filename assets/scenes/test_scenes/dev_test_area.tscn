@@ -1,12 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://p0aiilgf8her"]
+[gd_scene load_steps=10 format=3 uid="uid://p0aiilgf8her"]
 
 [ext_resource type="PackedScene" uid="uid://cepw0irhctadj" path="res://assets/scenes/Player.tscn" id="1_a7fbt"]
-[ext_resource type="Texture2D" uid="uid://db1jdms2tg2k5" path="res://assets/sprites/DEVTERRAIN.png" id="2_a4v3o"]
 [ext_resource type="Script" path="res://assets/code/Camera.gd" id="2_qymli"]
+[ext_resource type="MeshLibrary" uid="uid://c05mv7iqg8jhx" path="res://assets/meshes/doshmodels.tres" id="2_rw3u2"]
 [ext_resource type="PackedScene" uid="uid://c7wqvk2k4qlpa" path="res://assets/scenes/objects/entities/training_dummy.tscn" id="5_suali"]
 [ext_resource type="PackedScene" uid="uid://bjrk7jvt7oh22" path="res://assets/scenes/objects/props/campfire_entity.tscn" id="6_46uee"]
-[ext_resource type="PackedScene" uid="uid://buxnuaci83en4" path="res://assets/scenes/objects/entities/tree_stump_enemy.tscn" id="7_b03hn"]
-[ext_resource type="PackedScene" uid="uid://ck2wbdv6v35ov" path="res://assets/scenes/objects/entities/bosses/fire_tree_boss.tscn" id="7_m3ktn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0uxwf"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -21,19 +19,8 @@ sky = SubResource("Sky_nfg6s")
 tonemap_mode = 2
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_w562c"]
-vertices = PackedVector3Array(-9.5, 1, -9.5, -9.5, 1, 9.5, 9.5, 1, 9.5, 9.5, 1, -9.5)
-polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8l2vb"]
-albedo_texture = ExtResource("2_a4v3o")
-uv1_triplanar = true
-
-[sub_resource type="BoxMesh" id="BoxMesh_uukr4"]
-material = SubResource("StandardMaterial3D_8l2vb")
-size = Vector3(20, 1, 20)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_w7dgj"]
-size = Vector3(20, 20, 1)
+vertices = PackedVector3Array(3.68102, 1.14843, 2.62905, 1.93102, 1.14843, 2.62905, 4.18102, 1.14843, 6.37905, 6.93102, 1.14843, 0.629049, 4.68102, 1.14843, 1.62905, 3.68102, 1.14843, 2.62905, 4.18102, 1.14843, 6.37905, 8.68102, 1.14843, 3.87905)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 5), PackedInt32Array(5, 3, 7), PackedInt32Array(5, 7, 6)]
 
 [node name="dev_test_area" type="Node3D"]
 
@@ -46,21 +33,20 @@ light_color = Color(0.481789, 0.481789, 0.481789, 1)
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_a7fbt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.62652, 3.076, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5701, 3.076, 7.50768)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
-transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 0, 0.351572, 0)
+transform = Transform3D(0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, 0, 0.351572, 0)
 navigation_mesh = SubResource("NavigationMesh_w562c")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
-mesh = SubResource("BoxMesh_uukr4")
-skeleton = NodePath("")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-shape = SubResource("BoxShape3D_w7dgj")
+[node name="GridMap" type="GridMap" parent="NavigationRegion3D"]
+transform = Transform3D(0.866026, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866026, 0, -0.351572, 0)
+mesh_library = ExtResource("2_rw3u2")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(1, 4, 3, 2, 4, 3, 2, 3, 3, 1, 3, 3, 3, 3, 3, 4, 3, 3, 4, 4, 3, 3, 4, 3, 1, 5, 3, 2, 5, 3, 3, 5, 3, 4, 5, 3, 4, 6, 3, 3, 6, 3, 2, 6, 3, 1, 6, 3, 5, 2, 1, 5, 3, 1, 5, 4, 1, 5, 5, 1, 5, 6, 1, 5, 7, 1, 4, 7, 1, 3, 7, 1, 2, 7, 1, 1, 7, 1, 0, 7, 1, 0, 6, 1, 0, 5, 1, 0, 3, 1, 0, 2, 1, 1, 2, 1, 2, 2, 1, 3, 2, 1, 4, 2, 1, 0, 4, 1, 65537, 2, 9, 65538, 2, 9, 65539, 2, 9, 65540, 2, 9, 65541, 2, 9, 65541, 1, 10, 65540, 1, 10, 65539, 1, 10, 65538, 1, 10, 65537, 1, 10, 65539, 7, 11, 65537, 7, 11, 65540, 4, 1441803)
+}
+metadata/_editor_floor_ = Vector3(0, 1, 0)
 
 [node name="Camera" type="Camera3D" parent="." node_paths=PackedStringArray("Camera_Target")]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 7.18412, 5)
@@ -71,17 +57,7 @@ script = ExtResource("2_qymli")
 Camera_Target = NodePath("../Player")
 
 [node name="TrainingDummy" parent="." instance=ExtResource("5_suali")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.219, 1.7, 0.587)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.30432, 1.7, 5.11013)
 
 [node name="campfireEntity" parent="." instance=ExtResource("6_46uee")]
-transform = Transform3D(0.625, 0, 0, 0, 0.625, 0, 0, 0, 0.625, 4.11536, 0.739839, 0)
-
-[node name="FireTreeBoss" parent="." instance=ExtResource("7_m3ktn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.17716, 0.851511, -6.11297)
-attack_time = 5.0
-behavior_state = 0
-current_health = 100
-control = true
-
-[node name="TreeStumpEnemy" parent="." instance=ExtResource("7_b03hn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.32129, 0.851572, 2.93524)
+transform = Transform3D(0.625, 0, 0, 0, 0.625, 0, 0, 0, 0.625, 4.04124, 0.739839, 6.34186)
