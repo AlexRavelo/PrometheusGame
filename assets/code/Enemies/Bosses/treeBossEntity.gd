@@ -17,10 +17,11 @@ func _ready():
 	attack_state = AttackStates.Beam
 	
 func alert():
-	if control:
-		anim_state = anim_tree["parameters/playback"]
-		anim_state.travel("Neutral")
-		super()
+	anim_state = anim_tree["parameters/playback"]
+	anim_state.travel("Neutral")
+	if target_position == global_position:
+		handle_random_movement()
+	super()
 
 
 func _process(delta):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://cepw0irhctadj"]
+[gd_scene load_steps=45 format=3 uid="uid://cepw0irhctadj"]
 
 [ext_resource type="Script" path="res://assets/code/basePlayer.gd" id="1_2wclh"]
 [ext_resource type="Texture2D" uid="uid://2vf84s7ph0mv" path="res://assets/sprites/player/PlayerSheet.png" id="2_cps28"]
@@ -9,8 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://b5kmb6ak363x6" path="res://assets/scenes/Attacks/Attack2.tscn" id="4_jw442"]
 [ext_resource type="AudioStream" uid="uid://cx8ewo5i5fj5o" path="res://assets/sounds/sfx/movement/Step 3.wav" id="5_y7wn1"]
 [ext_resource type="AudioStream" uid="uid://7k6rvtnjhihn" path="res://assets/sounds/sfx/movement/Roll.wav" id="6_cok3k"]
-[ext_resource type="Texture2D" uid="uid://dndu1c4epjldj" path="res://assets/sprites/UI/HealthbarUnder.png" id="10_b7arf"]
-[ext_resource type="Texture2D" uid="uid://k6atxlab40lj" path="res://assets/sprites/UI/HealthbarProgress.png" id="11_nyikn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ov8xy"]
 radius = 0.290733
@@ -29,9 +27,6 @@ blend_point_1/node = SubResource("AnimationNodeAnimation_sphn2")
 blend_point_1/pos = -0.02
 snap = 0.02
 sync = true
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6sfhx"]
-animation = &"Death"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qxxer"]
 animation = &"FireAttack"
@@ -93,31 +88,19 @@ advance_mode = 2
 switch_mode = 2
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kyea7"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ofmax"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vewv0"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_osa2p"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_los1s"]
-
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_se11t"]
 states/ClawAttack/node = SubResource("AnimationNodeBlendSpace1D_yn3dw")
-states/ClawAttack/position = Vector2(407.831, 230.078)
-states/Death/node = SubResource("AnimationNodeAnimation_6sfhx")
-states/Death/position = Vector2(486, 91)
+states/ClawAttack/position = Vector2(418.831, 203.078)
 states/FireAttack/node = SubResource("AnimationNodeAnimation_qxxer")
-states/FireAttack/position = Vector2(586, 230.078)
+states/FireAttack/position = Vector2(632, 203.078)
 states/Idle/node = SubResource("AnimationNodeBlendSpace1D_loqg8")
-states/Idle/position = Vector2(486, 119)
+states/Idle/position = Vector2(530, 100)
 states/Roll/node = SubResource("AnimationNodeAnimation_20iur")
-states/Roll/position = Vector2(656.831, 119)
+states/Roll/position = Vector2(682.831, 100)
 states/Run/node = SubResource("AnimationNodeBlendSpace1D_sasjc")
-states/Run/position = Vector2(486, 11.0779)
+states/Run/position = Vector2(519.831, 11.0779)
 states/Start/position = Vector2(355, 100)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_h8lq8"), "Idle", "FireAttack", SubResource("AnimationNodeStateMachineTransition_3i1ci"), "FireAttack", "Idle", SubResource("AnimationNodeStateMachineTransition_nx13g"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_5sxhr"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_ym25p"), "Idle", "Roll", SubResource("AnimationNodeStateMachineTransition_poo4r"), "Roll", "Idle", SubResource("AnimationNodeStateMachineTransition_o21tm"), "Idle", "ClawAttack", SubResource("AnimationNodeStateMachineTransition_k408w"), "ClawAttack", "Idle", SubResource("AnimationNodeStateMachineTransition_uoapv"), "Idle", "Death", SubResource("AnimationNodeStateMachineTransition_kyea7"), "Roll", "Death", SubResource("AnimationNodeStateMachineTransition_ofmax"), "Run", "Death", SubResource("AnimationNodeStateMachineTransition_vewv0"), "FireAttack", "Death", SubResource("AnimationNodeStateMachineTransition_osa2p"), "ClawAttack", "Death", SubResource("AnimationNodeStateMachineTransition_los1s")]
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_h8lq8"), "Idle", "FireAttack", SubResource("AnimationNodeStateMachineTransition_3i1ci"), "FireAttack", "Idle", SubResource("AnimationNodeStateMachineTransition_nx13g"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_5sxhr"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_ym25p"), "Idle", "Roll", SubResource("AnimationNodeStateMachineTransition_poo4r"), "Roll", "Idle", SubResource("AnimationNodeStateMachineTransition_o21tm"), "Idle", "ClawAttack", SubResource("AnimationNodeStateMachineTransition_k408w"), "ClawAttack", "Idle", SubResource("AnimationNodeStateMachineTransition_uoapv")]
 graph_offset = Vector2(-187.871, -23.1762)
 
 [sub_resource type="Animation" id="Animation_ocelt"]
@@ -382,49 +365,6 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_sp01k"]
-resource_name = "Death"
-length = 4.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.7, 1, 1.4, 1.9, 2.4, 2.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 0, 0, 1, 1, 1, 2, 2, 2, 1, 1, 1]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(3),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(4),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"state_dead"
-}]
 }
 
 [sub_resource type="Animation" id="Animation_vvm05"]
@@ -826,7 +766,6 @@ resource_name = "new_animation"
 _data = {
 "AttackBack": SubResource("Animation_ocelt"),
 "AttackFront": SubResource("Animation_hkp8y"),
-"Death": SubResource("Animation_sp01k"),
 "FireAttack": SubResource("Animation_vvm05"),
 "IdleBack": SubResource("Animation_crmfv"),
 "IdleFront": SubResource("Animation_o1ffx"),
@@ -857,7 +796,8 @@ stream_0/weight = 1.0
 collision_layer = 3
 floor_max_angle = 0.872665
 script = ExtResource("1_2wclh")
-current_health = 100
+control = false
+lockdir = true
 base_speed = 5.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -868,7 +808,6 @@ shape = SubResource("CapsuleShape3D_ov8xy")
 transform = Transform3D(0.672, 0, 0, 0, 0.672, 0, 0, 0, 0.672, 0, 0, 0)
 material_override = ExtResource("2_rme65")
 cast_shadow = 0
-modulate = Color(0.870387, 1.44392e-06, 1.2514e-06, 1)
 billboard = 1
 texture_filter = 0
 texture = ExtResource("2_cps28")
@@ -916,22 +855,5 @@ visible = false
 monitoring = false
 
 [node name="BurnTimer" type="Timer" parent="."]
-
-[node name="HUD" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="HealthBar" type="TextureProgressBar" parent="HUD"]
-layout_mode = 0
-offset_left = 64.0
-offset_top = 560.0
-offset_right = 370.0
-offset_bottom = 587.0
-texture_under = ExtResource("10_b7arf")
-texture_progress = ExtResource("11_nyikn")
 
 [connection signal="timeout" from="BurnTimer" to="." method="_on_burn_timer_timeout"]
