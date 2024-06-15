@@ -28,6 +28,7 @@ func alert():
 		fuse_timer.start(fuse_time)
 	else:
 		base_speed += speedup
+	
 	super()
 	
 func _on_fuse_timer_timeout():

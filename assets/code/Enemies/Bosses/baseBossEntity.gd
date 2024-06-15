@@ -7,9 +7,11 @@ extends BaseEnemyEntity
 
 
 func alert():
-	if attack_timer.is_stopped():
-		attack_timer.start(attack_time)
-		
+	if control:
+		if attack_timer.is_stopped():
+			attack_timer.start(attack_time)
+		super()
+			
 	
 func get_n():
 	# Where n is an arbitrary value determined by how much health the boss has left
@@ -22,9 +24,6 @@ func get_n():
 		return 3
 	return 4
 		
-
-func _on_attack_timer_timeout():
-	behavior_state = GlobalScript.EnemyState.Attack
 
 	
 # Bosses will behave differently from normal enemies so uhh ye lol

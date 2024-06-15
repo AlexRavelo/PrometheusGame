@@ -6,6 +6,8 @@ enum AttackStates{Beam, Fireball, Spawn}
 
 @export var attack_state: AttackStates
 @onready var beam_attack_entity = $BeamAttack
+@onready var anim_tree = $AnimationTree
+var blendpoint = Vector2(0,0)
 var adds_spawned: bool = false
 var fireball_entity = preload("res://assets/scenes/Attacks/TreeFireballAttack.tscn")
 var tree_add_entity = preload("res://assets/scenes/objects/entities/tree_stump_enemy.tscn")
@@ -15,43 +17,36 @@ func _ready():
 	attack_state = AttackStates.Beam
 	
 func alert():
-	if target_position == global_position:
-		handle_random_movement()
-	super()
+	if control:
+		anim_state = anim_tree["parameters/playback"]
+		anim_state.travel("Neutral")
+		super()
+
+
+func _process(delta):
+	blendpoint.x = move_toward(blendpoint.x, velocity.x, 0.25)
+	blendpoint.y = move_toward(blendpoint.y, velocity.z, 0.25)
+	anim_tree.set("parameters/Neutral/blend_position", blendpoint)
 
 func attack():
-	print(attack_state)
 	if control:
 		target_position = global_position
-		nav_agent.set_velocity(Vector3.ZERO)
 		match attack_state:
 			AttackStates.Beam:
-				beam_attack()
+				anim_state.travel("BeamAttack")
 			AttackStates.Fireball:
 				fireball_attack()
 			AttackStates.Spawn:
 				spawn_adds()
-	
-				
 			
 func beam_attack():
-	control = false
-	velocity = Vector3.ZERO
-	self.look_at(Vector3(position.x + direction.x, position.y, position.z + direction.y))
-	# Bottom four lines will be removed when animations are added
-	await get_tree().create_timer(.5).timeout
-	beam_attack_entity.monitoring = true
-	await get_tree().create_timer(.5).timeout
+	handle_direction(target)
+	nav_agent.set_velocity(Vector3.ZERO)
+	beam_attack_entity.look_at(Vector3(position.x + direction.x, position.y, position.z + direction.y))
 	
-	control = true
-	
-	
-	behavior_state = GlobalScript.EnemyState.Alert
 	attack_state = change_attack_behavior()
-	handle_random_movement()
 	
 func fireball_attack():
-	control = false
 	var num_fireballs: int = min((2 * get_n()), 6)
 	
 	for i in range(num_fireballs):
@@ -66,7 +61,6 @@ func fireball_attack():
 		
 		add_child(attack)
 		attack.start_timer()
-		handle_random_movement()
 		
 		
 		# Idea:
@@ -98,7 +92,6 @@ func spawn_adds():
 	behavior_state = GlobalScript.EnemyState.Alert
 	control = true
 	
-	handle_random_movement()
 
 func coinflipYipee():
 	var coinflip = randi_range(0, 1)
@@ -122,3 +115,7 @@ func change_attack_behavior():
 			else:
 				return AttackStates.Fireball
 				
+
+
+func _on_attack_timer_timeout():
+	behavior_state = GlobalScript.EnemyState.Attack
