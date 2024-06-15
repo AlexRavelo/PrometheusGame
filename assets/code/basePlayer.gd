@@ -4,12 +4,16 @@ extends BaseEntity
 
 
 var pause_menu = preload("res://assets/scenes/Menus/PauseMenu.tscn")
+var game_over = preload("res://assets/scenes/Menus/GameOver.tscn")
 
 @onready var sprite = $Sprite3D
 @onready var cooldown = $"Attack Cooldown"
 @onready var animation_tree = $AnimationTree
 @onready var animation_player = $AnimationPlayer
 @onready var burn_timer = $BurnTimer
+@onready var claw_attack = $Attack1
+@onready var fire_attack = $Attack2
+@onready var healthbar = $HUD/HealthBar
 
 @export var state : States = States.NEUTRAL
 @export var RollCooldown: float = 0.5
@@ -28,6 +32,7 @@ enum States{
 	NEUTRAL,
 	ATTACKING,
 	ROLLING,
+	DEAD,
 }
 
 enum AttackSelect{
@@ -39,7 +44,11 @@ func _ready():
 	anim_state = animation_tree["parameters/playback"]
 	control = true
 	lockdir = false
+	claw_attack.damage = base_damage
+	fire_attack.damage = base_damage * 3
 	
+	healthbar.max_value = max_health
+	healthbar.value = current_health
 
 func _process(delta):
 	if isBurned:
@@ -56,6 +65,8 @@ func _process(delta):
 			state_attacking()
 		States.ROLLING:
 			state_rolling()
+		States.DEAD:
+			state_dead()
 #endregion
 	
 	if Input.is_action_just_pressed("Pause"):
@@ -148,6 +159,7 @@ func on_hit(incoming_attack):
 	sprite.material_override.set_shader_parameter("active",true)
 	await get_tree().create_timer(0.1).timeout 
 	sprite.material_override.set_shader_parameter("active",false)
+	healthbar.value = current_health
 	
 func get_burned():
 	isBurned = true
@@ -157,8 +169,16 @@ func get_burned():
 
 
 func on_death():
+	velocity = Vector3(0,0,0) #stops any momentum we have so we don't fly during the anim
+	state = States.DEAD
+	anim_state.travel("Death")
+	var gameover = game_over.instantiate()
+	$"../".add_child(gameover)
+	self.process_mode = PROCESS_MODE_WHEN_PAUSED
 	print("FUCK IM DEAD")
 
+func state_dead():
+	pass 
 
 func _on_burn_timer_timeout():
 	isBurned = false
