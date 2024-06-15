@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://p0aiilgf8her"]
+[gd_scene load_steps=17 format=3 uid="uid://p0aiilgf8her"]
 
 [ext_resource type="PackedScene" uid="uid://cepw0irhctadj" path="res://assets/scenes/Player.tscn" id="1_a7fbt"]
 [ext_resource type="Texture2D" uid="uid://db1jdms2tg2k5" path="res://assets/sprites/DEVTERRAIN.png" id="2_a4v3o"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ck2wbdv6v35ov" path="res://assets/scenes/objects/entities/bosses/fire_tree_boss.tscn" id="7_m3ktn"]
 [ext_resource type="PackedScene" uid="uid://cngirnrsmq5o2" path="res://assets/scenes/objects/entities/beast_enemy.tscn" id="8_fls2d"]
 [ext_resource type="PackedScene" uid="uid://bop0ovxfb2l3x" path="res://assets/scenes/objects/entities/tree_stump_enemy.tscn" id="8_gymcm"]
+[ext_resource type="PackedScene" uid="uid://ba887e85u37an" path="res://assets/scenes/objects/props/bramble_entity.tscn" id="9_rgcjd"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0uxwf"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -91,3 +92,6 @@ lockdir = false
 
 [node name="TreeStumpEnemy" parent="." instance=ExtResource("8_gymcm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.12623, 2.21833, 7.29088)
+
+[node name="brambleEntity" parent="." instance=ExtResource("9_rgcjd")]
+transform = Transform3D(0.625, 0, 0, 0, 0.625, 0, 0, 0, 0.625, -2.91792, 1.58278, -1.6596)
