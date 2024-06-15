@@ -1,4 +1,5 @@
-[gd_scene load_steps=29 format=3 uid="uid://cngirnrsmq5o2"]
+[gd_scene load_steps=30 format=3 uid="uid://cngirnrsmq5o2"]
+
 [ext_resource type="PackedScene" uid="uid://ctb8oa2wm3r0u" path="res://assets/scenes/objects/entities/base_entity.tscn" id="1_l2wuk"]
 [ext_resource type="Script" path="res://assets/code/Enemies/beastEntity.gd" id="2_cx5hc"]
 [ext_resource type="Shader" path="res://assets/code/PlayerHit.gdshader" id="3_xhlmh"]
@@ -13,6 +14,7 @@ shader_parameter/active = false
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/scale = 0.63
 shader_parameter/tex = ExtResource("3_yrouy")
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_btae7"]
 height = 1.23308
 
@@ -121,7 +123,7 @@ billboard = 1
 texture = ExtResource("3_yrouy")
 hframes = 12
 vframes = 2
-frame = 12
+frame = 13
 
 [node name="CollisionShape3D" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.589256, 0)
