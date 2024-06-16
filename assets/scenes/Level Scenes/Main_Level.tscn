@@ -69,7 +69,6 @@ metadata/_editor_floor_ = Vector3(0, 1, 0)
 
 [node name="Door" parent="SafeRoom" instance=ExtResource("4_qfe7o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, 0)
-visible = true
 collision_mask = 3
 
 [node name="PlatformRoom_1" parent="." instance=ExtResource("3_eyn2s")]
