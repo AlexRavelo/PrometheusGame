@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bdiexygyrjx48"]
+[gd_scene load_steps=15 format=3 uid="uid://bdiexygyrjx48"]
 
 [ext_resource type="PackedScene" uid="uid://cepw0irhctadj" path="res://assets/scenes/Player.tscn" id="1_2f5tk"]
 [ext_resource type="Script" path="res://assets/code/Camera.gd" id="2_mio8k"]
@@ -23,6 +23,9 @@ sky = SubResource("Sky_yss8v")
 tonemap_mode = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_isy8l"]
+size = Vector3(7, 2, 7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rbeya"]
 size = Vector3(7, 2, 7)
 
 [node name="MainLevel" type="Node3D"]
@@ -108,11 +111,31 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 1, 0)
 
-[node name="Final_Area" parent="." instance=ExtResource("3_eyn2s")]
+[node name="Final_Area" type="Node3D" parent="."]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 37.633, 0, -5.8427)
+script = ExtResource("6_vtqfn")
+
+[node name="Area3D" type="Area3D" parent="Final_Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.05928, 0)
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final_Area/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_rbeya")
+
+[node name="Spawner" type="Node3D" parent="Final_Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("7_lmetv")
+
+[node name="DevGrid" parent="Final_Area" instance=ExtResource("8_cqq5u")]
+mesh_library = ExtResource("4_nyiil")
+data = {
+"cells": PackedInt32Array(1, 65534, 1, 2, 65534, 1, 65533, 65535, 1, 65533, 0, 1, 65534, 2, 1, 65535, 2, 1, 0, 2, 1, 1, 2, 1, 2, 2, 1, 2, 1, 1, 2, 0, 1, 2, 65535, 1, 1, 0, 1, 1, 1, 1, 65535, 65533, 1, 65534, 65533, 1, 65534, 65534, 1, 0, 65533, 1, 1, 65533, 1, 2, 65533, 1, 65532, 65535, 1, 65532, 0, 1, 3, 65535, 1, 3, 0, 1, 4, 65535, 1, 4, 0, 1, 65535, 65534, 1, 65535, 65535, 1, 65534, 65535, 1, 0, 65534, 1, 1, 65535, 1, 0, 65535, 1, 0, 0, 1, 65535, 0, 1, 65535, 1, 1, 0, 1, 1, 65534, 0, 1, 65534, 1, 1, 1, 12, 1, 1, 11, 1, 1, 10, 1, 0, 10, 1, 0, 11, 1, 0, 12, 1, 0, 13, 1, 1, 9, 1, 1, 8, 1, 1, 7, 1, 1, 6, 1, 1, 5, 1, 1, 4, 1, 1, 3, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 6, 1, 0, 7, 1, 0, 8, 1, 0, 9, 1, 3, 2, 1, 3, 1, 1, 5, 0, 1, 5, 65535, 1, 3, 65534, 1, 3, 65533, 1, 131070, 2, 9, 131070, 1, 9, 131070, 65533, 9, 65539, 65533, 6, 65539, 65534, 5, 65539, 1, 6, 131071, 2, 1441803, 65538, 65534, 655371, 131071, 65534, 655371, 65536, 8, 655371, 65536, 5, 655371, 65537, 11, 655371)
+}
+metadata/_editor_floor_ = Vector3(0, 1, 0)
 
 [node name="campfireEntity" parent="Final_Area" instance=ExtResource("6_ypa1r")]
-transform = Transform3D(0.441942, 0, 0.441942, 0, 0.625, 0, -0.441942, 0, 0.441942, 0.751301, 0.928071, 0.132584)
+transform = Transform3D(0.441942, 0, 0.441942, 0, 0.625, 0, -0.441942, 0, 0.441942, 1.19324, 0.928071, 0.132586)
 
 [node name="EnemyRoom_1" type="Node3D" parent="."]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 29.8548, 0, 30.2197)
@@ -207,6 +230,8 @@ data = {
 
 [connection signal="body_entered" from="BrambleRoom/Area3D" to="BrambleRoom" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="BrambleRoom/Area3D" to="BrambleRoom" method="_on_area_3d_body_exited"]
+[connection signal="body_entered" from="Final_Area/Area3D" to="Final_Area" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Final_Area/Area3D" to="Final_Area" method="_on_area_3d_body_exited"]
 [connection signal="body_entered" from="EnemyRoom_1/Area3D" to="EnemyRoom_1" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="EnemyRoom_1/Area3D" to="EnemyRoom_1" method="_on_area_3d_body_exited"]
 [connection signal="body_entered" from="PlatformEnemyRoom/Area3D" to="PlatformEnemyRoom" method="_on_area_3d_body_entered"]
