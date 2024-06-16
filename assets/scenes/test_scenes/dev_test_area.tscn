@@ -1,16 +1,13 @@
-
-[gd_scene load_steps=17 format=3 uid="uid://p0aiilgf8her"]
+[gd_scene load_steps=16 format=3 uid="uid://p0aiilgf8her"]
 
 [ext_resource type="PackedScene" uid="uid://cepw0irhctadj" path="res://assets/scenes/Player.tscn" id="1_a7fbt"]
 [ext_resource type="Texture2D" uid="uid://db1jdms2tg2k5" path="res://assets/sprites/DEVTERRAIN.png" id="2_a4v3o"]
 [ext_resource type="Script" path="res://assets/code/Camera.gd" id="2_qymli"]
 [ext_resource type="PackedScene" uid="uid://c7wqvk2k4qlpa" path="res://assets/scenes/objects/entities/training_dummy.tscn" id="5_suali"]
 [ext_resource type="PackedScene" uid="uid://bjrk7jvt7oh22" path="res://assets/scenes/objects/props/campfire_entity.tscn" id="6_46uee"]
-[ext_resource type="PackedScene" uid="uid://buxnuaci83en4" path="res://assets/scenes/objects/entities/tree_stump_enemy.tscn" id="7_b03hn"]
 [ext_resource type="PackedScene" uid="uid://ck2wbdv6v35ov" path="res://assets/scenes/objects/entities/bosses/fire_tree_boss.tscn" id="7_m3ktn"]
-[ext_resource type="PackedScene" uid="uid://cngirnrsmq5o2" path="res://assets/scenes/objects/entities/beast_enemy.tscn" id="8_fls2d"]
 [ext_resource type="PackedScene" uid="uid://bop0ovxfb2l3x" path="res://assets/scenes/objects/entities/tree_stump_enemy.tscn" id="8_gymcm"]
-[ext_resource type="PackedScene" uid="uid://ba887e85u37an" path="res://assets/scenes/objects/props/bramble_entity.tscn" id="9_rgcjd"]
+[ext_resource type="PackedScene" path="res://assets/scenes/objects/props/bramble_entity.tscn" id="9_rgcjd"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0uxwf"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
