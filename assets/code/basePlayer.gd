@@ -75,7 +75,7 @@ func _process(delta):
 		add_child(pause)
 		get_tree().paused = true
 	
-	debug_commands()#REMOVE THIS FUNCTION FOR FINAL RELEASE !!
+	#debug_commands() #REMOVE THIS FUNCTION FOR FINAL RELEASE !!
 	move_and_slide()
 
 
