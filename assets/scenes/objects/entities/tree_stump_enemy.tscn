@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://ctb8oa2wm3r0u" path="res://assets/scenes/objects/entities/base_entity.tscn" id="1_37wwl"]
 [ext_resource type="Script" path="res://assets/code/Enemies/tree_stump_enemy.gd" id="2_1lvg2"]
 [ext_resource type="Texture2D" uid="uid://chx5qnbxk3vao" path="res://assets/sprites/enemies/TreeAdd_0000-sheet.png" id="3_11ihq"]
-[ext_resource type="PackedScene" uid="uid://b2dvu1mjah3dd" path="res://assets/scenes/Attacks/explosion_attack.tscn" id="4_6ag1r"]
+[ext_resource type="PackedScene" path="res://assets/scenes/Attacks/explosion_attack.tscn" id="4_6ag1r"]
 
 [sub_resource type="Animation" id="Animation_6qjgs"]
 resource_name = "Explode"
