@@ -34,7 +34,7 @@ environment = SubResource("Environment_0j858")
 transform = Transform3D(0.709664, -0.704537, 0.00193855, -0.00192707, 0.000810416, 0.999998, -0.704537, -0.709667, -0.000782572, -0.0309554, -4.11272e-05, 0.0387351)
 
 [node name="Player" parent="." groups=["Enemy"] instance=ExtResource("1_2f5tk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.36215, 0.778179)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.10724, 1.06903)
 
 [node name="Camera" type="Camera3D" parent="." node_paths=PackedStringArray("Camera_Target")]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 7.684, 2)
