@@ -6,9 +6,7 @@ extends Node3D
 @export var isLit: bool
 @export var canSave: bool = false
 
-# TODO: rn there's two sprite3Ds, when animations come for this just use one
-@onready var debug_unlit_sprite = $PLACEHOLDERUNLIT
-@onready var debug_lit_sprite = $PLACEHOLDERLIT
+@onready var fire_particle = $"fire particle"
 
 func _init(id = 0):
 	self.id = id
@@ -29,12 +27,7 @@ func on_hit(attack):
 		GlobalScript.LitCampfires[id] = true
 
 func handle_sprite(): # Used for debug purposes
-	if isLit:
-		debug_lit_sprite.visible = true
-		debug_unlit_sprite.visible = false
-	else:
-		debug_lit_sprite.visible = false
-		debug_unlit_sprite.visible = true
+	fire_particle.emitting = isLit
 
 func _on_interaction_range_body_entered(body):
 	if body is PlayerEntity:

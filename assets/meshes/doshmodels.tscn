@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://dnt4vbe3cvd2n"]
+[gd_scene load_steps=43 format=3 uid="uid://dnt4vbe3cvd2n"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mxc14"]
 resource_name = "standardSurface1"
@@ -76,7 +76,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_nauva")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_5afdr"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_clxyj"]
 size = Vector3(0.01, 0.01, 0.01)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aeaqb"]
@@ -236,6 +236,8 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_vrm7g")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5afdr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u4m25"]
 resource_name = "standardSurface1"
@@ -469,7 +471,6 @@ shadow_mesh = SubResource("ArrayMesh_xtitl")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l0qks"]
 resource_name = "standardSurface1"
-albedo_color = Color(1, 1, 1, 1)
 roughness = 0.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_pcmnb"]
@@ -514,20 +515,18 @@ skeleton = NodePath("")
 
 [node name="roughground" type="MeshInstance3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, -0.00999425)
-visible = false
 mesh = SubResource("ArrayMesh_fb8kq")
 skeleton = NodePath("")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="roughground"]
-visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="roughground/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.10352e-05, 0, 0)
-visible = false
-shape = SubResource("BoxShape3D_5afdr")
+shape = SubResource("BoxShape3D_clxyj")
 
 [node name="grass" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, -0.5, 0)
+visible = false
 mesh = SubResource("ArrayMesh_7wdtd")
 skeleton = NodePath("")
 
@@ -550,39 +549,69 @@ skeleton = NodePath("")
 
 [node name="oak" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-visible = false
 mesh = SubResource("ArrayMesh_441qq")
 skeleton = NodePath("")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="oak"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="oak/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.10352e-05, 0.5, 0)
+shape = SubResource("BoxShape3D_5afdr")
+
 [node name="oakforest" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-visible = false
 mesh = SubResource("ArrayMesh_pox1v")
 skeleton = NodePath("")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="oakforest"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="oakforest/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.10352e-05, 0.5, 0)
+shape = SubResource("BoxShape3D_5afdr")
+
 [node name="oakforestinner" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-visible = false
 mesh = SubResource("ArrayMesh_b1tis")
 skeleton = NodePath("")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="oakforestinner"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="oakforestinner/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.10352e-05, 0.5, 0)
+shape = SubResource("BoxShape3D_5afdr")
+
 [node name="pine" type="MeshInstance3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, -0.00222256, -0.496733, -0.00098697)
-visible = false
 mesh = SubResource("ArrayMesh_j1d6e")
 skeleton = NodePath("")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="pine"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="pine/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.10352e-05, 0.5, 0)
+shape = SubResource("BoxShape3D_5afdr")
+
 [node name="pineforest" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-visible = false
 mesh = SubResource("ArrayMesh_77y6c")
 skeleton = NodePath("")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="pineforest"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="pineforest/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.10352e-05, 0.5, 0)
+shape = SubResource("BoxShape3D_5afdr")
+
 [node name="pineforestinner" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-visible = false
 mesh = SubResource("ArrayMesh_itlvs")
 skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="pineforestinner"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="pineforestinner/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.10352e-05, 0.5, 0)
+shape = SubResource("BoxShape3D_5afdr")
 
 [node name="rocks" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
