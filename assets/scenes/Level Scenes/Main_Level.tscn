@@ -1,11 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://bdiexygyrjx48"]
+[gd_scene load_steps=14 format=3 uid="uid://bdiexygyrjx48"]
 
 [ext_resource type="PackedScene" uid="uid://cepw0irhctadj" path="res://assets/scenes/Player.tscn" id="1_2f5tk"]
 [ext_resource type="Script" path="res://assets/code/Camera.gd" id="2_mio8k"]
 [ext_resource type="PackedScene" uid="uid://bqurmf18jjjfv" path="res://assets/scenes/Rooms/Base_Room.tscn" id="3_eyn2s"]
-[ext_resource type="MeshLibrary" uid="uid://c05mv7iqg8jhx" path="res://assets/meshes/doshmodels.tres" id="4_nyiil"]
+[ext_resource type="MeshLibrary" uid="uid://06kpm10tpn3n" path="res://assets/meshes/doshmodels.tres" id="4_nyiil"]
 [ext_resource type="PackedScene" uid="uid://dy0h245kkj7ka" path="res://assets/scenes/Rooms/Door.tscn" id="4_qfe7o"]
+[ext_resource type="Script" path="res://assets/scenes/Rooms/Room_Script.gd" id="6_vtqfn"]
 [ext_resource type="PackedScene" uid="uid://bjrk7jvt7oh22" path="res://assets/scenes/objects/props/campfire_entity.tscn" id="6_ypa1r"]
+[ext_resource type="Script" path="res://assets/code/Spawner.gd" id="7_lmetv"]
+[ext_resource type="PackedScene" uid="uid://idxqroy7456a" path="res://assets/scenes/terrain/developer_tiles/dev_grid.tscn" id="8_cqq5u"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7gxpk"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -19,6 +22,9 @@ background_mode = 2
 sky = SubResource("Sky_yss8v")
 tonemap_mode = 2
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_isy8l"]
+size = Vector3(7, 2, 7)
+
 [node name="MainLevel" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -28,7 +34,7 @@ environment = SubResource("Environment_0j858")
 transform = Transform3D(0.709664, -0.704537, 0.00193855, -0.00192707, 0.000810416, 0.999998, -0.704537, -0.709667, -0.000782572, -0.0309554, -4.11272e-05, 0.0387351)
 
 [node name="Player" parent="." groups=["Enemy"] instance=ExtResource("1_2f5tk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.522, -0.066)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.36215, 0.778179)
 
 [node name="Camera" type="Camera3D" parent="." node_paths=PackedStringArray("Camera_Target")]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 7.684, 2)
@@ -78,13 +84,24 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 1, 0)
 
-[node name="BrambleRoom" parent="." instance=ExtResource("3_eyn2s")]
+[node name="BrambleRoom" type="Node3D" parent="."]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 24.9051, 0, 6.88522)
+script = ExtResource("6_vtqfn")
 
-[node name="Spawner" parent="BrambleRoom" index="1"]
+[node name="Area3D" type="Area3D" parent="BrambleRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.05928, 0)
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BrambleRoom/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_isy8l")
+
+[node name="Spawner" type="Node3D" parent="BrambleRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("7_lmetv")
 spawn_enemy = false
 
-[node name="DevGrid" parent="BrambleRoom" index="2"]
+[node name="DevGrid" parent="BrambleRoom" instance=ExtResource("8_cqq5u")]
 mesh_library = ExtResource("4_nyiil")
 data = {
 "cells": PackedInt32Array(1, 65534, 1048579, 2, 65534, 1048579, 65533, 65534, 1048579, 65533, 65535, 1048579, 65533, 0, 1048579, 65533, 1, 1048579, 65533, 2, 1048577, 65534, 2, 1048577, 65535, 2, 1048577, 0, 2, 1048577, 1, 2, 1048577, 2, 2, 1048577, 2, 1, 1048579, 2, 0, 1048579, 2, 65535, 1048579, 1, 0, 1048579, 1, 1, 1048579, 65533, 65533, 1048579, 65535, 65533, 1048579, 65534, 65533, 1048579, 65534, 65534, 1048579, 0, 65533, 1048579, 1, 65533, 1048579, 2, 65533, 1048579, 65532, 65535, 1048579, 65532, 0, 1048579, 3, 65535, 1048579, 3, 0, 1048579, 4, 65535, 1048577, 4, 0, 1048577, 65531, 65535, 1048577, 65531, 0, 1048577, 65535, 65534, 1048579, 65535, 65535, 1048579, 65534, 65535, 1048579, 0, 65534, 1048579, 1, 65535, 1048579, 0, 65535, 1048579, 0, 0, 1048579, 65535, 0, 1048579, 65535, 1, 1048579, 0, 1, 1048579, 65534, 0, 1048579, 65534, 1, 1048579, 65535, 3, 1048577, 0, 3, 1048577, 65532, 65534, 1048579, 65532, 65533, 1048579, 65532, 65532, 1048579, 65533, 65532, 1048579, 65534, 65532, 1048579, 65535, 65532, 1048579, 0, 65532, 1048579, 1, 65532, 1048579, 2, 65532, 1048579, 3, 65533, 1048579, 3, 65534, 1048579, 3, 65532, 1048579, 4, 65532, 1048577, 4, 65533, 1048577, 65535, 4, 1048577, 0, 4, 1048577, 0, 5, 1048577, 0, 6, 1048577, 65535, 6, 1048577, 65535, 7, 1048577, 65535, 8, 1048577, 0, 8, 1048577, 0, 7, 1048577, 65535, 5, 1048577, 4, 65534, 1048577, 65531, 1, 1048577, 65532, 1, 1048579, 65532, 2, 1048577, 65531, 2, 1048577, 65531, 65534, 1048577, 65531, 65533, 1048577, 65531, 65532, 1048577, 65531, 65531, 1048577, 65532, 65531, 1048577, 65533, 65531, 1048577, 65534, 65531, 1048577, 65535, 65531, 1048577, 0, 65531, 1048577, 1, 65531, 1048577, 2, 65531, 1048577, 3, 65531, 1048577, 4, 65531, 1048577, 4, 1, 1048577, 4, 2, 1048577, 3, 2, 1048577, 3, 1, 1048579, 131071, 65531, 655366, 131070, 65531, 655366, 131069, 65531, 655366, 131068, 65531, 655366, 131067, 65531, 655366, 131067, 65532, 655366, 131068, 65532, 655366, 131069, 65532, 655366, 131067, 65533, 655366, 131067, 65534, 655366, 131067, 65535, 655366, 131067, 2, 655366, 131067, 1, 655366, 131068, 2, 655366, 131067, 0, 655365, 65539, 65531, 655366, 65540, 65531, 655366, 65540, 65532, 655366, 65540, 65533, 655366, 65540, 65534, 655366, 65539, 65532, 655365, 65538, 65531, 655366, 65540, 2, 655365, 131069, 1, 655371, 65538, 65534, 1048587, 131070, 65533, 1048587)
@@ -94,58 +111,110 @@ metadata/_editor_floor_ = Vector3(0, 1, 0)
 [node name="Final_Area" parent="." instance=ExtResource("3_eyn2s")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 37.633, 0, -5.8427)
 
-[node name="DevGrid" parent="Final_Area" index="2"]
-mesh_library = ExtResource("4_nyiil")
-data = {
-"cells": PackedInt32Array(1, 65534, 1048579, 2, 65534, 1048579, 65533, 65534, 1048577, 65533, 65535, 1048577, 65533, 0, 1048577, 65533, 1, 1048577, 65533, 2, 1048577, 65534, 2, 1048577, 65535, 2, 1048577, 0, 2, 1048577, 1, 2, 1048577, 2, 2, 1048577, 2, 1, 1048579, 2, 0, 1048579, 2, 65535, 1048579, 1, 0, 1048579, 1, 1, 1048579, 65533, 65533, 1048577, 65535, 65533, 1048577, 65534, 65533, 1048577, 65534, 65534, 1048579, 0, 65533, 1048577, 1, 65533, 1048577, 2, 65533, 1048577, 65535, 65534, 1048579, 65535, 65535, 1048579, 65534, 65535, 1048579, 0, 65534, 1048579, 1, 65535, 1048579, 0, 65535, 1048579, 0, 0, 1048579, 65535, 0, 1048579, 65535, 1, 1048579, 0, 1, 1048579, 65534, 0, 1048579, 65534, 1, 1048579, 0, 11, 1048579, 0, 10, 1048579, 0, 9, 1048579, 0, 8, 1048579, 0, 7, 1048579, 0, 6, 1048579, 0, 5, 1048579, 0, 4, 1048579, 0, 3, 1048579, 65535, 3, 1048577, 65535, 4, 1048577, 65535, 5, 1048577, 65535, 6, 1048577, 65535, 7, 1048577, 65535, 8, 1048577, 65535, 9, 1048577, 65535, 10, 1048577, 0, 12, 1048577, 65535, 12, 1048577, 65535, 11, 1048577, 1, 12, 1048577, 1, 11, 1048577, 1, 10, 1048577, 1, 9, 1048577, 1, 8, 1048577, 1, 7, 1048577, 1, 6, 1048577, 1, 5, 1048577, 1, 4, 1048577, 1, 3, 1048577, 3, 2, 1048577, 3, 1, 1048577, 3, 0, 1048577, 3, 65534, 1048577, 3, 65535, 1048577, 3, 65533, 1048577, 131069, 65533, 1048585, 65539, 65533, 1048585, 65539, 65534, 1048585, 131069, 2, 1048585, 65537, 65534, 1048578, 131070, 0, 1048578, 131070, 65535, 1048580, 65538, 1, 4, 65537, 2, 11, 65539, 2, 8, 131071, 3, 8)
-}
-metadata/_editor_floor_ = Vector3(0, 1, 0)
-
 [node name="campfireEntity" parent="Final_Area" instance=ExtResource("6_ypa1r")]
 transform = Transform3D(0.441942, 0, 0.441942, 0, 0.625, 0, -0.441942, 0, 0.441942, 0.751301, 0.928071, 0.132584)
 
-[node name="EnemyRoom_1" parent="." instance=ExtResource("3_eyn2s")]
+[node name="EnemyRoom_1" type="Node3D" parent="."]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 29.8548, 0, 30.2197)
+script = ExtResource("6_vtqfn")
 
-[node name="DevGrid" parent="EnemyRoom_1" index="2"]
+[node name="Area3D" type="Area3D" parent="EnemyRoom_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.05928, 0)
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyRoom_1/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_isy8l")
+
+[node name="Spawner" type="Node3D" parent="EnemyRoom_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("7_lmetv")
+
+[node name="DevGrid" parent="EnemyRoom_1" instance=ExtResource("8_cqq5u")]
 mesh_library = ExtResource("4_nyiil")
 data = {
 "cells": PackedInt32Array(1, 65534, 1048579, 2, 65534, 1048577, 65533, 65534, 1048577, 65533, 65535, 1048577, 65533, 0, 1048577, 65533, 1, 1048577, 65533, 2, 1048577, 65534, 2, 1048577, 65535, 2, 1048579, 0, 2, 1048579, 1, 2, 1048577, 2, 2, 1048577, 2, 1, 1048577, 2, 0, 1048577, 2, 65535, 1048577, 1, 0, 1048579, 1, 1, 1048579, 65533, 65533, 1048577, 65535, 65533, 1048577, 65534, 65533, 1048577, 65534, 65534, 1048579, 0, 65533, 1048577, 1, 65533, 1048577, 2, 65533, 1048577, 65532, 65535, 1048577, 65532, 0, 1048577, 65531, 65535, 1048577, 65531, 0, 1048577, 65535, 65534, 1048579, 65535, 65535, 1048579, 65534, 65535, 1048579, 0, 65534, 1048579, 1, 65535, 1048579, 0, 65535, 1048579, 0, 0, 1048579, 65535, 0, 1048579, 65535, 1, 1048579, 0, 1, 1048579, 65534, 0, 1048579, 65534, 1, 1048579, 65535, 3, 1048577, 0, 3, 1048577, 65535, 4, 1048577, 0, 4, 1048577, 65537, 1, 4, 131070, 0, 1441796, 131069, 65534, 1441798, 65538, 65533, 1441798, 65537, 65533, 1441798, 65536, 65533, 655366, 131071, 65533, 655366, 131070, 65533, 655366, 131069, 65533, 655365, 65538, 2, 655369, 131069, 2, 655369, 65538, 65535, 655369, 65537, 2, 655368)
 }
 metadata/_editor_floor_ = Vector3(0, 1, 0)
 
-[node name="PlatformEnemyRoom" parent="." instance=ExtResource("3_eyn2s")]
+[node name="PlatformEnemyRoom" type="Node3D" parent="."]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 24.198, 0, 35.8766)
+script = ExtResource("6_vtqfn")
 
-[node name="DevGrid" parent="PlatformEnemyRoom" index="2"]
+[node name="Area3D" type="Area3D" parent="PlatformEnemyRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.05928, 0)
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlatformEnemyRoom/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_isy8l")
+
+[node name="Spawner" type="Node3D" parent="PlatformEnemyRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("7_lmetv")
+
+[node name="DevGrid" parent="PlatformEnemyRoom" instance=ExtResource("8_cqq5u")]
 mesh_library = ExtResource("4_nyiil")
 data = {
 "cells": PackedInt32Array(1, 65534, 1048579, 2, 65534, 1048577, 2, 2, 1048577, 2, 1, 1048577, 2, 0, 1048577, 2, 65535, 1048577, 1, 0, 1048579, 1, 1, 1048579, 65533, 65533, 1048577, 65535, 65533, 1048577, 65534, 65533, 1048577, 65534, 65534, 1441793, 0, 65533, 1048577, 1, 65533, 1048577, 2, 65533, 1048577, 65535, 65534, 1048579, 65535, 65535, 1, 65534, 65535, 1, 0, 65534, 1048579, 1, 65535, 1048579, 0, 65535, 1048579, 0, 0, 1441793, 0, 1, 1, 65538, 2, 655368, 131069, 65533, 655368, 65538, 65533, 655369, 1, 2, 1, 65531, 65533, 1, 65531, 65534, 1, 65531, 65535, 1, 65532, 0, 1, 65533, 1, 1, 65533, 2, 1, 65532, 2, 1, 65531, 2, 1, 65530, 2, 1, 65529, 2, 1, 65528, 1, 1, 65528, 0, 1, 65528, 65535, 1, 65528, 65534, 1, 65528, 65533, 1, 65529, 65533, 1, 65530, 65533, 1, 65529, 1, 1, 65529, 65534, 3, 65530, 65534, 3, 65530, 65535, 3, 65529, 65535, 3, 65529, 0, 3, 65530, 0, 3, 65531, 0, 3, 65530, 1, 3, 65531, 1, 3, 65532, 1, 3, 65527, 0, 1, 65526, 0, 1, 65526, 65535, 1, 65525, 65535, 1, 65527, 65535, 1, 65525, 0, 1, 131064, 65533, 1441801, 131066, 65533, 1441801, 131064, 1, 1441797, 65538, 0, 1441797)
 }
 metadata/_editor_floor_ = Vector3(0, 1, 0)
 
-[node name="EnemyRoom_2" parent="." instance=ExtResource("3_eyn2s")]
+[node name="EnemyRoom_2" type="Node3D" parent="."]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 14.2985, 0, 25.9771)
+script = ExtResource("6_vtqfn")
 
-[node name="DevGrid" parent="EnemyRoom_2" index="2"]
+[node name="Area3D" type="Area3D" parent="EnemyRoom_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.05928, 0)
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyRoom_2/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_isy8l")
+
+[node name="Spawner" type="Node3D" parent="EnemyRoom_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("7_lmetv")
+
+[node name="DevGrid" parent="EnemyRoom_2" instance=ExtResource("8_cqq5u")]
 mesh_library = ExtResource("4_nyiil")
 data = {
 "cells": PackedInt32Array(1, 65534, 1048577, 2, 65534, 1048577, 65533, 65534, 1048577, 65533, 65535, 1048577, 65533, 0, 1048577, 65533, 1, 1048577, 65533, 2, 1048577, 65534, 2, 1048577, 65535, 2, 1048577, 0, 2, 1048577, 1, 2, 1048577, 2, 2, 1048577, 2, 1, 1048577, 2, 0, 1048577, 2, 65535, 1048577, 1, 0, 1048579, 1, 1, 1048579, 65533, 65533, 1048577, 65535, 65533, 1048577, 65534, 65533, 1048577, 65534, 65534, 1048577, 0, 65533, 1048577, 1, 65533, 1048577, 2, 65533, 1048577, 65532, 65535, 1048577, 65532, 0, 1048577, 65531, 65535, 1048577, 65531, 0, 1048577, 65535, 65534, 1048577, 65535, 65535, 1048579, 65534, 65535, 1048579, 0, 65534, 1048577, 1, 65535, 1048579, 0, 65535, 1048579, 0, 0, 1048579, 65535, 0, 1048579, 65535, 1, 1048579, 0, 1, 1048579, 65534, 0, 1048579, 65534, 1, 1048579, 65529, 65535, 0, 65530, 65535, 1048577, 65530, 0, 1048577, 131069, 65533, 655369, 131069, 1, 655369, 65538, 65533, 655368, 131070, 65533, 655369, 131060, 65535, 655368, 131061, 65535, 655369, 131064, 0, 655371, 131066, 65535, 1048587, 131057, 3, 1048585, 131056, 4, 1048585, 131057, 4, 1048585, 131056, 5, 1048585, 131055, 5, 1048585, 131054, 6, 1048585, 131054, 4, 1048586, 131054, 5, 1048586, 131053, 5, 1048586, 131052, 5, 1048586, 131053, 4, 1048586, 131054, 3, 1048586, 131055, 3, 1048586, 131055, 2, 1048586, 131056, 2, 1048586, 131056, 3, 1048586, 131055, 4, 1048586, 131054, 8, 1048585, 131053, 7, 1048585, 131053, 8, 1048585, 131053, 9, 1048585, 131052, 7, 1048585, 131053, 10, 1048585, 131064, 3, 1048585, 131066, 7, 1048584, 131066, 6, 1048584, 131057, 14, 1048584, 131064, 13, 1048584, 131056, 12, 1048584, 131061, 13, 1048587, 131057, 10, 1048587, 131057, 9, 1048587, 131058, 8, 1048587, 131067, 10, 1048580, 131059, 13, 4, 131058, 5, 1441796, 131063, 4, 1441796, 131061, 9, 1441792)
 }
 metadata/_editor_floor_ = Vector3(0, 1, 0)
 
-[node name="BossRoom" parent="." instance=ExtResource("3_eyn2s")]
+[node name="BossRoom" type="Node3D" parent="."]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 6.5203, 0, 18.1989)
+script = ExtResource("6_vtqfn")
 
-[node name="Area3D" parent="BossRoom" index="0"]
+[node name="Area3D" type="Area3D" parent="BossRoom"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.05928, 7)
+collision_mask = 3
 
-[node name="DevGrid" parent="BossRoom" index="2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BossRoom/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_isy8l")
+
+[node name="Spawner" type="Node3D" parent="BossRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("7_lmetv")
+
+[node name="DevGrid" parent="BossRoom" instance=ExtResource("8_cqq5u")]
 mesh_library = ExtResource("4_nyiil")
 data = {
 "cells": PackedInt32Array(65535, 2, 1048577, 0, 2, 1048577, 2, 0, 1048577, 2, 65535, 1048577, 1, 0, 1048577, 3, 65535, 1048577, 3, 0, 1048577, 4, 65535, 1048577, 4, 0, 1048577, 65535, 65535, 1048577, 1, 65535, 1048577, 0, 65535, 1048577, 0, 0, 1048577, 65535, 0, 1048577, 65535, 1, 1048577, 0, 1, 1048577, 65534, 3, 1048577, 65535, 3, 1048577, 0, 3, 1048577, 1, 3, 1048577, 2, 3, 1048577, 2, 4, 1048579, 2, 5, 1048579, 3, 5, 1048579, 2, 6, 1048579, 3, 6, 1048579, 3, 7, 1048579, 2, 7, 1048579, 3, 8, 1048579, 3, 9, 1048579, 3, 4, 1048577, 3, 3, 1048577, 4, 5, 1048577, 4, 6, 1048579, 6, 6, 1048577, 6, 7, 1048577, 6, 8, 1048577, 6, 9, 1048577, 6, 10, 1048577, 6, 11, 1048577, 5, 7, 1048579, 1, 5, 1048579, 0, 5, 1048579, 65535, 5, 1048579, 65535, 4, 1048579, 65534, 4, 1048579, 65534, 5, 1048579, 1, 4, 1048579, 0, 4, 1048579, 65533, 5, 1048579, 65532, 5, 1048579, 65531, 5, 1048577, 65531, 6, 1048579, 65531, 7, 1048579, 65531, 8, 1048579, 65531, 9, 1048579, 65531, 10, 1048579, 65531, 11, 1048579, 65531, 12, 1048577, 65532, 12, 1048579, 65532, 13, 1048577, 65533, 13, 1048579, 65534, 13, 1048579, 65535, 13, 1048579, 0, 13, 1048579, 1, 13, 1048579, 2, 13, 1048579, 5, 12, 1048577, 4, 12, 1048577, 3, 11, 1048579, 2, 11, 1048579, 1, 10, 1048579, 0, 10, 1048579, 65535, 10, 1048579, 65534, 10, 1048579, 65534, 9, 1048579, 65535, 8, 1048579, 0, 8, 1048579, 0, 7, 1048579, 1, 7, 1048579, 65535, 7, 1048579, 65534, 7, 1048579, 65533, 8, 1048579, 65532, 8, 1048579, 65532, 7, 1048579, 65533, 7, 1048579, 65534, 6, 1048579, 65535, 6, 1048579, 0, 6, 1048579, 1, 6, 1048579, 65532, 6, 1048579, 65533, 6, 1048579, 4, 7, 1048579, 4, 8, 1048579, 5, 8, 1048579, 5, 9, 1048579, 5, 10, 1048579, 5, 11, 1048577, 4, 10, 1048579, 4, 11, 1048579, 1, 11, 1048579, 0, 9, 1048579, 65535, 9, 1048579, 65534, 8, 1048579, 65533, 4, 1048579, 65533, 3, 1048577, 65532, 3, 1048577, 65532, 4, 1048577, 65530, 6, 1048577, 65530, 7, 1048579, 65530, 8, 1048579, 65530, 9, 1048579, 65530, 10, 1048579, 65530, 5, 1048577, 65529, 6, 1048577, 65529, 7, 1048577, 65529, 8, 1048577, 65529, 9, 1048577, 65529, 10, 1048577, 65529, 11, 1048577, 65530, 12, 1048577, 65530, 11, 1048577, 65532, 10, 1048579, 65533, 10, 1048579, 1, 9, 1048579, 2, 9, 1048579, 4, 9, 1048579, 65533, 9, 1048579, 65532, 9, 1048579, 2, 8, 1048579, 1, 8, 1048579, 65534, 11, 1048579, 65533, 11, 1048579, 65535, 11, 1048579, 0, 11, 1048579, 3, 10, 1048579, 65533, 12, 1048579, 2, 10, 1048579, 65532, 11, 1048579, 3, 13, 1048577, 2, 12, 1048579, 1, 12, 1048579, 0, 12, 1048579, 65535, 12, 1048579, 3, 12, 1048579, 65534, 12, 1048579, 65532, 14, 1048577, 65533, 14, 1048577, 65534, 14, 1048577, 65535, 14, 1048577, 0, 14, 1048577, 1, 14, 1048577, 2, 14, 1048577, 3, 14, 1048577, 4, 4, 1048577, 65531, 4, 1048577, 65531, 13, 1048577, 4, 13, 1048577, 5, 6, 1048577, 5, 5, 1048577)
 }
 
+[connection signal="body_entered" from="BrambleRoom/Area3D" to="BrambleRoom" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="BrambleRoom/Area3D" to="BrambleRoom" method="_on_area_3d_body_exited"]
+[connection signal="body_entered" from="EnemyRoom_1/Area3D" to="EnemyRoom_1" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="EnemyRoom_1/Area3D" to="EnemyRoom_1" method="_on_area_3d_body_exited"]
+[connection signal="body_entered" from="PlatformEnemyRoom/Area3D" to="PlatformEnemyRoom" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="PlatformEnemyRoom/Area3D" to="PlatformEnemyRoom" method="_on_area_3d_body_exited"]
+[connection signal="body_entered" from="EnemyRoom_2/Area3D" to="EnemyRoom_2" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="EnemyRoom_2/Area3D" to="EnemyRoom_2" method="_on_area_3d_body_exited"]
+[connection signal="body_entered" from="BossRoom/Area3D" to="BossRoom" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="BossRoom/Area3D" to="BossRoom" method="_on_area_3d_body_exited"]
 
 [editable path="StartRoom"]
 [editable path="SafeRoom"]
